@@ -19,6 +19,9 @@
 var app = {
     initialize: function() {
         this.bind();
+        
+        $.mobile.allowCrossDomainPages = true;
+        $.support.cors = true;
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
@@ -31,7 +34,7 @@ var app = {
         
 	setTimeout(function() {
 	    navigator.splashscreen.hide();
-	}, 2000);
+	}, 5000);
 
 
     },
