@@ -17,6 +17,7 @@
 
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" /> 
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="false" />
 
     <preference name="phonegap-version" value="2.0.0" />
     <preference name="orientation"      value="default" />
