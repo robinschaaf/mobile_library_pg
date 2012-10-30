@@ -22,6 +22,8 @@ var app = {
         
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
+        $.mobile.pushStateEnabled = false;
+        
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
