@@ -19,7 +19,7 @@
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" /> 
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
     <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="false" />
-    <access origin="http://www.library.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://www.library.nd.edu" subdomains="true" browserOnly="true" />
     <access origin="http://architecture.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://bic.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://chemistry.library.nd.edu" subdomains="true" browserOnly="false" />
