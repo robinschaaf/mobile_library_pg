@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns     = "http://www.w3.org/ns/widgets"
+<widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "edu.nd.library"
-        version   = "2.1.0">
+        id = "edu.nd.library"
+        version = "2.1.0">
     <name>Hesburgh Libraries</name>
 
     <description>
@@ -15,9 +15,10 @@
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" /> 
-    <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" /> 
+    <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
+    <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://www.library.nd.edu" subdomains="true" browserOnly="true" />
     <access origin="http://architecture.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://bic.library.nd.edu" subdomains="true" browserOnly="false" />
@@ -30,15 +31,13 @@
     <access origin="http://libraryh3lp.com" subdomains="true" browserOnly="false" />
 
     <preference name="phonegap-version" value="2.1.0" />
-    <preference name="orientation"      value="default" />
-    <preference name="target-device"    value="universal" />
-    <preference name="fullscreen"       value="false" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
     
     
     <icon src="icon.png" />
     <gap:splash src="splash.png" />
-    <gap:plugin name="ChildBrowser" />
-    
-    
+
 </widget>
