@@ -47,7 +47,10 @@
 <script type="text/javascript" charset="utf-8">
     document.addEventListener("deviceready", onDeviceReady, false);
     function onDeviceReady() {
-        window.plugins.childBrowser.openExternal("http://www.google.com");
+
+        alert('here');
+        childBrowser.openExternal("http://www.google.com");
+
     }
 </script>
 
