@@ -35,10 +35,13 @@ var app = {
         
         
 	navigator.splashscreen.hide();
-	
 
     },
 
 
 
 };
+
+
+    
+    

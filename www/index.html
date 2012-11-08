@@ -37,26 +37,14 @@
         <title>Hesburgh Libraries Mobile // University of Notre Dame</title>
 
 
-<script type="text/javascript" charset="utf-8">
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-
-$("#div_feedback").html("HERE");
-
-    }
-</script>
-
-
     </head>
     <body>
         <script type="text/javascript" src="cordova-2.1.0.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="/js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
         </script>
-
-
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
 
@@ -70,7 +58,7 @@ $("#div_feedback").html("HERE");
 
 		  <div data-role="content" data-theme="a" style="">
 
-
+<div id='div_feedback'>OLD</div>
 
 			<div style='padding-top:17px;'>
 			  <form name="searchForm" method="post" action="http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=go&ct=search&vid=ndmobile&resetConfig=true" class="EXLSearchForm" enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" id="searchForm" target="_self">
@@ -136,7 +124,10 @@ $("#div_feedback").html("HERE");
 		    </div>
 
 
-
+<script type="text/javascript" charset="utf-8">
+alert('index');
+$("#div_feedback").html("HERE");
+</script>
 
 
 
