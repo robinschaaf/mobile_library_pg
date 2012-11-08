@@ -35,6 +35,18 @@
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hesburgh Libraries Mobile // University of Notre Dame</title>
+
+
+<script type="text/javascript" charset="utf-8">
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+
+        alert('here');
+
+    }
+</script>
+
+
     </head>
     <body>
         <script type="text/javascript" src="cordova-2.1.0.js"></script>
@@ -43,16 +55,6 @@
         <script type="text/javascript">
             app.initialize();
         </script>
-
-<script type="text/javascript" charset="utf-8">
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-
-        alert('here');
-        childBrowser.openExternal("http://www.google.com");
-
-    }
-</script>
 
 
 
@@ -126,9 +128,9 @@
 			  </div>
 
 			  <div class="ui-block-d icon">
-				<a href="http://m.nd.edu"><img alt="Nd" class="icon" src="http://mpprd.library.nd.edu/assets/icons/nd.png" /></a>
+				<a href="http://m.nd.edu" target="_blank"><img alt="Nd" class="icon" src="http://mpprd.library.nd.edu/assets/icons/nd.png" /></a>
 				<br />
-				<a href="http://m.nd.edu" class="icon">Mobile ND</a>
+				<a href="http://m.nd.edu" target="_blank" class="icon">Mobile ND</a>
 			  </div>
 
 		    </div>
