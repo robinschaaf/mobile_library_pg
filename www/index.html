@@ -41,9 +41,12 @@
     <body>
         <script type="text/javascript" src="cordova-2.1.0.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
-        <script type="text/javascript" src="/js/index.js"></script>
+        <script type="text/javascript" src="/js/iasdasdndex.js"></script>
         <script type="text/javascript">
-            app.initialize();
+            //app.initialize();
+        document.addEventListener('deviceready', function() {
+            navigator.notification.alert('device ready');
+        });
         </script>
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
@@ -122,19 +125,6 @@
 			  </div>
 
 		    </div>
-
-
-<script type="text/javascript" charset="utf-8">
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-        window.plugins.childBrowser.openExternal("http://www.google.com");
-        alert('cb');
-    }
-
-</script>
-
-
 
 		</div>
 
