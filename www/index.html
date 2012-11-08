@@ -125,8 +125,13 @@
 
 
 <script type="text/javascript" charset="utf-8">
-alert('index');
-$("#div_feedback").html("HERE");
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        window.plugins.childBrowser.openExternal("http://www.google.com");
+        alert('cb');
+    }
+
 </script>
 
 
