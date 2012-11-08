@@ -42,7 +42,11 @@
         <script type="text/javascript" src="cordova-2.1.0.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
         <script type="text/javascript">
-
+            //app.initialize();
+        document.addEventListener('deviceready', function() {
+            navigator.notification.alert('device ready');
+        });
+        </script>
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
 
@@ -55,6 +59,8 @@
 		  </div>
 
 		  <div data-role="content" data-theme="a" style="">
+
+<div id='div_feedback'>OLD</div>
 
 			<div style='padding-top:17px;'>
 			  <form name="searchForm" method="post" action="http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=go&ct=search&vid=ndmobile&resetConfig=true" class="EXLSearchForm" enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" id="searchForm" target="_self">
@@ -127,11 +133,7 @@
 		  <img alt="Hesburgh_mark" class="hesburgh-mark" src="http://mpprd.library.nd.edu/assets/hesburgh_mark.png" />&nbsp;&nbsp;<a href="http://www.library.nd.edu" class="ui-link" data-role="none" target="_blank">Full Site</a>  |  <a href="http://mpprd.library.nd.edu/feedback" class="ui-link" data-role="none">Feedback</a>
 		</div>
 
-            //app.initialize();
-        document.addEventListener('deviceready', function() {
-            navigator.notification.alert('device ready');
-        });
-        </script>
+
 
 
     </body>
