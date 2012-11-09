@@ -45,7 +45,11 @@
             //app.initialize();
         document.addEventListener('deviceready', function() {
             navigator.notification.alert('device ready');
+            alert('device ready');
+
         });
+
+        alert('missed device ready');
         </script>
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
@@ -133,7 +137,9 @@
 		  <img alt="Hesburgh_mark" class="hesburgh-mark" src="http://mpprd.library.nd.edu/assets/hesburgh_mark.png" />&nbsp;&nbsp;<a href="http://www.library.nd.edu" class="ui-link" data-role="none" target="_blank">Full Site</a>  |  <a href="http://mpprd.library.nd.edu/feedback" class="ui-link" data-role="none">Feedback</a>
 		</div>
 
-
+        <script type="text/javascript">
+        alert('end');
+        </script>
 
 
     </body>
