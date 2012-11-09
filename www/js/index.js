@@ -17,6 +17,9 @@
  * under the License.
  */
  
+ 
+var childBrowser; 
+ 
 var app = {
 
     initialize: function() {
@@ -41,9 +44,6 @@ var app = {
         app.report('deviceready');
         
         
-	navigator.splashscreen.hide();
-	
-	
 	childBrowser = ChildBrowser.install();
 
     },
