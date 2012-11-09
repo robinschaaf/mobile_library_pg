@@ -14,7 +14,9 @@
     </author>
 
     <preference name="permissions" value="none"/>
-
+    <preference name="stay-in-webview" value="true" />
+    
+    
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
