@@ -42,6 +42,9 @@ var app = {
         
         
 	navigator.splashscreen.hide();
+	
+	
+	childBrowser = ChildBrowser.install();
 
     },
 
@@ -49,6 +52,18 @@ var app = {
 
 };
 
+
+
+
+function openChildBrowser(url){
+    try {
+	//both of these should work...
+	//window.plugins.childBrowser.showWebPage(url);
+	childBrowser.showWebPage(url);
+    }catch (err){
+	alert(err);
+    }
+}
 
     
     
