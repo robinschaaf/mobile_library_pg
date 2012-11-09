@@ -13,10 +13,7 @@
         Hesburgh Libraries Web Application Development Team
     </author>
 
-    <preference name="permissions" value="none"/>
-    <preference name="stay-in-webview" value="true" />
-    
-    
+   
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
@@ -40,7 +37,8 @@
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
-    
+    <preference name="permissions" value="none"/>
+    <preference name="stay-in-webview" value="true" />    
     
     <icon src="icon.png" />
     <gap:splash src="splash.png" />
