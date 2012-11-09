@@ -17,16 +17,19 @@
  * under the License.
  */
 var app = {
+alert('app');
     initialize: function() {
         this.bind();
         
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
+        alert('init');
         
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+        alert('bind');
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
