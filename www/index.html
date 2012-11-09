@@ -41,23 +41,12 @@
     // When PhoneGap is loaded and talking with the native device,
     // it will call the event `deviceready`.
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
+    $(document).ready(function() {
+	  // Handler for .ready() called.
+	  document.addEventListener("deviceready", onDeviceReady, true);
+	});
 
-<script type="text/javascript" charset="utf-8">
-
-
-    var onDeviceReady = function() {
-        alert('device ready');
-    };
-
-$(document).ready(function() {
-  // Handler for .ready() called.
-  document.addEventListener("deviceready", onDeviceReady, true);
-});
-</script>
-
-    </script>
-
+	</script>
 
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -68,16 +57,16 @@ $(document).ready(function() {
     <body>
         <script type="text/javascript" src="cordova-2.1.0.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
-        <script type="text/javascript">
-            //app.initialize();
-       // document.addEventListener('deviceready', function() {
-       //     navigator.notification.alert('device ready');
-       //     alert('device ready');
+<script type="text/javascript" charset="utf-8">
 
-       // });
 
-        //alert('missed device ready');
-        </script>
+    var onDeviceReady = function() {
+        alert('device ready');
+    };
+
+
+</script>
+
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
 
@@ -91,7 +80,6 @@ $(document).ready(function() {
 
 		  <div data-role="content" data-theme="a" style="">
 
-<div id='div_feedback'>OLD</div>
 
 			<div style='padding-top:17px;'>
 			  <form name="searchForm" method="post" action="http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?fn=go&ct=search&vid=ndmobile&resetConfig=true" class="EXLSearchForm" enctype="application/x-www-form-urlencoded; charset=utf-8" onsubmit="if(window.manualFormSubmit){manualFormSubmit(this.id);return false;}" id="searchForm" target="_self">
@@ -163,11 +151,6 @@ $(document).ready(function() {
 		<div data-role="footer" class="ui-bar" data-position="inline">
 		  <img alt="Hesburgh_mark" class="hesburgh-mark" src="http://mpprd.library.nd.edu/assets/hesburgh_mark.png" />&nbsp;&nbsp;<a href="http://www.library.nd.edu" class="ui-link" data-role="none" target="_blank">Full Site</a>  |  <a href="http://mpprd.library.nd.edu/feedback" class="ui-link" data-role="none">Feedback</a>
 		</div>
-
-        <script type="text/javascript">
-        alert('end');
-        </script>
-
 
     </body>
 </html>
