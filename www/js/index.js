@@ -35,16 +35,15 @@ var app = {
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
         
-
-        
-        alert('deviceready !  yay!');
-        
+       
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
         
         
-	childBrowser = ChildBrowser.install();
+	window.plugins.childBrowser = ChildBrowser.install();
+	
+	alert('deviceready !  yay!');
 
     },
 
