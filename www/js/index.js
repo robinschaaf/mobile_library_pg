@@ -17,24 +17,22 @@
  * under the License.
  */
  
- alert('indexjs');
- 
 var app = {
 
     initialize: function() {
         this.bind();
-        
-        $.mobile.allowCrossDomainPages = true;
-        $.support.cors = true;
-        $.mobile.pushStateEnabled = false;
-        alert('init');
-        
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, true);
-        alert('bind');
     },
     deviceready: function() {
+
+
+        $.mobile.allowCrossDomainPages = true;
+        $.support.cors = true;
+        $.mobile.pushStateEnabled = false;
+        
+
         
         alert('deviceready !  yay!');
         
