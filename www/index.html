@@ -43,7 +43,9 @@
     //
     $(document).ready(function() {
 	  // Handler for .ready() called.
+	  alert('ready()');
 	  document.addEventListener("deviceready", onDeviceReady, true);
+	  alert('first js');
 	});
 
 	</script>
@@ -59,11 +61,11 @@
         <script type="text/javascript" src="childbrowser.js"></script>
 <script type="text/javascript" charset="utf-8">
 
-
+alert('second js');
     var onDeviceReady = function() {
         alert('device ready');
     };
-
+ onDeviceReady();
 
 </script>
 
