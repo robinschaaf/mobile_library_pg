@@ -31,7 +31,7 @@ var app = {
         
     },
     bind: function() {
-        //document.addEventListener('deviceready', this.onDeviceReady, true);
+        document.addEventListener('deviceready', deviceready, true);
         alert('bind');
     },
     deviceready: function() {
