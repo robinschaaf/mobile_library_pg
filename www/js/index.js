@@ -39,9 +39,14 @@ var app = {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
+    try {        
         
-        
-	window.plugins.childBrowser = ChildBrowser.install();
+	childBrowser = ChildBrowser.install();
+
+    }catch (err){
+	alert(err);
+    }
+
 	
 	alert('deviceready !  yay!');
 
@@ -57,8 +62,8 @@ var app = {
 function openChildBrowser(url){
     try {
 	//both of these should work...
-	//window.plugins.childBrowser.showWebPage(url);
-	childBrowser.showWebPage(url);
+	window.plugins.childBrowser.showWebPage(url);
+	//childBrowser.showWebPage(url);
     }catch (err){
 	alert(err);
     }
