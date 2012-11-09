@@ -18,8 +18,7 @@
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
-    <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="true" />
-    <access origin="http://www.library.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://architecture.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://bic.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://chemistry.library.nd.edu" subdomains="true" browserOnly="false" />
@@ -29,6 +28,9 @@
     <access origin="http://radlab.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://vrc.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://libraryh3lp.com" subdomains="true" browserOnly="false" />
+    
+
+    <access origin="http://www.library.nd.edu" subdomains="false" browserOnly="true" />    
 
     <preference name="phonegap-version" value="2.1.0" />
     <preference name="orientation" value="default" />
