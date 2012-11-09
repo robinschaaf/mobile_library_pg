@@ -16,8 +16,11 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ 
+ alert('indexjs');
+ 
 var app = {
-alert('app');
+
     initialize: function() {
         this.bind();
         
@@ -28,7 +31,7 @@ alert('app');
         
     },
     bind: function() {
-        document.addEventListener('deviceready', this.deviceready, false);
+        document.addEventListener('deviceready', this.onDeviceReady, true);
         alert('bind');
     },
     deviceready: function() {
