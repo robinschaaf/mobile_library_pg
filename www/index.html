@@ -32,28 +32,6 @@
 		<script src="http://mpprd.library.nd.edu/assets/mobile.js" type="text/javascript"></script>
 		<script src="http://mpprd.library.nd.edu/assets/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 
-
-    <script type="text/javascript" charset="utf-8">
-
-    // Call onDeviceReady when PhoneGap is loaded.
-    //
-    // At this point, the document has loaded but phonegap-1.0.0.js has not.
-    // When PhoneGap is loaded and talking with the native device,
-    // it will call the event `deviceready`.
-    //
-    $(document).ready(function() {
-	  // Handler for .ready() called.
-	  alert('ready()');
-	  document.addEventListener("deviceready", onDeviceReady, true);
-
-
-	});
-
-alert('first js');
-
-	</script>
-
-
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Hesburgh Libraries Mobile // University of Notre Dame</title>
 
@@ -62,16 +40,7 @@ alert('first js');
     <body>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="childbrowser.js"></script>
-<script type="text/javascript" charset="utf-8">
-
-alert('second js');
-    var onDeviceReady = function() {
-        alert('device ready');
-    };
-
-
-</script>
-
+        <script type="text/javascript" src="/js/index.js"></script>
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
 
