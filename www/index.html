@@ -43,11 +43,18 @@
     //
     document.addEventListener("deviceready", onDeviceReady, false);
 
-    // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
-    //
-    function onDeviceReady() {
-        alert('new deviceready');
-    }
+<script type="text/javascript" charset="utf-8">
+
+
+    var onDeviceReady = function() {
+        alert('device ready');
+    };
+
+$(document).ready(function() {
+  // Handler for .ready() called.
+  document.addEventListener("deviceready", onDeviceReady, true);
+});
+</script>
 
     </script>
 
@@ -63,13 +70,13 @@
         <script type="text/javascript" src="childbrowser.js"></script>
         <script type="text/javascript">
             //app.initialize();
-        document.addEventListener('deviceready', function() {
-            navigator.notification.alert('device ready');
-            alert('device ready');
+       // document.addEventListener('deviceready', function() {
+       //     navigator.notification.alert('device ready');
+       //     alert('device ready');
 
-        });
+       // });
 
-        alert('missed device ready');
+        //alert('missed device ready');
         </script>
 
 		<div data-role="page" data-theme="a" data-add-back-btn='true'>
