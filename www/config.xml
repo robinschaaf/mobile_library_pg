@@ -13,7 +13,7 @@
         Hesburgh Libraries Web Application Development Team
     </author>
 
-    <feature name="http://api.phonegap.com/1.0/device" />
+    <preference name="permissions" value="none"/>
 
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
@@ -28,6 +28,7 @@
     <access origin="http://radlab.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://vrc.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://libraryh3lp.com" subdomains="true" browserOnly="false" />
+    <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
     
 
     <access origin="http://www.library.nd.edu" subdomains="false" browserOnly="true" />    

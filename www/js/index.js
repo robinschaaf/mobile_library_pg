@@ -33,7 +33,7 @@ var app = {
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
         
-        
+        alert('deviceready !  yay!');
 	navigator.splashscreen.hide();
 
     },
