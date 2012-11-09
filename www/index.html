@@ -33,6 +33,7 @@
 		<script src="http://mpprd.library.nd.edu/assets/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
 
 
+        <script type="text/javascript" src="index.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     // Call onDeviceReady when PhoneGap is loaded.
@@ -43,13 +44,12 @@
     //
     $(document).ready(function() {
 	  // Handler for .ready() called.
-	  alert('ready()');
+
 	  document.addEventListener("deviceready", onDeviceReady, true);
 
 
 	});
 
-alert('first js');
 
 	</script>
 
@@ -64,7 +64,7 @@ alert('first js');
         <script type="text/javascript" src="childbrowser.js"></script>
 <script type="text/javascript" charset="utf-8">
 
-alert('second js');
+
     var onDeviceReady = function() {
         alert('device ready');
     };
