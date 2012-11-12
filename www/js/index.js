@@ -17,7 +17,7 @@
  * under the License.
  */
  
- 
+ alert('index.js called');
 var childBrowser; 
  
 var app = {
@@ -39,13 +39,15 @@ var app = {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
-    try {        
         
-	childBrowser = ChildBrowser.install();
+        
+    	try {        
 
-    }catch (err){
-	alert(err);
-    }
+		childBrowser = ChildBrowser.install();
+
+    	}catch (err){
+		alert(err);
+    	}
 
 	
 	alert('deviceready !  yay!');
