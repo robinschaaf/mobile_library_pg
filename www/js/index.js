@@ -37,25 +37,32 @@ alert('deviceready');
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
         
+	alert('deviceready !  yay!');
+	
+	document.addEventListener("orientationChanged", function(e) {
+	
+	          var orientation="portrait";
+		  if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
+		  alert(orientation);
+        }); 
+
+
        
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
         
         
-    	try {        
+    	//try {       
+    	alert('cb');
 		childBrowser = ChildBrowser.install();
 
-    	}catch (err){
-		alert(err);
-    	}
+    	//}catch (err){
+	//	alert(err);
+    	//}
 
-	
-	alert('deviceready !  yay!');
-	
-	document.addEventListener("orientationChanged", function(e) {
-	          if (self.iScroller) self.iScroller.refresh();
-        }); 
+
+
     },
 
 
