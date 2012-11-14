@@ -81,5 +81,5 @@ function orientationChange(e) {
 	          var orientation="portrait";
 		  if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
 		  alert(orientation);
-		  $(".ui-header").width($(window).width());
+		  //$(".ui-header").width($(window).width());
 }
