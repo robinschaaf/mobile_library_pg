@@ -32,7 +32,8 @@ var app = {
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
-        
+        $.mobile.phonegapNavigationEnabled = true;
+        $.mobile.buttonMarkup.hoverDelay = true;
         
     	try {       
 		childBrowser = ChildBrowser.install();
