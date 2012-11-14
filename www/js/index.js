@@ -17,32 +17,24 @@
  * under the License.
  */
  
- alert('index.js called');
 var childBrowser; 
  
 var app = {
 
     initialize: function() {
         this.bind();
-        alert('init');
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, true);
-        alert('bind');
     },
     deviceready: function() {
-alert('deviceready');
 
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
         
-	
-	document.addEventListener("orientationchange", orientationChange, true);
-
         
     	try {       
-    		alert('cb');
 		childBrowser = ChildBrowser.install();
 
     	}catch (err){
@@ -76,10 +68,3 @@ function openChildBrowser(url){
     }
 }
 
-
-function orientationChange(e) {    
-	          var orientation="portrait";
-		  if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
-		  alert(orientation);
-		  //$(".ui-header").width($(window).width());
-}
