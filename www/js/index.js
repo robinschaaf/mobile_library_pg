@@ -37,31 +37,25 @@ alert('deviceready');
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
         
-	alert('deviceready !  yay!');
 	
-	document.addEventListener("orientationChanged", function(e) {
-	
-	          var orientation="portrait";
-		  if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
-		  alert(orientation);
-        }); 
-
-
-       
-        // This is an event handler function, which means the scope is the event.
-        // So, we must explicitly called `app.report()` instead of `this.report()`.
-        app.report('deviceready');
+	document.addEventListener("orientationchange", orientationChange, true);
+	              
         
-        
-    	//try {       
-    	alert('cb');
+    	try {       
+    		alert('cb');
 		childBrowser = ChildBrowser.install();
 
-    	//}catch (err){
-	//	alert(err);
-    	//}
+    	}catch (err){
+		alert(err);
+    	}
 
 
+	alert('deviceready !  yay!');
+	
+	
+	// This is an event handler function, which means the scope is the event.
+	// So, we must explicitly called `app.report()` instead of `this.report()`.
+        app.report('deviceready');
 
     },
 
@@ -82,4 +76,9 @@ function openChildBrowser(url){
     }
 }
 
-    
+
+function orientationChange(e) {    
+	          var orientation="portrait";
+		  if(window.orientation == -90 || window.orientation == 90) orientation = "landscape";
+		  alert(orientation);
+}
