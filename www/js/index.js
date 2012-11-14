@@ -24,12 +24,14 @@ var app = {
 
     initialize: function() {
         this.bind();
+        alert('init');
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, true);
+        alert('bind');
     },
     deviceready: function() {
-
+alert('deviceready');
 
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
@@ -42,7 +44,6 @@ var app = {
         
         
     	try {        
-
 		childBrowser = ChildBrowser.install();
 
     	}catch (err){
@@ -51,7 +52,10 @@ var app = {
 
 	
 	alert('deviceready !  yay!');
-
+	
+	document.addEventListener("orientationChanged", function(e) {
+	          if (self.iScroller) self.iScroller.refresh();
+        }); 
     },
 
 
@@ -71,5 +75,4 @@ function openChildBrowser(url){
     }
 }
 
-    
     
