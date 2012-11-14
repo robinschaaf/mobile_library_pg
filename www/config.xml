@@ -30,7 +30,7 @@
     <access origin="http://vrc.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
-    
+    <access origin="http://d1aaqh87bn7fin.cloudfront.net" subdomains="true" browserOnly="false" />
 
     <access origin="http://www.library.nd.edu" subdomains="false" browserOnly="true" />    
 
