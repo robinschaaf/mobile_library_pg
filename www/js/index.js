@@ -22,18 +22,19 @@ var childBrowser;
 var app = {
 
     initialize: function() {
-        this.bind();
-    },
-    bind: function() {
-        document.addEventListener('deviceready', this.deviceready, true);
-    },
-    deviceready: function() {
 
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
         $.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
+
+        this.bind();
+    },
+    bind: function() {
+        document.addEventListener('deviceready', this.deviceready, true);
+    },
+    deviceready: function() {
         
     	try {       
 		childBrowser = ChildBrowser.install();
@@ -68,4 +69,7 @@ function openChildBrowser(url){
 	alert(err);
     }
 }
+
+
+
 
