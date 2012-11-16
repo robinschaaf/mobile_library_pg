@@ -59,6 +59,15 @@ var app = {
 
 
 
+    $('#eventsPage').live('pageinit', function(event){
+                            alert("Events pageinit");
+                            
+	$.get('http://mpprd.library.nd.edu/events', function(data) {
+	  $('#eventsData').html(data);
+	  alert('Load from events was performed.');
+	});                            
+     });
+
 
 function openChildBrowser(url){
     try {
