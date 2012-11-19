@@ -62,35 +62,34 @@ var app = {
 
 //happens every "page", including remote servers
 $(document).bind('pageinit', function(event){
-    alert("pageinit called!");                     
+    //alert("pageinit called!");                     
  
- $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b'>I'm just a div with bar classes</div>");
- $('body').prepend("<div class='ui-bar ui-bar-b'>I'm just a div with bar classes</div>");
+ 
+// $('#navHeader').remove();
+// $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+// $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
 
-
-$('#eventsPage').live('pageinit', function(event){
-
-
-	$('#eventsData').html("events pageinit");
-
-	$.ajax({
-	  url: "http://mpprd.library.nd.edu/events",
-	  crossDomain: true
-	}).done(function( html ) {
-	  $("#eventsData").append(html);
-	  alert("xdomain" + html);
-	});
+$(document).bind('pageshow', function(event){
+    alert("pageshow called!");                     
+ 
+ 
+ $('#navHeader').remove();
+ $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+ $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+    
+});
 
 
+$('#eventsPage').live('pageshow',function(event, ui){
 
-	    $.get('http://mpprd.library.nd.edu/events', function(data) {
-		$('#eventsData').html(data);
-		alert("get" + data);
 
-	    });                            
+    $.get('http://mpprd.library.nd.edu/events', function(data) {
+	$('#eventsData').html(data);
+	alert("get" + data);
+    });                            
 
     
 });
@@ -115,15 +114,19 @@ function openChildBrowser(url){
 
 function checkConnection() {
 
-alert("checking connection...");
-    if (navigator.network.connection.type == "Connection.NONE"){
-	alert ("No connection");
-	
-	$('[data-role="page"]').html("A network connection is required to use the Mobile Hesburgh libraries App!");
-	
-    }else{
-    	alert("connection");
-    }
+    var networkState = navigator.network.connection.type;
+
+    var states = {};
+    states[Connection.UNKNOWN]  = 'Unknown connection';
+    states[Connection.ETHERNET] = 'Ethernet connection';
+    states[Connection.WIFI]     = 'WiFi connection';
+    states[Connection.CELL_2G]  = 'Cell 2G connection';
+    states[Connection.CELL_3G]  = 'Cell 3G connection';
+    states[Connection.CELL_4G]  = 'Cell 4G connection';
+    states[Connection.NONE]     = 'No network connection';
+
+    alert('Connection type: ' + states[networkState]);
+
 }
 
 
