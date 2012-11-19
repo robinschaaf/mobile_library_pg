@@ -45,7 +45,8 @@ var app = {
 
 
 	alert('deviceready !  yay!');
-	
+	checkConnection();
+
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -71,24 +72,24 @@ $(document).bind('pageinit', function(event){
 $('#eventsPage').live('pageinit', function(event){
 
 
-$('#eventsData').html("events pageinit");
+	$('#eventsData').html("events pageinit");
 
-$.ajax({
-  url: "http://mpprd.library.nd.edu/events",
-  crossDomain: true
-}).done(function( html ) {
-  $("#eventsData").append(html);
-  alert("xdomain" + html);
-});
+	$.ajax({
+	  url: "http://mpprd.library.nd.edu/events",
+	  crossDomain: true
+	}).done(function( html ) {
+	  $("#eventsData").append(html);
+	  alert("xdomain" + html);
+	});
 
 
 
-    $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$('#eventsData').html(data);
-  	alert("get" + data);
-  	
-    });                            
- 
+	    $.get('http://mpprd.library.nd.edu/events', function(data) {
+		$('#eventsData').html(data);
+		alert("get" + data);
+
+	    });                            
+
     
 });
 
@@ -107,5 +108,18 @@ function openChildBrowser(url){
 }
 
 
+
+
+
+function checkConnection() {
+
+alert("checking connection...");
+    if (navigator.network.connection.type == "Connection.NONE"){
+	alert ("No connection");
+	
+	$('[data-role="page"]').html("A network connection is required to use the Mobile Hesburgh libraries App!");
+	
+    }
+}
 
 

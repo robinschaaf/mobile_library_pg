@@ -20,6 +20,7 @@
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
     <access origin="http://xerxes.library.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://onesearch.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://architecture.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://bic.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://chemistry.library.nd.edu" subdomains="true" browserOnly="false" />
@@ -38,8 +39,11 @@
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
-    <preference name="permissions" value="none"/>
+    
     <preference name="stay-in-webview" value="true" />    
+
+
+    <feature name="http://api.phonegap.com/1.0/network"/>
     
     <icon src="icon.png" />
     <gap:splash src="splash.png" />
