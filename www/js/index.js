@@ -65,6 +65,11 @@ $(document).bind('pageinit', function(event){
 });
 
 
+$(document).ready(function() {
+  // Handler for .ready() called.
+  alert("ready called");
+});
+
 $('#eventsPage').live('pageinit', function(event){
     alert("Events pageinit");
     
@@ -72,7 +77,7 @@ $('#eventsPage').live('pageinit', function(event){
 	
 	
     $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$('#eventsData').html('res');
+	$('#eventsData').html(data);
   	alert('Load from events was performed.');
   	
     });                            
