@@ -64,6 +64,8 @@ var app = {
 $(document).bind('pageinit', function(event){
     alert("pageinit called!");                     
  
+ $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b'>I'm just a div with bar classes</div>");
+ $('body').prepend("<div class='ui-bar ui-bar-b'>I'm just a div with bar classes</div>");
     
 });
 
