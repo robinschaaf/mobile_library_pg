@@ -71,14 +71,20 @@ $(document).ready(function() {
 });
 
 $('#eventsPage').live('pageinit', function(event){
-    alert("Events pageinit");
-    
-	$('#eventsData').html('res');
-	
-	
+
+$.ajax({
+  url: "http://mpprd.library.nd.edu/events",
+  crossDomain: true
+}).done(function( html ) {
+  $("#eventsData").append(html);
+  alert('xdomain');
+});
+
+
+
     $.get('http://mpprd.library.nd.edu/events', function(data) {
 	$('#eventsData').html(data);
-  	alert('Load from events was performed.');
+  	alert("data");
   	
     });                            
  

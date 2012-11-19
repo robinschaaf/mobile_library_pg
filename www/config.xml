@@ -32,7 +32,7 @@
     <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="http://d1aaqh87bn7fin.cloudfront.net" subdomains="true" browserOnly="false" />
 
-    <access origin="http://www.library.nd.edu" subdomains="false" browserOnly="true" />    
+    <access origin="http://www.library.nd.edu" subdomains="true" browserOnly="false" />    
 
     <preference name="phonegap-version" value="2.1.0" />
     <preference name="target-device" value="universal" />
