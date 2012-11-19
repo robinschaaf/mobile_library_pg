@@ -58,7 +58,7 @@ var app = {
 };
 
 
-$(document).bind('pagecreate', function(event){
+$(document).bind('pageinit', function(event){
     alert("pageinit called!");                     
  
     
