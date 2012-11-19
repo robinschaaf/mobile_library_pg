@@ -58,6 +58,8 @@ var app = {
 };
 
 
+
+//happens every "page", including remote servers
 $(document).bind('pageinit', function(event){
     alert("pageinit called!");                     
  
@@ -65,31 +67,33 @@ $(document).bind('pageinit', function(event){
 });
 
 
-$(document).ready(function() {
-  // Handler for .ready() called.
-  alert("ready called");
-});
 
 $('#eventsPage').live('pageinit', function(event){
+
+
+$('#eventsData').html("events pageinit");
 
 $.ajax({
   url: "http://mpprd.library.nd.edu/events",
   crossDomain: true
 }).done(function( html ) {
   $("#eventsData").append(html);
-  alert('xdomain');
+  alert("xdomain" + html);
 });
 
 
 
     $.get('http://mpprd.library.nd.edu/events', function(data) {
 	$('#eventsData').html(data);
-  	alert("data");
+  	alert("get" + data);
   	
     });                            
  
     
 });
+
+
+
 
 
 function openChildBrowser(url){
