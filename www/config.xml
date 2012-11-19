@@ -16,6 +16,7 @@
    
     <access origin="http://m.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://www.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://m.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://mpprd.library.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://map.nd.edu" subdomains="true" browserOnly="true" />
