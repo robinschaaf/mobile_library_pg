@@ -57,6 +57,9 @@ var app = {
 
 };
 
+$( document ).bind( 'mobileinit', function(){
+	alert('mobileinit!');
+});
 
 
     $('#eventsPage').live('pageinit', function(event){
