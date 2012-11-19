@@ -57,19 +57,28 @@ var app = {
 
 };
 
-$( document ).bind( 'mobileinit', function(){
-	alert('mobileinit!');
+
+$(document).bind('pagecreate', function(event){
+    alert("pageinit called!");                     
+ 
+    
 });
 
 
-    $('#eventsPage').live('pageinit', function(event){
-                            alert("Events pageinit");
-                            
-	$.get('http://mpprd.library.nd.edu/events', function(data) {
-	  $('#eventsData').html(data);
-	  alert('Load from events was performed.');
-	});                            
-     });
+$('#eventsPage').live('pageinit', function(event){
+    alert("Events pageinit");
+    
+	$('#eventsData').html('res');
+	
+	
+    $.get('http://mpprd.library.nd.edu/events', function(data) {
+	$('#eventsData').html('res');
+  	alert('Load from events was performed.');
+  	
+    });                            
+ 
+    
+});
 
 
 function openChildBrowser(url){
