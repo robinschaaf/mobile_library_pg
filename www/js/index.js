@@ -119,6 +119,8 @@ alert("checking connection...");
 	
 	$('[data-role="page"]').html("A network connection is required to use the Mobile Hesburgh libraries App!");
 	
+    }else{
+    	alert("connection");
     }
 }
 
