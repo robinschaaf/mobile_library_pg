@@ -84,11 +84,12 @@ $(document).bind('pageshow', function(event){
 
 
 $('#eventsPage').live('pagecreate',function(event, ui){
-
-$("div:jqmData(id='eventsData')").html("AAAA");
+	
+	$('#eventsData').html('HERE');
+	
 
     $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$("div:jqmData(id=eventsData')").html("BBBB");
+	$('#eventsData').html(data);
 	alert("get" + data);
     });                            
 
