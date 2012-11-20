@@ -87,11 +87,7 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 	//$('#eventsData').html('PAGECREATE');
 	
 
-    $.get('http://mpprd.library.nd.edu/events', function(data) {
-	//$('#eventsData').html('DATARECV');
-	$('#eventsData').append(data);
-	//alert("get" + data);
-    });                            
+                           
 
     
 });
@@ -131,3 +127,12 @@ function checkConnection() {
 
 }
 
+
+function updateEvents(){
+alert('updateEvents');
+    $.get('http://mpprd.library.nd.edu/events', function(data) {
+	//$('#eventsData').html('DATARECV');
+	$('#eventsData').append(data);
+	//alert("get" + data);
+    }); 
+}
