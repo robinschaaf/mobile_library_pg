@@ -84,13 +84,13 @@ $(document).bind('pageshow', function(event){
 
 $('#eventsPage').live('pagecreate',function(event, ui){
 	
-	$('#eventsData').html('PAGECREATE');
+	//$('#eventsData').html('PAGECREATE');
 	
 
     $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$('#eventsData').html('DATARECV');
+	//$('#eventsData').html('DATARECV');
 	$('#eventsData').append(data);
-	alert("get" + data);
+	//alert("get" + data);
     });                            
 
     
