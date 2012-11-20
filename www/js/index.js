@@ -66,14 +66,14 @@ $(document).bind('pageinit', function(event){
  
  
 // $('#navHeader').remove();
-// $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+// $("div:jqmData(role='page')").prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
 // $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
 
 $(document).bind('pageshow', function(event){
-    alert("pageshow called!");                     
+    //alert("pageshow called!");                     
  
  
  $('#navHeader').remove();
@@ -84,10 +84,11 @@ $(document).bind('pageshow', function(event){
 
 
 $('#eventsPage').live('pagecreate',function(event, ui){
-$('#eventsData').html("AAAA");
+
+$("div:jqmData(id='eventsData')").html("AAAA");
 
     $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$('#eventsData').html("BBBB");
+	$("div:jqmData(id=eventsData')").html("BBBB");
 	alert("get" + data);
     });                            
 
@@ -130,3 +131,8 @@ function checkConnection() {
 }
 
 
+function updateEvents(){
+alert("events");
+	$('#eventsData').html("AAAA");
+
+}
