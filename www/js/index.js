@@ -89,6 +89,7 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 
     $.get('http://mpprd.library.nd.edu/events', function(data) {
 	$('#eventsData').html('DATARECV');
+	$('#eventsData').append(data);
 	alert("get" + data);
     });                            
 
