@@ -76,8 +76,8 @@ $(document).bind('pageshow', function(event){
  
  
  $('#navHeader').remove();
- //$('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
- $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+ $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+// $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
@@ -129,10 +129,8 @@ function checkConnection() {
 
 
 function updateEvents(){
-alert('updateEvents');
+
     $.get('http://mpprd.library.nd.edu/events', function(data) {
-	//$('#eventsData').html('DATARECV');
 	$('#eventsData').append(data);
-	//alert("get" + data);
     }); 
 }
