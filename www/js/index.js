@@ -43,7 +43,9 @@ var app = {
 		alert(err);
     	}
 
-
+ 	if (!checkConnection()){
+ 		window.location = "noconnection.html";
+ 	}
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -71,9 +73,7 @@ $(document).bind('pageinit', function(event){
 
 $(document).bind('pageshow', function(event){
  
- 	if (!checkConnection()){
- 		window.location = "noconnection.html";
- 	}
+
 
  
  $('#navHeader').remove();
@@ -96,7 +96,7 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 
 
 $('#eventsData').load('http://mpprd.library.nd.edu/events #innerContent', function(response, status, xhr) {
-  request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  //request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   if (status == "error") {
     var msg = "Sorry but there was an error: ";
     $("#error").html(msg + xhr.status + " " + xhr.statusText);
