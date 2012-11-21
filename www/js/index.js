@@ -44,10 +44,6 @@ var app = {
     	}
 
 
-	if (!checkConnection()){
-		window.location = "noconnection.html";
-	}
-
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -75,22 +71,38 @@ $(document).bind('pageinit', function(event){
 
 $(document).bind('pageshow', function(event){
  
+ 	if (!checkConnection()){
+ 		window.location = "noconnection.html";
+ 	}
+
  
  $('#navHeader').remove();
- //$('[data-role="page"]').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
- $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
+ $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-f' id='navHeader'>I'm just a div with bar classes</div>");
+ $('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
 
 $('#eventsPage').live('pagecreate',function(event, ui){
 	
-$('#eventsData').html("pagecreaet");
+	$('#eventsData').html("pagecreaet");
 
-    $.get('http://mpprd.library.nd.edu/events', function(data) {
-	$('#eventsData').append(data);
-	alert(data);
-    }); 
+   
+   #$.get('http://mpprd.library.nd.edu/events', function(data) {
+
+#	$('#eventsData').append(data);
+#	alert(data);
+#    }); 
+
+
+$('#eventsData').load('http://mpprd.library.nd.edu/events #innerContent', function(response, status, xhr) {
+  request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+  if (status == "error") {
+    var msg = "Sorry but there was an error: ";
+    $("#error").html(msg + xhr.status + " " + xhr.statusText);
+  }
+});
+
                            
 
     
@@ -130,6 +142,7 @@ function checkConnection() {
     alert('Connection type: ' + states[networkState]);
     
     if ((states[networkState] == 'Unknown connection') || (states[networkState] == 'No network connection')){
+    	alert ('no connection!');
     	return false;
     }
 
