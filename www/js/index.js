@@ -88,11 +88,11 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 	$('#eventsData').html("pagecreaet");
 
    
-   #$.get('http://mpprd.library.nd.edu/events', function(data) {
+   //$.get('http://mpprd.library.nd.edu/events', function(data) {
 
-#	$('#eventsData').append(data);
-#	alert(data);
-#    }); 
+//	$('#eventsData').append(data);
+//	alert(data);
+//    }); 
 
 
 $('#eventsData').load('http://mpprd.library.nd.edu/events #innerContent', function(response, status, xhr) {
