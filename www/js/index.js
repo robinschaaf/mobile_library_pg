@@ -77,7 +77,6 @@ $(document).bind('pageshow', function(event){
 
  
  $('#navHeader').remove();
- $('[data-role="page"]').prepend("<div class='ui-bar ui-bar-f' id='navHeader'>I'm just a div with bar classes</div>");
  $('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
@@ -95,7 +94,8 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 //    }); 
 
 
-$('#eventsData').load('http://mpprd.library.nd.edu/events #innerContent', function(response, status, xhr) {
+$('#eventsData').load('http://mpprd.library.nd.edu/events #content-primary', function(response, status, xhr) {
+alert("response" + response);
   //request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   if (status == "error") {
     var msg = "Sorry but there was an error: ";
@@ -132,17 +132,9 @@ function checkConnection() {
 
     var states = {};
     states[Connection.UNKNOWN]  = 'Unknown connection';
-    states[Connection.ETHERNET] = 'Ethernet connection';
-    states[Connection.WIFI]     = 'WiFi connection';
-    states[Connection.CELL_2G]  = 'Cell 2G connection';
-    states[Connection.CELL_3G]  = 'Cell 3G connection';
-    states[Connection.CELL_4G]  = 'Cell 4G connection';
     states[Connection.NONE]     = 'No network connection';
-
-    alert('Connection type: ' + states[networkState]);
     
     if ((states[networkState] == 'Unknown connection') || (states[networkState] == 'No network connection')){
-    	alert ('no connection!');
     	return false;
     }
 
