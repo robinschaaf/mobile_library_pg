@@ -43,7 +43,7 @@ var app = {
 		alert(err);
     	}
 
- 	if (!checkConnection()){
+ 	if (checkConnection() === false){
  		window.location = "noconnection.html";
  	}
 	
