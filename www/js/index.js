@@ -18,6 +18,9 @@
  */
  
 var childBrowser; 
+var remoteURL='http://mpprd.library.nd.edu/';
+//var remoteURL='http://localhost:3000/';
+
  
 var app = {
 
@@ -63,7 +66,6 @@ var app = {
 $(document).bind('pageinit', function(event){
     //alert("pageinit called!");                     
  
- 
 // $('#navHeader').remove();
 // $("div:jqmData(role='page')").prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
 // $('body').prepend("<div class='ui-bar ui-bar-b' id='navHeader'>I'm just a div with bar classes</div>");
@@ -73,37 +75,19 @@ $(document).bind('pageinit', function(event){
 
 $(document).bind('pageshow', function(event){
  
-
-
- 
- $('#navHeader').remove();
+ //$('#navHeader').remove();
  $('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
 
 $('#eventsPage').live('pagecreate',function(event, ui){
-	
-	$('#eventsData').html("pagecreaet");
-
    
-   //$.get('http://mpprd.library.nd.edu/events', function(data) {
+   $.get(remoteURL + 'events', function(data) {
 
-//	$('#eventsData').append(data);
-//	alert(data);
-//    }); 
-
-
-$('#eventsData').load('http://mpprd.library.nd.edu/events .content-primary', function(response, status, xhr) {
-alert("response" + response);
-  //request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-  if (status == "error") {
-    var msg = "Sorry but there was an error: ";
-    $("#error").html(msg + xhr.status + " " + xhr.statusText);
-  }
-});
-
-                           
+	$('#eventsData').html(data);
+	$('#eventsData').trigger("create");
+   }); 
 
     
 });
