@@ -94,7 +94,7 @@ $('#eventsPage').live('pagecreate',function(event, ui){
 //    }); 
 
 
-$('#eventsData').load('http://mpprd.library.nd.edu/events #content-primary', function(response, status, xhr) {
+$('#eventsData').load('http://mpprd.library.nd.edu/events .content-primary', function(response, status, xhr) {
 alert("response" + response);
   //request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
   if (status == "error") {
