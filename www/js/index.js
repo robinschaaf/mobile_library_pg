@@ -77,12 +77,12 @@ $(document).bind('pageshow', function(event){
 
 
 $('#eventsPage').live('pageinit',function(event, ui){
-   	$.mobile.loading( 'show' );
+   	//$.mobile.loading( 'show' );
    
 	$('#eventsData').hide();
 	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  $('#eventsData').trigger("create");
-	  $.mobile.loading( 'hide' );
+	  //$.mobile.loading( 'hide' );
 	});
 	
 	$('#eventsData').show("blind", {}, 1000);
