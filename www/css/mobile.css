@@ -52,10 +52,9 @@ div.icon .grayText {
 }
 
 #toolbar img{
-    align: left;
+    float: center;
     vertical-align: middle;    
     margin-top:7px;
-    margin-left:-10px;
     max-height:23px;
 }
 

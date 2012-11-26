@@ -64,7 +64,7 @@ var app = {
 
 //happens every "page", including remote servers
 $(document).bind('pageinit', function(event){
- 
+
 });
 
 
@@ -72,21 +72,27 @@ $(document).bind('pageshow', function(event){
  
  //$('#navHeader').remove();
  //$('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
+
+
+
     
 });
 
 
 $('#eventsPage').live('pageinit',function(event, ui){
-   	$.mobile.loading( 'show' );
-   
+   	
 	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  $('#eventsData').show("blind", {}, 2000);
 	  $('#eventsData').trigger("create");
-	  //$.mobile.loading( 'hide' );
+	  $.mobile.loading( 'hide' );
 	});
-	
-	
+    
+});
 
+
+$('#eventsPage').live('pageshow',function(event, ui){
+
+   	$.mobile.loading( 'show' );
     
 });
 
