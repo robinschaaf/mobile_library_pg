@@ -78,10 +78,10 @@ $(document).bind('pageshow', function(event){
 
 $('#eventsPage').live('pagecreate',function(event, ui){
    
-   $.get(remoteURL + 'events', function(data) {
-	$('#eventsData').html(data);
-	$('#eventsData').trigger("create");
-   }); 
+
+	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
+	  $('#eventsData').trigger("create");
+	});
 
     
 });
