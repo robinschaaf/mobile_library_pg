@@ -80,7 +80,7 @@ $('#eventsPage').live('pageinit',function(event, ui){
    	//$.mobile.loading( 'show' );
    
 	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
-	  $('#eventsData').show("blind", {}, 1000);
+	  $('#eventsData').show("blind", {}, 2000);
 	  $('#eventsData').trigger("create");
 	  //$.mobile.loading( 'hide' );
 	});
