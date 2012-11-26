@@ -79,22 +79,27 @@ $(document).bind('pageshow', function(event){
 });
 
 
-$('#eventsPage').live('pageinit',function(event, ui){
-   	
-	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
+$('#eventsPage').live('pagebeforeshow',function(event, data){
+
+
+
+alert('events');
+  $.mobile.loading( 'show' );
+  event.preventDefault();
+	  
+   
+  $('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  $('#eventsData').show("blind", {}, 2000);
 	  $('#eventsData').trigger("create");
+	  data.deferred.resolve( data.absUrl, data.options, page );
 	  $.mobile.loading( 'hide' );
-	});
+  });
+
+	
+
     
 });
 
-
-$('#eventsPage').live('pageshow',function(event, ui){
-
-   	$.mobile.loading( 'show' );
-    
-});
 
 
 $('#asklibPage').live('pageinit',function(event, ui){
