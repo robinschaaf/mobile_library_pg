@@ -71,12 +71,12 @@ $(document).bind('pageinit', function(event){
 $(document).bind('pageshow', function(event){
  
  //$('#navHeader').remove();
- $('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
+ //$('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
     
 });
 
 
-$('#eventsPage').live('pagecreate',function(event, ui){
+$('#eventsPage').live('pageinit',function(event, ui){
    
 
 	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
