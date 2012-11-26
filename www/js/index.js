@@ -91,6 +91,19 @@ $('#eventsPage').live('pageinit',function(event, ui){
 });
 
 
+$('#asklibPage').live('pageinit',function(event, ui){
+   
+	$('#asklibData').load(remoteURL + 'asklib .innerContent', function() {
+	  $('#asklibData').show("blind", {}, 2000);
+	  $('#asklibData').trigger("create");
+	});
+	
+	
+
+    
+});
+
+
 
 
 
