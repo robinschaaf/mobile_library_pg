@@ -77,7 +77,7 @@ $(document).bind('pageshow', function(event){
 
 
 $('#eventsPage').live('pageinit',function(event, ui){
-   	//$.mobile.loading( 'show' );
+   	$.mobile.loading( 'show' );
    
 	$('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  $('#eventsData').show("blind", {}, 2000);
