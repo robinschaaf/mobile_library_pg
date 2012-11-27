@@ -82,15 +82,15 @@ $(document).bind('pageshow', function(event){
 $('#eventsPage').live('pagebeforeshow',function(event, data){
 
   $.mobile.loading( 'show' );
-  //event.preventDefault();
+  event.preventDefault();
 	  
  
   $('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  
 	  $('#eventsData').trigger("create");
-	  $('#eventsData').show("blind", {}, 3000);
+	  $('#eventsData').show("blind", {}, "slow");
 	  
-//	  data.deferred.resolve( data.absUrl, data.options, page );
+	  data.deferred.resolve( data.absUrl, data.options, page );
 	  //$.mobile.loading( 'hide' );
   });
 
@@ -104,7 +104,7 @@ $('#eventsPage').live('pagebeforeshow',function(event, data){
 $('#asklibPage').live('pageinit',function(event, ui){
    
 	$('#asklibData').load(remoteURL + 'asklib .innerContent', function() {
-	  $('#asklibData').show("blind", {}, 2000);
+	  $('#asklibData').show("blind", {}, "slow");
 	  $('#asklibData').trigger("create");
 	});
 	
@@ -117,7 +117,7 @@ $('#asklibPage').live('pageinit',function(event, ui){
 $('.subpagelink').live('click',function(){
    
 	var src_page = $(this).attr('source-id');
-	alert(remoteURL + src_page);
+	$('#subPageData').attr('data-source',src_page);
 	
 	$('#subPageData').load(remoteURL + src_page + ' .innerContent', function() {
 
