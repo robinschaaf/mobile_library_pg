@@ -86,10 +86,12 @@ $('#eventsPage').live('pagebeforeshow',function(event, data){
 	  
  
   $('#eventsData').load(remoteURL + 'events .innerContent', function() {
-	  $('#eventsData').show("blind", {}, 3000);
+	  
 	  $('#eventsData').trigger("create");
+	  $('#eventsData').show("blind", {}, 3000);
+	  
 //	  data.deferred.resolve( data.absUrl, data.options, page );
-	  $.mobile.loading( 'hide' );
+	  //$.mobile.loading( 'hide' );
   });
 
 	
@@ -112,7 +114,21 @@ $('#asklibPage').live('pageinit',function(event, ui){
 });
 
 
+$('.subpagelink').live('click',function(){
+   
+	var src_page = $(this).attr('source-id');
+	alert(remoteURL + src_page);
+	
+	$('#subPageData').load(remoteURL + src_page + ' .innerContent', function() {
 
+		$('#subPageData').trigger("create");
+		$('#subPageData').show("blind", {}, 3000);
+
+	//	  data.deferred.resolve( data.absUrl, data.options, page );
+		  //$.mobile.loading( 'hide' );
+	});
+    
+});
 
 
 function openChildBrowser(url){
@@ -125,6 +141,12 @@ function openChildBrowser(url){
     }
 }
 
+
+
+
+function setSource(url){
+
+}
 
 
 
