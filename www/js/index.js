@@ -81,18 +81,15 @@ $(document).bind('pageshow', function(event){
 
 $('#eventsPage').live('pagebeforeshow',function(event, data){
 
-
-
-alert('events');
   $.mobile.loading( 'show' );
-  event.preventDefault();
+  //event.preventDefault();
 	  
-   
+ 
   $('#eventsData').load(remoteURL + 'events .innerContent', function() {
 	  $('#eventsData').show("blind", {}, 3000);
 	  $('#eventsData').trigger("create");
-	  data.deferred.resolve( data.absUrl, data.options, page );
-	  //$.mobile.loading( 'hide' );
+//	  data.deferred.resolve( data.absUrl, data.options, page );
+	  $.mobile.loading( 'hide' );
   });
 
 	
