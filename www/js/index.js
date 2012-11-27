@@ -89,10 +89,10 @@ alert('events');
 	  
    
   $('#eventsData').load(remoteURL + 'events .innerContent', function() {
-	  $('#eventsData').show("blind", {}, 2000);
+	  $('#eventsData').show("blind", {}, 3000);
 	  $('#eventsData').trigger("create");
 	  data.deferred.resolve( data.absUrl, data.options, page );
-	  $.mobile.loading( 'hide' );
+	  //$.mobile.loading( 'hide' );
   });
 
 	
