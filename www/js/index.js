@@ -18,9 +18,9 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
-
+//var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://localhost:3000/';
+var src_page;
  
 var app = {
 
@@ -63,72 +63,79 @@ var app = {
 
 
 //happens every "page", including remote servers
-$(document).bind('pageinit', function(event){
+$(document).bind('pagebeforechange', function(e, data){
 
-});
-
-
-$(document).bind('pageshow', function(event){
- 
- //$('#navHeader').remove();
- //$('body').prepend("<div class='ui-bar ui-bar-c' id='navHeader'>I'm just a div with bar classes</div>");
-
-
-
-    
-});
-
-
-$('#eventsPage').live('pagebeforeshow',function(event, data){
-
-  $.mobile.loading( 'show' );
-  event.preventDefault();
-	  
- 
-  $('#eventsData').load(remoteURL + 'events .innerContent', function() {
-	  
-	  $('#eventsData').trigger("create");
-	  $('#eventsData').show("blind", {}, "slow");
-	  
-	  data.deferred.resolve( data.absUrl, data.options, page );
-	  //$.mobile.loading( 'hide' );
-  });
-
-	
-
-    
-});
-
-
-
-$('#asklibPage').live('pageinit',function(event, ui){
-   
-	$('#asklibData').load(remoteURL + 'asklib .innerContent', function() {
-	  $('#asklibData').show("blind", {}, "slow");
-	  $('#asklibData').trigger("create");
-	});
+	// We only want to handle changePage() calls where the caller is
+	// asking us to load a page by url for subpage
+	if ( typeof data.toPage === "string" ){
 	
 	
+		var u = $.mobile.path.parseUrl( data.toPage );
+		
+		if ( u.hash ){
+			showSubpage( remoteURL + u.hash.replace("#","") + ' .innerContent', u, data.options );
+		
+		}else{
+			showSubpage( u.href, u, data.options);
+		}
 
-    
+		// Make sure to tell changePage() we've handled this call
+		
+		e.preventDefault();
+
+	}
+
+
 });
 
 
-$('.subpagelink').live('click',function(){
-   
-	var src_page = $(this).attr('source-id');
-	$('#subPageData').attr('data-source',src_page);
+
+
+function showSubpage( sourceURL, origURL, options ) {
+    
+    
+    $.mobile.loading( 'show' );
+
+    $.ajax({
+        url     : 'subpage.html',
+        success : function (data) {
+		
+		//convert return html from subpage to jquery object
+		var $page = $(data);
 	
-	$('#subPageData').load(remoteURL + src_page + ' .innerContent', function() {
+		
+		$($page.find('.subPageData')).load(sourceURL, function() {
+						
+			$page.page();
+			
+			options.dataUrl = origURL.href;
+			
+			$.mobile.changePage( $page, options );
+			
+			$.mobile.loading( 'hide' );
+			
+			
+		}); 
 
-		$('#subPageData').trigger("create");
-		$('#subPageData').show("blind", {}, 3000);
+	//add new page to the DOM
+	$.mobile.pageContainer.append($page)
 
-	//	  data.deferred.resolve( data.absUrl, data.options, page );
-		  //$.mobile.loading( 'hide' );
-	});
-    
-});
+	$('.subPageData').trigger("create");
+	$('.subPageData').show("slow");
+	
+	//$.mobile.pageContainer.append($page)
+
+		
+        },
+        error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
+    });
+
+
+
+}
+
+
+
 
 
 function openChildBrowser(url){
@@ -140,14 +147,6 @@ function openChildBrowser(url){
 	alert(err);
     }
 }
-
-
-
-
-function setSource(url){
-
-}
-
 
 
 
@@ -164,4 +163,3 @@ function checkConnection() {
     }
 
 }
-
