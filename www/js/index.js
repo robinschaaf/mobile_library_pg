@@ -18,8 +18,9 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
+//var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://localhost:3000/';
+var src_page;
  
 var app = {
 
@@ -69,8 +70,9 @@ $(document).bind('pagebeforechange', function(e, data){
 	if ( typeof data.toPage === "string" ){
 	
 	
-		var u = $.mobile.path.parseUrl( data.toPage );
-		
+		var u = $.mobile.path.parseUrl( data.toPage )
+			
+				
 		if ( u.hash ){
 			showSubpage( remoteURL + u.hash.replace("#","") + ' .innerContent', u, data.options );
 		
@@ -106,7 +108,7 @@ function showSubpage( sourceURL, origURL, options ) {
 		$($page.find('.subPageData')).load(sourceURL, function() {
 						
 			$page.page();
-			
+			alert($page.html());
 			options.dataUrl = origURL.href;
 			
 			$.mobile.changePage( $page, options );
@@ -122,8 +124,6 @@ function showSubpage( sourceURL, origURL, options ) {
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 	
-	//$.mobile.pageContainer.append($page)
-
 		
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
