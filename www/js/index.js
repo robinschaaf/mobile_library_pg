@@ -65,8 +65,8 @@ var app = {
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
-	console.log( e );
-     	console.log( data );
+	//console.log( e );
+     	//console.log( data );
      
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
@@ -152,7 +152,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 				
 				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContent').size() > 0 ){
+				if ( $(rdata).find('.innerContentaa').size() > 0 ){
 
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 				
@@ -161,9 +161,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					//load into an iframe
 					//and expand the width of the content container
 				
-					$page.find('.ui-content').css('margin', '0px;');
-					$page.find('.ui-content').css('padding', '0px;');
-					$page.find('.subPageData').append( "<iframe frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" );
+					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');;
 				
 				}
 
@@ -186,12 +184,14 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					}
 
 				});
+
 				
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
 
+				
 				$.mobile.changePage( $page, options );
 
 				$.mobile.loading( 'hide' );
@@ -210,7 +210,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
-	
+
+	$('.iFramesrc').css("border-style","solid");
 		
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
