@@ -157,8 +157,13 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 				
 				}else{
+					//if it's for a site other than the mobile library site
+					//load into an iframe
+					//and expand the width of the content container
 				
-					$page.find('.subPageData').append( "<iframe src = '" + sourceURL + "'></iframe>" );
+					$page.find('.ui-content').css('margin', '0px;');
+					$page.find('.ui-content').css('padding', '0px;');
+					$page.find('.subPageData').append( "<iframe frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" );
 				
 				}
 
