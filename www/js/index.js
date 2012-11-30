@@ -105,12 +105,15 @@ $(document).bind('pagebeforechange', function(e, data){
 
 });
 
+
+
 $('.cbLink').live('click', function () {
 
 	openChildBrowser(this.href);
 	return false;
-	
+
 });
+
 
 
 function showSubpage( sourceURL, origURLObj, options ) {
@@ -148,7 +151,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 				
 				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContent').size() > 0 ){
+				if ( $(rdata).find('.innerContaaent').size() > 0 ){
 
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 				
@@ -232,11 +235,20 @@ function updateIFrameLinks(iframeRef){
 	$(iframeRef).contents().find("a").each(function(index) {
     		
 		if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target")) || this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
-			$(this).removeAttr('target').addClass("cbLink");
+			$(this).removeAttr('target').addClass('cbLink');
 		}
 		
     		
 	});
+	
+
+	$('.cbLink').live('click', function () {
+
+		openChildBrowser(this.href);
+		return false;
+
+	});
+	
 }
 
 
