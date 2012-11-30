@@ -29,6 +29,12 @@ div.icon .ui-link {
 	font-weight:normal;
 }
 
+
+img.icon{
+    width:55px;
+}
+
+
 div.icon .grayText {
     color: #DAE1E7;
 }
