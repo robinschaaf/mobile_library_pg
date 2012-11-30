@@ -150,8 +150,9 @@ function showSubpage( sourceURL, origURLObj, options ) {
 			
 			$.get( sourceURL, function(rdata){
 		
+				
 				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContent') ){
+				if ( $(rdata).find('.innerContent').size() > 0 ){
 
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 				
@@ -180,6 +181,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					}
 
 				});
+				
 
 				$page.page();
 
