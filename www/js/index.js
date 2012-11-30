@@ -113,7 +113,7 @@ function showSubpage( sourceURL, origURL, options ) {
 		
 		//convert return html from subpage to jquery object
 		var $page = $(data);
-		alert(origURL);
+		alert(sourceURL);
 		
 		if (options.type == "post"){
 		
