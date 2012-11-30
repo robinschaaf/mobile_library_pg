@@ -113,12 +113,9 @@ $('.cbLink').live('click', function () {
 });
 
 
-
-
 function showSubpage( sourceURL, origURLObj, options ) {
     
-    
-    
+        
     $.mobile.loading( 'show' );
 
     $.ajax({
@@ -160,8 +157,10 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					//load into an iframe
 					//and expand the width of the content container (parents)
 				
-					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;'>" + rdata + "</iframe>" ).parents().css('padding', '0px');
-					$page.find('.footerBar').css('padding', '0px');
+					$page.find('.subPageData').append( "<iframe onload='updateIFrameLinks(this)' id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+
+    
+					
 				}
 
 
@@ -182,8 +181,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 						//contains the word proxy in it (meaning it gets proxied to a different website
 						
 						//is http or https (since there can be other protocols, like telephone://, file://)
-						//($(this).prop("target")) ||
-						if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") ||  this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+						
+						if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target")) || this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
 							$(this).addClass("cbLink");
 						}
 
@@ -218,8 +217,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 
-	$('.iFramesrc').css("border-style","solid");
-		
+	//$("#iframeSource").contents().find("a").css("background-color","#BADA55");
+		//$('.footerBar').css('padding', '0px');
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
     });
@@ -228,7 +227,17 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 }
 
+function updateIFrameLinks(iframeRef){
 
+	$(iframeRef).contents().find("a").each(function(index) {
+    		
+		if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target")) || this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+			$(this).removeAttr('target').addClass("cbLink");
+		}
+		
+    		
+	});
+}
 
 
 
