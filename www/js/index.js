@@ -102,7 +102,7 @@ $('.cbLink').live('click', function () {
 
 
 
-function showSubpage( sourceURL, origURL, options ) {
+function showSubpage( sourceURL, origURLObj, options ) {
     
     
     $.mobile.loading( 'show' );
@@ -113,11 +113,14 @@ function showSubpage( sourceURL, origURL, options ) {
 		
 		//convert return html from subpage to jquery object
 		var $page = $(data);
-		alert(sourceURL);
 		
 		if (options.type == "post"){
-		
-			$.post( origURL, $("form#new_message").serialize(), function(rdata){
+			
+			if (isRelativeUrl(sourceURL)){
+				sourceURL = remoteURL + sourceURL;
+			}
+			
+			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
 
 
 			  	$page.find('.subPageData').append( $(rdata).find('.innerContent') );
