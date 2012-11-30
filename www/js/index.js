@@ -120,6 +120,7 @@ function showSubpage( sourceURL, origURL, options ) {
 		
 		
 			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
+alert(rdata);
 
 			  	$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 
