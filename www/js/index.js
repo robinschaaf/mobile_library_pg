@@ -127,7 +127,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 		if (options.type == "post"){
 		
-			
+			alert(sourceURL);
 			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
 
 
