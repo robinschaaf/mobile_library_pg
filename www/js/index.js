@@ -113,12 +113,11 @@ function showSubpage( sourceURL, origURL, options ) {
 		
 		//convert return html from subpage to jquery object
 		var $page = $(data);
-		alert('showsub');
+		alert(origURL);
 		
 		if (options.type == "post"){
 		
-alert(u);		
-			$.post( u, $("form#new_message").serialize(), function(rdata){
+			$.post( origURL, $("form#new_message").serialize(), function(rdata){
 
 
 			  	$page.find('.subPageData').append( $(rdata).find('.innerContent') );
