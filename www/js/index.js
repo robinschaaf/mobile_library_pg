@@ -74,28 +74,32 @@ $(document).bind('pagebeforechange', function(e, data){
 	
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
-			
+		var sourceURL = u.href;
+		
 				
 		if ( u.hash ){
-			showSubpage( remoteURL + u.hash.replace(/#/g,"/") + ' .innerContent', u, data.options );
+			sourceURL = remoteURL + u.hash.replace(/#/g,"/") + ' .innerContent';
 		
 		}else{
 
-			if ($.mobile.path.isRelativeUrl(u.href)){
+			if (u.protocol == "file:"){
 			
-				showSubpage( remoteURL + u.href, u, data.options);
-				
-			}else{
+				sourceURL = remoteURL + u.pathname;
 			
-				showSubpage( u.href, u, data.options);
+			}else if ($.mobile.path.isRelativeUrl(u.href)){
+			
+				sourceURL = remoteURL + u.href;
 				
 			}
 
 			
 		}
+		
+		
+		showSubpage( sourceURL, u, data.options);
+		
 
 		// Make sure to tell changePage() we've handled this call
-		
 		e.preventDefault();
 
 	}
