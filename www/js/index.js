@@ -118,8 +118,7 @@ $('.cbLink').live('click', function () {
 
 
 function showSubpage( sourceURL, origURLObj, options ) {
-    
-    
+        
     $.mobile.loading( 'show' );
 
     $.ajax({
@@ -176,7 +175,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 						return $(this).attr('href').replace(/\//g, "#");
 
 					}else{
-						if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host) || ($(this).prop("target"))) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+						//if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host) || ($(this).prop("target"))) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+						if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host)) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
 							$(this).addClass("cbLink");
 						}
 
