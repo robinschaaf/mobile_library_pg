@@ -152,7 +152,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 				
 				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContentaa').size() > 0 ){
+				if ( $(rdata).find('.innerContent').size() > 0 ){
 
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 				
@@ -176,7 +176,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 						return $(this).attr('href').replace(/\//g, "#");
 
 					}else{
-						if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target"))) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+						if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host) || ($(this).prop("target"))) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
 							$(this).addClass("cbLink");
 						}
 
