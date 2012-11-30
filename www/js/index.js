@@ -65,8 +65,6 @@ var app = {
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
-	//console.log( e );
-     	//console.log( data );
      
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
@@ -120,7 +118,6 @@ $('.cbLink').live('click', function () {
 function showSubpage( sourceURL, origURLObj, options ) {
     
     
-    alert($.mobile.path.parseUrl(remoteURL).host);
     
     $.mobile.loading( 'show' );
 
@@ -163,7 +160,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					//load into an iframe
 					//and expand the width of the content container (parents)
 				
-					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;'>" + rdata + "</iframe>" ).parents().css('padding', '0px');
 					$page.find('.footerBar').css('padding', '0px');
 				}
 
