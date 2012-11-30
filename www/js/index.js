@@ -118,7 +118,10 @@ $('.cbLink').live('click', function () {
 
 
 function showSubpage( sourceURL, origURLObj, options ) {
-        
+    
+    
+    alert($.mobile.path.parseUrl(remoteURL).host);
+    
     $.mobile.loading( 'show' );
 
     $.ajax({
@@ -158,10 +161,10 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				}else{
 					//if it's for a site other than the mobile library site
 					//load into an iframe
-					//and expand the width of the content container
+					//and expand the width of the content container (parents)
 				
-					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');;
-				
+					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+					$page.find('.footerBar').css('padding', '0px');
 				}
 
 
@@ -175,8 +178,15 @@ function showSubpage( sourceURL, origURLObj, options ) {
 						return $(this).attr('href').replace(/\//g, "#");
 
 					}else{
-						//if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host) || ($(this).prop("target"))) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
-						if ((($.mobile.path.parseUrl(this.href).host != $.mobile.path.parseUrl(remoteURL).host)) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
+					
+						//will add class to open in child browser under following conditions:
+						//external to nd.edu host
+						//contains a target (to open in new window)
+						//contains the word proxy in it (meaning it gets proxied to a different website
+						
+						//is http or https (since there can be other protocols, like telephone://, file://)
+						//($(this).prop("target")) ||
+						if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") ||  this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
 							$(this).addClass("cbLink");
 						}
 
