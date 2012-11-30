@@ -78,7 +78,7 @@ $(document).bind('pagebeforechange', function(e, data){
 		
 				
 		if ( u.hash ){
-			sourceURL = remoteURL + u.hash.replace(/#/g,"/") + ' .innerContent';
+			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
 		
 		}else{
 
@@ -131,7 +131,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 		if (options.type == "post"){
 		
-			alert(sourceURL);
 			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
 
 
@@ -146,9 +145,21 @@ function showSubpage( sourceURL, origURLObj, options ) {
 			  
 			});		
 		
+		//is get request
 		}else{
+			
+			$.get( sourceURL, function(rdata){
 		
-			$($page.find('.subPageData')).load(sourceURL, function() {
+				//if page returned has .innerContent (is from the m.library site)
+				if ( $(rdata).find('.innerContent') ){
+
+					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
+				
+				}else{
+				
+					$page.find('.subPageData').append( "<iframe src = '" + sourceURL + "'></iframe>" );
+				
+				}
 
 
 				//change any external domain links to open in child browser
