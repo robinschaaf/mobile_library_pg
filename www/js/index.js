@@ -80,7 +80,18 @@ $(document).bind('pagebeforechange', function(e, data){
 			showSubpage( remoteURL + u.hash.replace(/#/g,"/") + ' .innerContent', u, data.options );
 		
 		}else{
-			showSubpage( u.href, u, data.options);
+
+			if ($.mobile.path.isRelativeUrl(u.href)){
+			
+				showSubpage( remoteURL + u.href, u, data.options);
+				
+			}else{
+			
+				showSubpage( u.href, u, data.options);
+				
+			}
+
+			
 		}
 
 		// Make sure to tell changePage() we've handled this call
@@ -115,10 +126,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		var $page = $(data);
 		
 		if (options.type == "post"){
-			
-			if (isRelativeUrl(sourceURL)){
-				sourceURL = remoteURL + sourceURL;
-			}
+		
 			
 			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
 
@@ -160,7 +168,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 				$page.page();
 
-				options.dataUrl = origURL.href;
+				options.dataUrl = origURLObj.href;
 
 				$.mobile.changePage( $page, options );
 
