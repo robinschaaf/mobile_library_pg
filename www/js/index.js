@@ -89,7 +89,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				sourceURL = remoteURL + u.href;
 				showSubpage( sourceURL, u, data.options);
 				
-			}else if (isExtLink(u)){
+			}else if (isExtLink(data.toPage)){
 			
 				openChildBrowser(u.href);
 			
@@ -236,17 +236,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 
-
-
-$("#iframeSource").ready(function () { //wait for the frame to load
-
-  //$('img', frames['iframeSource'].document).bind("click",function(){
-  // alert('I clicked this img!');
-  //});
-
-});
-
-
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
 //will add class to open in child browser under following conditions:
 //external to nd.edu host
@@ -254,8 +243,9 @@ $("#iframeSource").ready(function () { //wait for the frame to load
 //contains the word proxy in it (meaning it gets proxied to a different website
 
 //is http or https (since there can be other protocols, like telephone://, file://)
-function isExtLink(linkObj){
-	if ((($.mobile.path.parseUrl(linkObj.href).host.indexOf("nd.edu") > 0) || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
+function isExtLink(u){
+	if ((($.mobile.path.parseUrl(u.href).host.indexOf("nd.edu") > 0) || ($(u).prop("target")) || u.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(u.href).protocol == "http:") || ($.mobile.path.parseUrl(u.href).protocol == "https:"))){
+	alert("ext link: " + $.mobile.path.parseUrl(u.href).host);
 		return true;
 	}else{
 		return false;
@@ -263,29 +253,6 @@ function isExtLink(linkObj){
 }
 
 
-
-
-
-function updateIFrameLinks(iframeRef){
-
-	$(iframeRef).contents().find("a").each(function(index) {
-    		
-		if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target")) || this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
-			$(this).removeAttr('target').addClass('cbLink');
-		}
-		
-    		
-	});
-	
-
-	$('.cbLink').live('click', function () {
-
-		openChildBrowser(this.href);
-		return false;
-
-	});
-	
-}
 
 
 
