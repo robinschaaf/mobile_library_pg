@@ -70,7 +70,8 @@ $(document).bind('pagebeforechange', function(e, data){
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
-				
+			
+		alert('change page to:' + u.href);	
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
