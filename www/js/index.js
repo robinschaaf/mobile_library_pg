@@ -237,15 +237,14 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
-//will add class to open in child browser under following conditions:
-//external to nd.edu host
-//contains a target (to open in new window)
-//contains the word proxy in it (meaning it gets proxied to a different website
+//will return true under following conditions:
+//external to nd.edu host (does not contain nd.edu in domain)
+//contains the word proxy in it (meaning it gets proxied to a different website)
 
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.host.indexOf("nd.edu") !== -1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 	alert(parsedURL.href);
 		return true;
 	}else{
