@@ -462,6 +462,7 @@ img.branch{
     color: #f8f7e9 /*{a-bhover-color}*/;
 }
 .ui-btn-down-b {
+    font-size:1em;
     border: 1px solid #304962 /*{c-bdown-border}*/;
     background: #386590 /*{c-bdown-background-color}*/;
     font-weight: bold;
