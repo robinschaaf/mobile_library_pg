@@ -18,8 +18,8 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
+//var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://localhost:3000/';
 var src_page;
  
 var app = {
@@ -65,7 +65,6 @@ var app = {
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
-alert('here');     
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -91,7 +90,7 @@ alert('here');
 				showSubpage( sourceURL, u, data.options);
 				
 			}else if (isExtLink(u)){
-				alert("clicked ext link");
+			
 				openChildBrowser(u.href);
 			
 			}else{
@@ -256,7 +255,7 @@ $("#iframeSource").ready(function () { //wait for the frame to load
 
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(linkObj){
-	if ((($.mobile.path.parseUrl(linkObj.href).hostname != "nd.edu") || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
+	if ((($.mobile.path.parseUrl(linkObj.href).host.indexOf("nd.edu") !== -1) || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
 		return true;
 	}else{
 		return false;
