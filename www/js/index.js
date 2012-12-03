@@ -65,7 +65,7 @@ var app = {
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
-     
+alert('here');     
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -77,25 +77,29 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
+			showSubpage( sourceURL, u, data.options);
 		
 		}else{
-
 			if (u.protocol == "file:"){
 			
 				sourceURL = remoteURL + u.pathname;
+				showSubpage( sourceURL, u, data.options);
 			
 			}else if ($.mobile.path.isRelativeUrl(u.href)){
 			
 				sourceURL = remoteURL + u.href;
+				showSubpage( sourceURL, u, data.options);
 				
+			}else if (isExtLink(u)){
+				alert("clicked ext link");
+				openChildBrowser(u.href);
+			
+			}else{
+				showSubpage( sourceURL, u, data.options);
 			}
 
 			
 		}
-		
-		
-		showSubpage( sourceURL, u, data.options);
-		
 
 		// Make sure to tell changePage() we've handled this call
 		e.preventDefault();
@@ -151,21 +155,28 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 				
 				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContaaent').size() > 0 ){
+				if ( $(rdata).find('.innerContent').size() > 0 ){
 
 					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
+					
+					//change relative paths to images to point to m. site
+					$page.find("img").prop("src", function(){
+					
+					});
+					
 				
 				}else{
 					//if it's for a site other than the mobile library site
 					//load into an iframe
 					//and expand the width of the content container (parents)
 				
-					$page.find('.subPageData').append( "<iframe onload='updateIFrameLinks(this)' id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
     
 					
 				}
 
+				
 
 				//change any external domain links to open in child browser
 				$page.find("a").prop("href", function(){
@@ -178,16 +189,9 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 					}else{
 					
-						//will add class to open in child browser under following conditions:
-						//external to nd.edu host
-						//contains a target (to open in new window)
-						//contains the word proxy in it (meaning it gets proxied to a different website
-						
-						//is http or https (since there can be other protocols, like telephone://, file://)
-						
-						if ((($.mobile.path.parseUrl(this.href).hostname != "nd.edu") || ($(this).prop("target")) || this.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(this.href).protocol == "http:") || ($.mobile.path.parseUrl(this.href).protocol == "https:"))){
-							$(this).addClass("cbLink");
-						}
+						//if (isExtLink(this)){
+						//	$(this).addClass("cbLink")
+						//}
 
 						return this.href;
 					}
@@ -221,7 +225,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 	$('.subPageData').show("slow");
 
 	//$("#iframeSource").contents().find("a").css("background-color","#BADA55");
-		//$('.footerBar').css('padding', '0px');
+	$('.footerBar').css('padding', '0px');
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
     });
@@ -229,6 +233,39 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 }
+
+
+
+
+
+
+$("#iframeSource").ready(function () { //wait for the frame to load
+
+  //$('img', frames['iframeSource'].document).bind("click",function(){
+  // alert('I clicked this img!');
+  //});
+
+});
+
+
+//determine if the "a" target passed in is an external link and should be opened in childbrowser
+//will add class to open in child browser under following conditions:
+//external to nd.edu host
+//contains a target (to open in new window)
+//contains the word proxy in it (meaning it gets proxied to a different website
+
+//is http or https (since there can be other protocols, like telephone://, file://)
+function isExtLink(linkObj){
+	if ((($.mobile.path.parseUrl(linkObj.href).hostname != "nd.edu") || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+
+
+
 
 function updateIFrameLinks(iframeRef){
 
