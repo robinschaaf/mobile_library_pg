@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
- var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://mpprd.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
 var src_page;
  
@@ -64,7 +64,6 @@ var app = {
 
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
-
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -161,7 +160,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					//change relative paths to images to point to m. site
 					$page.find("img").prop("src", function(){
 						srcURL = $(this).attr('src');
-						if (srcURL.indexOf("assets") > 0){
+						if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
 							return remoteURL + srcURL;
 						}else{
 							return srcURL;
@@ -245,6 +244,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 function isExtLink(parsedURL){
 
 	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	alert(parsedURL.href);
 		return true;
 	}else{
 		return false;
