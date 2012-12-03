@@ -72,8 +72,8 @@ $(document).bind('pagebeforechange', function(e, data){
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
-		
 				
+			alert(u.href);	
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
 			showSubpage( sourceURL, u, data.options);
@@ -91,7 +91,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 			}else if (isExtLink(data.toPage)){
 			
-				openChildBrowser(u.href);
+				openChildBrowser(sourceURL);
 			
 			}else{
 				showSubpage( sourceURL, u, data.options);
@@ -223,8 +223,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 
-	//$("#iframeSource").contents().find("a").css("background-color","#BADA55");
-	$('.footerBar').css('padding', '0px');
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
     });
@@ -244,12 +242,15 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(u){
-	if ((($.mobile.path.parseUrl(u.href).host.indexOf("nd.edu") > 0) || ($(u).prop("target")) || u.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(u.href).protocol == "http:") || ($.mobile.path.parseUrl(u.href).protocol == "https:"))){
+
+
+
+	//if ((($.mobile.path.parseUrl(u.href).host.indexOf("nd.edu") > 0) || ($(u).prop("target")) || u.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(u.href).protocol == "http:") || ($.mobile.path.parseUrl(u.href).protocol == "https:"))){
 	alert("ext link: " + $.mobile.path.parseUrl(u.href).host);
 		return true;
-	}else{
-		return false;
-	}
+	//}else{
+	//	return false;
+	//}
 }
 
 
