@@ -246,7 +246,7 @@ function isExtLink(u){
 
 
 	//if ((($.mobile.path.parseUrl(u.href).host.indexOf("nd.edu") > 0) || ($(u).prop("target")) || u.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(u.href).protocol == "http:") || ($.mobile.path.parseUrl(u.href).protocol == "https:"))){
-	alert("ext link: " + $.mobile.path.parseUrl(u.href).host);
+	alert("ext link: " + u + " host name: " + $.mobile.path.parseUrl(u.href).host);
 		return true;
 	//}else{
 	//	return false;
