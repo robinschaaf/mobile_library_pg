@@ -64,7 +64,7 @@ var app = {
 
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
-alert('pagechange');
+alert('pagechange: ' + data.toPage);
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -246,6 +246,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 function isExtLink(parsedURL){
 
 	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.host.indexOf("nd.edu") !== -1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	alert(parsedURL.href);
 		return true;
 	}else{
 		return false;
