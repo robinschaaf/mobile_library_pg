@@ -68,7 +68,6 @@ $(document).bind('pagebeforechange', function(e, data){
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
 	
-	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
 				
@@ -77,27 +76,30 @@ $(document).bind('pagebeforechange', function(e, data){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
 			showSubpage( sourceURL, u, data.options);
 		
+		//file (this is how phonegap runs links as a file on local system)
+		}else if (u.protocol == "file:"){
+			
+			sourceURL = remoteURL + u.pathname;
+			showSubpage( sourceURL, u, data.options);
+
+		//this means it's a link within the m.library site
+		}else if ($.mobile.path.isRelativeUrl(u.href)){
+
+			sourceURL = remoteURL + u.href;
+			showSubpage( sourceURL, u, data.options);
+
+		//link external to notre dame
+		}else if (isExtLink(u)){
+
+			openChildBrowser(sourceURL);
+
+
+		//link internal to the library but external to m. site - eg Primo, Quicksearch, ejournal locator
 		}else{
-			if (u.protocol == "file:"){
-			
-				sourceURL = remoteURL + u.pathname;
-				showSubpage( sourceURL, u, data.options);
-			
-			}else if ($.mobile.path.isRelativeUrl(u.href)){
-			
-				sourceURL = remoteURL + u.href;
-				showSubpage( sourceURL, u, data.options);
-				
-			}else if (isExtLink(u)){
-			
-				openChildBrowser(sourceURL);
-			
-			}else{
-				showSubpage( sourceURL, u, data.options);
-			}
+			showIFrame( sourceURL, u, data.options);
+		}
 
 			
-		}
 
 		// Make sure to tell changePage() we've handled this call
 		e.preventDefault();
@@ -132,10 +134,9 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 		if (options.type == "post"){
 		
-			$.post( sourceURL, $("form#new_message").serialize(), function(rdata){
+			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-
-			  	$page.find('.subPageData').append( $(rdata).find('.innerContent') );
+			  	$page.find('.subPageData').html( $(rdata).find('.innerContent') );
 
 				$page.page();
 	
@@ -152,47 +153,35 @@ function showSubpage( sourceURL, origURLObj, options ) {
 			$.get( sourceURL, function(rdata){
 		
 				
-				//if page returned has .innerContent (is from the m.library site)
-				if ( $(rdata).find('.innerContent').size() > 0 ){
+				$page.find('.subPageData').append( $(rdata).find('.innerContent') );
 
-					$page.find('.subPageData').append( $(rdata).find('.innerContent') );
-					
-					//change relative paths to images to point to m. site
-					$page.find("img").prop("src", function(){
-						srcURL = $(this).attr('src');
-						if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
-							return remoteURL + srcURL;
-						}else{
-							return srcURL;
-						}
-						
-					});
+				//change relative paths to images to point to m. site
+				$page.find("img").prop("src", function(){
+					srcURL = $(this).attr('src');
+					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
+						return remoteURL + srcURL;
+					}else{
+						return srcURL;
+					}
+
+				});
 					
 				
-				}else{
-					//if it's for a site other than the mobile library site
-					//load into an iframe
-					//and expand the width of the content container (parents)
-				
-					$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
-
-    
-					
-				}
 
 				
 
 				//change any external domain links to open in child browser
 				$page.find("a").prop("href", function(){
 
-
 					//at this point attr refers to the original href retrieved from the html
 					if ($.mobile.path.isRelativeUrl($(this).attr('href'))){
-
 						return $(this).attr('href').replace(/\//g, "#");
-
 					}else{
-					
+
+						if ($(this).prop("target")){
+							$(this).addClass("cbLink");
+						}
+
 						return this.href;
 					}
 
@@ -203,7 +192,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
-
 				
 				$.mobile.changePage( $page, options );
 
@@ -235,6 +223,83 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 
+
+
+
+
+function showIFrame( sourceURL, origURLObj, options ) {
+    
+        
+    $.mobile.loading( 'show' );
+
+    $.ajax({
+        url     : 'subpage_iframe.html',
+        success : function (data) {
+		
+		//convert return html from subpage to jquery object
+		var $page = $(data);
+		
+		if (options.type == "post"){
+		
+			$.post( sourceURL, $("form").serialize(), function(rdata){
+
+				$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+
+				$page.page();
+	
+				$.mobile.changePage( $page, options );
+	
+				$.mobile.loading( 'hide' );			
+
+			  
+			});		
+		
+		//is get request
+		}else{
+			
+			$.get( sourceURL, function(rdata){
+		
+				//if it's for a site other than the mobile library site
+				//load into an iframe
+				//and expand the width of the content container (parents)
+
+				$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+
+				$page.page();
+
+				options.dataUrl = origURLObj.href;
+				
+				$.mobile.changePage( $page, options );
+
+				$.mobile.loading( 'hide' );
+
+
+			}); 
+			
+			
+		}
+		
+		
+
+	//add new page to the DOM
+	$.mobile.pageContainer.append($page)
+
+	$('.subPageData').trigger("create");
+	$('.subPageData').show("slow");
+
+        },
+        error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
+    });
+
+
+
+}
+
+
+
+
+
+
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
@@ -243,8 +308,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
-	alert(parsedURL.href);
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 		return true;
 	}else{
 		return false;
