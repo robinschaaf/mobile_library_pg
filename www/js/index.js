@@ -255,7 +255,7 @@ $("#iframeSource").ready(function () { //wait for the frame to load
 
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(linkObj){
-	if ((($.mobile.path.parseUrl(linkObj.href).host.indexOf("nd.edu") !== -1) || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
+	if ((($.mobile.path.parseUrl(linkObj.href).host.indexOf("nd.edu") > 0) || ($(linkObj).prop("target")) || linkObj.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(linkObj.href).protocol == "http:") || ($.mobile.path.parseUrl(linkObj.href).protocol == "https:"))){
 		return true;
 	}else{
 		return false;
