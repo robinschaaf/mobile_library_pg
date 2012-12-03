@@ -89,7 +89,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				sourceURL = remoteURL + u.href;
 				showSubpage( sourceURL, u, data.options);
 				
-			}else if (isExtLink(data.toPage)){
+			}else if (isExtLink(u)){
 			
 				openChildBrowser(sourceURL);
 			
@@ -241,12 +241,12 @@ function showSubpage( sourceURL, origURLObj, options ) {
 //contains the word proxy in it (meaning it gets proxied to a different website
 
 //is http or https (since there can be other protocols, like telephone://, file://)
-function isExtLink(u){
+function isExtLink(parsedURL){
 
 
 
-	//if ((($.mobile.path.parseUrl(u.href).host.indexOf("nd.edu") > 0) || ($(u).prop("target")) || u.href.indexOf("proxy") !== -1) && (($.mobile.path.parseUrl(u.href).protocol == "http:") || ($.mobile.path.parseUrl(u.href).protocol == "https:"))){
-	alert("ext link: " + u + " host name: " + $.mobile.path.parseUrl(u.href).host);
+	//if (((parsedURL.host.indexOf("nd.edu") > 0) || parsedURL.href.indexOf("proxy") !== -1) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	alert("ext link: " + parsedURL + " host name: " + parsedURL.host);
 		return true;
 	//}else{
 	//	return false;
