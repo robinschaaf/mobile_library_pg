@@ -188,10 +188,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 					}else{
 					
-						//if (isExtLink(this)){
-						//	$(this).addClass("cbLink")
-						//}
-
 						return this.href;
 					}
 
@@ -243,14 +239,11 @@ function showSubpage( sourceURL, origURLObj, options ) {
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-
-
-	//if (((parsedURL.host.indexOf("nd.edu") > 0) || parsedURL.href.indexOf("proxy") !== -1) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
-	alert("ext link: " + parsedURL + " host name: " + parsedURL.host);
+	if (((parsedURL.host.indexOf("nd.edu") > 0) || parsedURL.href.indexOf("proxy")) !== -1) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 		return true;
-	//}else{
-	//	return false;
-	//}
+	}else{
+		return false;
+	}
 }
 
 
