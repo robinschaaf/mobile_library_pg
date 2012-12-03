@@ -64,7 +64,7 @@ var app = {
 
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
-
+alert('pagechange');
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -73,7 +73,7 @@ $(document).bind('pagebeforechange', function(e, data){
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
 				
-			alert(u.href);	
+				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
 			showSubpage( sourceURL, u, data.options);
@@ -160,7 +160,13 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					
 					//change relative paths to images to point to m. site
 					$page.find("img").prop("src", function(){
-					
+						srcURL = $(this).attr('src');
+						if ($.mobile.path.isRelativeUrl(srcURL)){
+							return remoteURL + srcURL;
+						}else{
+							return srcURL;
+						}
+						
 					});
 					
 				
