@@ -64,7 +64,7 @@ var app = {
 
 $(document).bind('pageinit', function(e, data){
 	alert("pageinit called");
-}
+});
 
 
 //happens every "page", including remote servers
