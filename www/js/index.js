@@ -319,6 +319,7 @@ function isExtLink(parsedURL){
 
 
 function hideSpinner(){
+	alert('iframe load');
 	$.mobile.loading( 'hide' );
 }
 
