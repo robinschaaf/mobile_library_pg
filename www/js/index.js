@@ -317,7 +317,7 @@ function isExtLink(parsedURL){
 
 
 function hideSpinner(){
-
+	alert('iframe load done');
 	$.mobile.loading( 'hide' );
 }
 
