@@ -53,7 +53,13 @@ div.icon .grayText {
     margin-top:7px;  
     margin-left:83px;
     max-height:23px;
+    opacity: 1;
 }
+
+#toolbar a{
+    opacity: 1;
+}
+
 
 #toolbar{
     text-align: left; 

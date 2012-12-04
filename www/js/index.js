@@ -63,7 +63,7 @@ var app = {
 
 
 $(document).bind('pageinit', function(e, data){
-	alert("pageinit called");
+	//alert("pageinit called");
 });
 
 
@@ -73,6 +73,8 @@ $(document).bind('pagebeforechange', function(e, data){
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
+	
+		$.mobile.loading( 'show' );
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
@@ -248,7 +250,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='hideSpinner();' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='hideSpinner();' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 	
@@ -265,7 +267,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='hideSpinner();' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='hideSpinner();' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 
@@ -317,7 +319,6 @@ function isExtLink(parsedURL){
 
 
 function hideSpinner(){
-	alert('iframe load done');
 	$.mobile.loading( 'hide' );
 }
 
