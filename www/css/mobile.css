@@ -59,6 +59,7 @@ div.icon .grayText {
     text-align: left; 
     height:28px;
     box-shadow: 10px 0px 5px #000000;    
+    opacity: 0.95;
     background: #2b5781 /*{a-body-background-color}*/;
     background-image: -webkit-gradient(linear, left top, left bottom, from( #2b5781 /*{a-body-background-start}*/), to( #304962 /*{a-body-background-end}*/)); /* Saf4+, Chrome */
     background-image: -webkit-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* Chrome 10+, Saf5.1+ */

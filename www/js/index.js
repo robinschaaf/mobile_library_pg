@@ -76,8 +76,6 @@ $(document).bind('pagebeforechange', function(e, data){
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
-			
-		alert('change page to:' + u.href);	
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
@@ -250,14 +248,11 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload="hideSpinner();" frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 	
 				$.mobile.changePage( $page, options );
-	
-				$.mobile.loading( 'hide' );			
-
 			  
 			});		
 		
@@ -270,15 +265,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload="hideSpinner();" frameborder='0' style='height:100%; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
-
-				$.mobile.loading( 'hide' );
 
 
 			}); 
@@ -323,7 +316,10 @@ function isExtLink(parsedURL){
 }
 
 
+function hideSpinner(){
 
+	$.mobile.loading( 'hide' );
+}
 
 
 function openChildBrowser(url){
