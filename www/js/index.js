@@ -335,7 +335,7 @@ function updateIFrame(){
 
 
 
-$("#iframeSource").ready(function (){
+$("#iframeSource").live('ready', function (){
     	$('#iframeSource').contents().find('a').attr('href', function(i, val){
     	alert("IFRAMELOAD: " + val);
     		if (isExtLink(val)){
