@@ -335,9 +335,9 @@ function updateIFrame(){
 
 
 
-$("#iframeSource").load(function (){
+$("#iframeSource").ready(function (){
     	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-    	alert("iframeload: " + val);
+    	alert("IFRAMELOAD: " + val);
     		if (isExtLink(val)){
     			return "javascript:openChildBrowser('" + val + "');";		
     			
