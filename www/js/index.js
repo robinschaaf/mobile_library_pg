@@ -319,33 +319,19 @@ function isExtLink(parsedURL){
 
 
 function updateIFrame(){
-	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-	alert(val);
+	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
+	
+	//$('#iframeSource').contents().find('a').attr('href', function(i, val){
+
 		if (isExtLink(val)){
-			return "javascript:openChildBrowser('" + val + "');";		
+			return "javascript:openChildBrowser('" + val + "');";
+
 			
 		}else{
 			return val;
 		}
 	
 	});	
-
-
-$("#iframeSource").live('ready', function (){
-    	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-    	alert("IFRAMELOAD: " + val);
-    		if (isExtLink(val)){
-    			return "javascript:openChildBrowser('" + val + "');";		
-    			
-    		}else{
-    			return val;
-    		}
-    	
-	});	
-});
-
-
-
 	
 	$.mobile.loading( 'hide' );
 }
