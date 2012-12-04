@@ -329,10 +329,6 @@ function updateIFrame(){
 		}
 	
 	});	
-	
-	$.mobile.loading( 'hide' );
-}
-
 
 
 $("#iframeSource").live('ready', function (){
@@ -347,6 +343,16 @@ $("#iframeSource").live('ready', function (){
     	
 	});	
 });
+
+
+
+	
+	$.mobile.loading( 'hide' );
+}
+
+
+
+
 
 
 
