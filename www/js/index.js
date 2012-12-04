@@ -320,6 +320,7 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
+	alert(val);
 		if (isExtLink(val)){
 			return "javascript:openChildBrowser('" + val + "');";		
 			
