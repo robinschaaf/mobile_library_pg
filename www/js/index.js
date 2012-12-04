@@ -62,8 +62,14 @@ var app = {
 
 
 
+$(document).bind('pageinit', function(e, data){
+	alert("pageinit called");
+}
+
+
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
+alert("pagebefore called");
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
