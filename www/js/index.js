@@ -334,6 +334,22 @@ function updateIFrame(){
 }
 
 
+
+$("#iframeSource").load(function (){
+    	$('#iframeSource').contents().find('a').attr('href', function(i, val){
+    	alert("iframeload: " + val);
+    		if (isExtLink(val)){
+    			return "javascript:openChildBrowser('" + val + "');";		
+    			
+    		}else{
+    			return val;
+    		}
+    	
+	});	
+});
+
+
+
 function openChildBrowser(url){
     try {
 	//both of these should work...
