@@ -21,7 +21,7 @@
     <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="http://d1aaqh87bn7fin.cloudfront.net" subdomains="true" browserOnly="false" />
 
-    <preference name="phonegap-version" value="2.1.0" />
+    <preference name="phonegap-version" value="2.2.0" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
