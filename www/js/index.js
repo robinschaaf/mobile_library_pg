@@ -321,7 +321,7 @@ function isExtLink(parsedURL){
 function updateIFrame(){
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
-	//$('#iframeSource').contents().find('a').attr('href', function(i, val){
+	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
 		if (isExtLink(val)){
 			return "javascript:openChildBrowser('" + val + "');";
