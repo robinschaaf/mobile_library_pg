@@ -324,6 +324,9 @@ function isExtLink(parsedURL){
 
 
 function updateIFrame(){
+
+var As = 'AS START!!\n\n';
+
 	$('#iframeSource').css("height","100%");
 	
 	
@@ -335,8 +338,6 @@ function updateIFrame(){
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-
-var As = 'AS START!!\n\n';
 
 
 		if ($.mobile.path.isRelativeUrl(val) === true){
