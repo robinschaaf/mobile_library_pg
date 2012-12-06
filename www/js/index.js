@@ -311,9 +311,11 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
 //contains the word proxy in it (meaning it gets proxied to a different website)
-
+var As = ''
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
+
+As = As + '\n' + parsedURL.href + ' has proxy: ' + parsedURL.href.indexOf("proxy");
 
 	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 		return true;
@@ -327,12 +329,12 @@ function updateIFrame(){
 	$('#iframeSource').css("height","100%");
 	
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
-	var As = ''
+	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 	
 		var u = $.mobile.path.parseUrl( val );
 	
-		As = As + '\n' + u.href + ' has proxy: ' + u.href.indexOf("proxy");
+		
 	
 		if (isExtLink(u)){
 			return '';
