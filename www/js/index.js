@@ -18,8 +18,8 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
+//var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://localhost:3000/';
 var src_page;
  
 var app = {
@@ -31,6 +31,8 @@ var app = {
         $.mobile.pushStateEnabled = false;
         $.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
+        $.mobile.defaultPageTransition = "fade";
+        $.mobile.defaultDialogTransition = "fade";
 
         this.bind();
     },
@@ -62,8 +64,8 @@ var app = {
 
 
 
-$(document).bind('pageinit', function(e, data){
-	//alert("pageinit called");
+$(document).bind('pageshow', function(e, data){
+	//alert("pageshow called!");
 	
 	
 	$('a').live('tap',function(event) {
@@ -75,10 +77,15 @@ $(document).bind('pageinit', function(e, data){
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
+
+		
 	// We only want to handle changePage() calls where the caller is
-	// asking us to load a page by url for subpage
-	if ( typeof data.toPage === "string" ){
-	
+	// asking us to load a page by url and it's not alredy been prevented
+	if ( (typeof data.toPage === "string") && (e.isDefaultPrevented() === false) ){
+		
+		// Make sure to tell changePage() we've handled this call
+		e.preventDefault();
+		
 		$.mobile.loading( 'show' );
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
@@ -86,7 +93,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showSubpage( sourceURL, u, data.options);
+			showIFrame( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -110,11 +117,8 @@ $(document).bind('pagebeforechange', function(e, data){
 		}else{
 			showIFrame( sourceURL, u, data.options);
 		}
+	
 
-			
-
-		// Make sure to tell changePage() we've handled this call
-		e.preventDefault();
 
 	}
 
@@ -233,66 +237,71 @@ function showSubpage( sourceURL, origURLObj, options ) {
 }
 
 
-
-
-
-
+//used to handle both iframe and full page callbacks
+var pageReadyDeferred = $.Deferred();
+var iFrameReadyDeferred = $.Deferred();
+var $page;
 
 
 function showIFrame( sourceURL, origURLObj, options ) {
-    
-        
+
     $.mobile.loading( 'show' );
 
     $.ajax({
         url     : 'subpage_iframe.html',
         success : function (data) {
-		
+		//alert('success');
 		//convert return html from subpage to jquery object
-		var $page = $(data);
-		
+		$page = $(data);
+
+
 		if (options.type == "post"){
-		
+
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='width:100%; height:0px; background-color:#2b5781; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
-	
+
 				$.mobile.changePage( $page, options );
-			  
+
 			});		
-		
+
 		//is get request
 		}else{
+
+			//if it's for a site other than the mobile library site
+			//load into an iframe
+			//and expand the width of the content container (parents)
+
+			//$page.find('.subPageData').append( "<iframe id='iframeSource' onload='iFrameReadyDeferred.resolve();' frameborder='0' style='width:100%; height:0px; background-color:#2b5781; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+
+			$("<iframe />").attr({
+				id: "iframeSource",
+				src: sourceURL
+			    }).css({'width' : '100%', 'background-color' : '#2b5781', 'height' : '0px', 'border-style' : 'none', 'margin' : '0px', 'padding' : '0px'})
+			    .load(function() {
+				console.log('iframe loaded');
+				iFrameReadyDeferred.resolve($page);
+			    }).appendTo($page.find('.subPageData')).parents().css('margin', '0px');
+
+
+			//add new page to the DOM
+			$.mobile.pageContainer.append($page);
+			alert('pageappend');
 			
-			$.get( sourceURL, function(rdata){
-		
-				//if it's for a site other than the mobile library site
-				//load into an iframe
-				//and expand the width of the content container (parents)
+			$('.subPageData').trigger("create");
+			$('.subPageData').show("slow");	
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
-
-				$page.page();
-
-				options.dataUrl = origURLObj.href;
-				
-				$.mobile.changePage( $page, options );
-
-
-			}); 
-			
-			
 		}
-		
-		
 
-	//add new page to the DOM
-	$.mobile.pageContainer.append($page)
 
-	$('.subPageData').trigger("create");
-	$('.subPageData').show("slow");
+
+
+		
+		options.dataUrl = origURLObj.href;
+		pageReadyDeferred.resolve(options);
+	
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -303,7 +312,22 @@ function showIFrame( sourceURL, origURLObj, options ) {
 }
 
 
+$.when(pageReadyDeferred, iFrameReadyDeferred).then(function(options, iFrameArgs) { 
 
+
+	$page.page();
+	
+	$.mobile.changePage( $page, options );
+	
+	$('#iframeSource').css("height","100%");
+
+	$.mobile.loading( 'hide' );
+	
+	//reset deferred objects
+	pageReadyDeferred = $.Deferred();
+    	iFrameReadyDeferred = $.Deferred();
+	
+});
 
 
 
@@ -323,21 +347,28 @@ function isExtLink(parsedURL){
 }
 
 
-function updateIFrame(){
+function addIFramePage(){
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
-	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-		var u = $.mobile.path.parseUrl( val );
+	//$('#iframeSource').contents().find('a').attr('href', function(i, val){
+	//	var u = $.mobile.path.parseUrl( val );
 		
-		if (isExtLink(u)){
-			return "javascript:openChildBrowser('" + val + "');";
-		}else{
-			return val;
-		}
+	//	if (isExtLink(u)){
+	//		return "javascript:openChildBrowser('" + val + "');";
+	//	}else{
+	//		return val;
+	//	}
 	
-	});	
+	//});	
+
+
+
 	
-	$.mobile.loading( 'hide' );
+
+
+		
+		
+
 }
 
 
