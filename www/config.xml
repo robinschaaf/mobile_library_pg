@@ -16,6 +16,7 @@
    
     <access origin="http://*.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="https://*.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="https://*.googleapis.com" subdomains="true" browserOnly="false" />
     <access origin="http://*.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="https://*.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
