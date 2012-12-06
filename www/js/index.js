@@ -327,12 +327,13 @@ function updateIFrame(){
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
+	
 		var u = $.mobile.path.parseUrl( val );
 		
 		if (isExtLink(u)){
 			return "javascript:openChildBrowser('" + val + "');";
 		}else{
-			return val;
+			return '';
 		}
 	
 	});	
