@@ -325,13 +325,20 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 	$('#iframeSource').css("height","100%");
+	
+	
+	$.mobile.loading( 'hide' );
+	
+	
 	alert ("frame loaded");
 	
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
-//var As = 'AS START!!\n\n';
+var As = 'AS START!!\n\n';
+
+
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
 			As = As + "\n" + val;
@@ -347,7 +354,7 @@ function updateIFrame(){
 	
 	});	
 	
-	$.mobile.loading( 'hide' );
+alert(As);	
 }
 
 
