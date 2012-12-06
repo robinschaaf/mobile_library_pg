@@ -326,15 +326,8 @@ function isExtLink(parsedURL){
 function updateIFrame(){
 
 	var As = 'AS START!!\n\n';
-	var js = 'function openChildBrowser(url){
-		    try {
-			//both of these should work...
-			window.plugins.childBrowser.showWebPage(url);
-		    }catch (err){
-			alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
-			window.open(url);
-		    }
-		}';
+	var js = "function openChildBrowser(url){try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}";
+
 
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
