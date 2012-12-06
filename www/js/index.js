@@ -311,13 +311,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
 //contains the word proxy in it (meaning it gets proxied to a different website)
-var As = ''
+var As = '';
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-As = As + '\n' + parsedURL.href + ' protocol: ' + parsedURL.protocol;
+As = As + '\n' + parsedURL.href + ' abs: ' + makePathAbsolute$.mobile.path.makePathAbsolute(parsedURL.protocol;
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && ($.mobile.path.isRelativeUrl(parsedURL.href) === false){
 		return true;
 	}else{
 		return false;
@@ -337,8 +337,8 @@ function updateIFrame(){
 		
 	
 		if (isExtLink(u)){
-			return '';
-			//return "javascript:openChildBrowser('" + val + "');";
+			//return '';
+			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
