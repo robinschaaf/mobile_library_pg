@@ -314,7 +314,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 var As = '';
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
-//As = As + '\n' + parsedURL.href + ' abs: ' + makePathAbsolute$.mobile.path.makePathAbsolute(parsedURL.protocol;
+As = As + '\n' + parsedURL.href + ' abs: ' + $.mobile.path.isRelativeUrl(parsedURL.href);
 
 	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && ($.mobile.path.isRelativeUrl(parsedURL.href) === false)){
 		return true;
@@ -343,7 +343,7 @@ function updateIFrame(){
 		}
 	
 	});	
-	//alert (As);
+	alert (As);
 	
 	$.mobile.loading( 'hide' );
 }
