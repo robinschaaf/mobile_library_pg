@@ -332,7 +332,7 @@ function updateIFrame(){
 	
 		var u = $.mobile.path.parseUrl( val );
 	
-		As = As + '\n' + u.href + ' is ext: ' + isExtLink(u);
+		As = As + '\n' + u.href + ' has proxy: ' + u.href.indexOf("proxy");
 	
 		if (isExtLink(u)){
 			return '';
