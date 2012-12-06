@@ -315,7 +315,7 @@ var As = '';
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && ($.mobile.path.isRelativeUrl(parsedURL.href) === false)){
 		return true;
 	}else{
 		return false;
@@ -333,6 +333,7 @@ function updateIFrame(){
 
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
+			As = As + "\n" + val;
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
@@ -344,7 +345,7 @@ function updateIFrame(){
 		}
 	
 	});	
-	alert ($('#iframeSource').attr('src'));
+	alert (As);
 	
 	$.mobile.loading( 'hide' );
 }
