@@ -326,7 +326,7 @@ function isExtLink(parsedURL){
 function updateIFrame(){
 
 	var As = 'AS START!!\n\n';
-	var js = "function openChildBrowser(url){try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}";
+	var js = "<script>function openChildBrowser(url){try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}</script>";
 
 
 	
