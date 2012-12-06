@@ -124,7 +124,7 @@ $(document).bind('pagebeforechange', function(e, data){
 
 
 $('.cbLink').live('click', function () {
-alert('cbcall');
+
 	openChildBrowser(this.href);
 	return false;
 
@@ -325,7 +325,21 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
-var As = 'AS START!!\n\n';
+	var As = 'AS START!!\n\n';
+	var js = 'function openChildBrowser(url){
+		    try {
+			//both of these should work...
+			window.plugins.childBrowser.showWebPage(url);
+		    }catch (err){
+			alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
+			window.open(url);
+		    }
+		}';
+
+	
+	//append javascript for opening childbrowser since javascript here isn't available there
+	$('#iframeSource').contents().find('body').append(js)
+
 
 	$('#iframeSource').css("height","100%");
 	
@@ -345,11 +359,9 @@ var As = 'AS START!!\n\n';
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-		
 			$(this).addClass('cbLink');
 			As = As + "\n" + $(this).attr('class');
-			return val;
-			//return "javascript:alert('cbLink');";
+			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
