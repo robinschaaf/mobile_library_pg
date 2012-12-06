@@ -124,7 +124,7 @@ $(document).bind('pagebeforechange', function(e, data){
 
 
 $('.cbLink').live('click', function () {
-
+alert('cbcall');
 	openChildBrowser(this.href);
 	return false;
 
@@ -348,8 +348,8 @@ var As = 'AS START!!\n\n';
 		
 			$(this).addClass('cbLink');
 			As = As + "\n" + $(this).attr('class');
-			//return val;
-			return "javascript:alert('cbLink');";
+			return val;
+			//return "javascript:alert('cbLink');";
 		}else{
 			return val;
 		}
