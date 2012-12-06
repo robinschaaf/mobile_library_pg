@@ -339,7 +339,7 @@ var As = 'AS START!!\n\n';
 
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
-			As = As + "\n" + val;
+			
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
@@ -347,6 +347,7 @@ var As = 'AS START!!\n\n';
 		if (isExtLink(u)){
 		
 			$(this).addClass('cbLink');
+			As = As + "\n" + $(this).attr('class');
 			return val;
 			//return "javascript:openChildBrowser('" + val + "');";
 		}else{
