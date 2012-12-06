@@ -325,6 +325,7 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 	$('#iframeSource').css("height","100%");
+	alert ("frame loaded");
 	
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
@@ -345,7 +346,6 @@ function updateIFrame(){
 		}
 	
 	});	
-	alert ("frame loaded");
 	
 	$.mobile.loading( 'hide' );
 }
