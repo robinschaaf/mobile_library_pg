@@ -311,7 +311,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
 //contains the word proxy in it (meaning it gets proxied to a different website)
-var As = '';
+
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
@@ -330,7 +330,7 @@ function updateIFrame(){
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
-
+var As = 'AS START!!\n\n';
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
 			As = As + "\n" + val;
