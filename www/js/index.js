@@ -332,7 +332,7 @@ function updateIFrame(){
 	
 		var u = $.mobile.path.parseUrl( val );
 	
-		As = As + '\n' + u.href;
+		As = As + '\n' + u.href + ' is ext: ' + isExtLink(u);
 	
 		if (isExtLink(u)){
 			return '';
