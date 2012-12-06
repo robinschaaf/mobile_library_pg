@@ -255,7 +255,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#2b5781; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 	
@@ -272,7 +272,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#2b5781; width:100%; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 
@@ -324,7 +324,8 @@ function isExtLink(parsedURL){
 
 
 function updateIFrame(){
-alert('frame load');
+	$('#iframeSource').css("height","100%");
+	
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
