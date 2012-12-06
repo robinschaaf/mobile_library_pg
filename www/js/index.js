@@ -330,7 +330,7 @@ function updateIFrame(){
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
-var As = 'AS START!!\n\n';
+//var As = 'AS START!!\n\n';
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
 			As = As + "\n" + val;
@@ -345,7 +345,7 @@ var As = 'AS START!!\n\n';
 		}
 	
 	});	
-	alert (As);
+	alert ("frame loaded");
 	
 	$.mobile.loading( 'hide' );
 }
