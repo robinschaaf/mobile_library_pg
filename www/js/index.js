@@ -315,7 +315,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && ($.mobile.path.isRelativeUrl(parsedURL.href) === false)){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 		return true;
 	}else{
 		return false;
@@ -348,6 +348,7 @@ var As = 'AS START!!\n\n';
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
+			As = As + ": EXT";
 			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
