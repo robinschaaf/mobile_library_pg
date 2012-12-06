@@ -315,7 +315,7 @@ var As = ''
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-As = As + '\n' + parsedURL.href + ' has proxy: ' + parsedURL.href.indexOf("proxy");
+As = As + '\n' + parsedURL.href + ' protocol: ' + parsedURL.protocol;
 
 	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
 		return true;
