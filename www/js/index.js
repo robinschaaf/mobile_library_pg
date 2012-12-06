@@ -331,10 +331,7 @@ var As = 'AS START!!\n\n';
 	
 	
 	$.mobile.loading( 'hide' );
-	
-	
-	alert ("frame loaded");
-	
+		
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
@@ -348,8 +345,10 @@ var As = 'AS START!!\n\n';
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			As = As + ": EXT";
-			return "javascript:openChildBrowser('" + val + "');";
+		
+			$(this).addClass('cbLink');
+			return val;
+			//return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
