@@ -325,7 +325,7 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
-	var js = "<script>function openChildBrowser(url){alert 'cb'; try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}</script>";
+	var js = "<script>function openChildBrowser(url){alert ('cb'); try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}</script>";
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
 	$('#iframeSource').contents().find('body').append(js);
