@@ -370,6 +370,7 @@ alert(As);
 
 
 function openChildBrowser(url){
+alert('here');
     try {
 	//both of these should work...
 	window.plugins.childBrowser.showWebPage(url);
