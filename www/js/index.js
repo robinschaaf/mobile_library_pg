@@ -334,7 +334,7 @@ function updateIFrame(){
 
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
-	$('#iframeSource').contents().find('head').append(str);
+	$('#iframeSource').contents().find('body').append(str);
 	alert ($('#iframeSource').contents().find('body').html());
 
 
