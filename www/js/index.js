@@ -331,7 +331,7 @@ function updateIFrame(){
 
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
-	$('#iframeSource').contents().find('body').append(js)
+	//$('#iframeSource').contents().find('body').append(js)
 
 
 	$('#iframeSource').css("height","100%");
@@ -354,7 +354,7 @@ function updateIFrame(){
 		if (isExtLink(u)){
 			$(this).addClass('cbLink');
 			As = As + "\n" + $(this).attr('class');
-			return "javascript:openChildBrowser('" + val + "');";
+			return "javascript:parent.openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
