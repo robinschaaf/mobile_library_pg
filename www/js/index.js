@@ -328,7 +328,7 @@ function updateIFrame(){
 	var js = "<script>function openChildBrowser(url){alert ('cb');}<\/script>";
 
 
-        var str="<script>alert('hello');";
+        var str="<script>function openChildBrowser(url){alert ('cb');}";
         str+="<";
         str+="/script>";
 
@@ -354,7 +354,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:alert('" + val + "');";
+			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
