@@ -325,13 +325,10 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
-	var As = 'AS START!!\n\n';
-	var js = "<script>function openChildBrowser(url){try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}</script>";
-
-
+	var js = "<script>function openChildBrowser(url){alert 'cb'; try {window.plugins.childBrowser.showWebPage(url);}catch (err){alert('Childbrowser plugin is not working, a new window will open instead.  Error: ' + err);window.open(url);}}</script>";
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
-	//$('#iframeSource').contents().find('body').append(js)
+	$('#iframeSource').contents().find('body').append(js);
 
 
 	$('#iframeSource').css("height","100%");
@@ -352,16 +349,13 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			$(this).addClass('cbLink');
-			As = As + "\n" + $(this).attr('class');
-			return "javascript:window.parent.openChildBrowser('" + val + "');";
+			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
 	
 	});	
 	
-alert(As);	
 }
 
 
@@ -370,7 +364,7 @@ alert(As);
 
 
 function openChildBrowser(url){
-alert('here');
+alert('parent opencb');
     try {
 	//both of these should work...
 	window.plugins.childBrowser.showWebPage(url);
