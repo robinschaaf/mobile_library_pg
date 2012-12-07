@@ -340,7 +340,7 @@ function updateIFrame(){
 	
 	
 	
-	$('#iframeSource').contents().find('head').append(unescape('%3script src=iframe.js%3E%3C/script%3E"));
+	$('#iframeSource').contents().find('head').append(unescape("%3script src=iframe.js%3E%3C/script%3E"));
 	
 	
 	//$('#iframeSource').contents().find('body').appendChild(str);
