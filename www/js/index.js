@@ -335,8 +335,16 @@ function updateIFrame(){
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
 	//$('#iframeSource').contents().find('body').append(str);
-	$('#iframeSource').contents().find('body').appendChild(str);
-	alert ($('#iframeSource').contents().find('body').html());
+	
+	
+	
+	
+	
+	$('#iframeSource').contents().find('head').append(unescape('%3script src=iframe.js%3E%3C/script%3E"));
+	
+	
+	//$('#iframeSource').contents().find('body').appendChild(str);
+	//alert ($('#iframeSource').contents().find('body').html());
 
 
 	$('#iframeSource').css("height","100%");
