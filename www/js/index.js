@@ -335,9 +335,7 @@ function updateIFrame(){
 	
 	
 	$.mobile.loading( 'hide' );
-		
-	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
-	
+			
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
 
@@ -349,12 +347,14 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:openChildBrowser('" + val + "');";
+			return "javascript:alert('" + val + "');";
 		}else{
 			return val;
 		}
 	
 	});	
+	
+	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 }
 
