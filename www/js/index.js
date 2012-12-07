@@ -354,7 +354,7 @@ function updateIFrame(){
 		if (isExtLink(u)){
 			$(this).addClass('cbLink');
 			As = As + "\n" + $(this).attr('class');
-			return "javascript:parent.openChildBrowser('" + val + "');";
+			return "javascript:window.parent.openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
