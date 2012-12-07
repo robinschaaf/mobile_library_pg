@@ -326,10 +326,16 @@ function isExtLink(parsedURL){
 function updateIFrame(){
 
 	var js = "<script>function openChildBrowser(url){alert ('cb');}<\/script>";
+
+
+        var str="<script>alert('hello');";
+        str+="<";
+        str+="/script>";
+
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
-	$('#iframeSource').contents().find('body').append(js);
-	//alert ($('#iframeSource').contents().find('body').html());
+	$('#iframeSource').contents().find('body').append(str);
+	alert ($('#iframeSource').contents().find('body').html());
 
 
 	$('#iframeSource').css("height","100%");
@@ -348,7 +354,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:openChildBrowser('" + val + "');";
+			return "javascript:alert('" + val + "');";
 		}else{
 			return val;
 		}
