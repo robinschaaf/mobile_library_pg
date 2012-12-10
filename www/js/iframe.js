@@ -1,3 +1,6 @@
+
+alert('load iframej.s');
+
 function openChildBrowser(url){
 alert('parent opencb');
     try {
