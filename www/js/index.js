@@ -337,7 +337,7 @@ function updateIFrame(){
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
 	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
-
+$('#iframeSource').contents().find('body').append("HERE WE ARE!!");
 	$('#iframeSource').css("height","100%");
 	
 	
@@ -353,7 +353,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:openIFrameChildBrowser('" + val + "');";
+			return "javascript:window.top.openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
