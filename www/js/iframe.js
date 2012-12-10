@@ -2,7 +2,7 @@
 alert('load iframej.s');
 
 window.plugins.childBrowser.showWebPage('http://m.library.nd.edu');
-
+alert(window.location.href);
 function openIFrameChildBrowser(url){
 	alert('open cb: ' + url);
 
