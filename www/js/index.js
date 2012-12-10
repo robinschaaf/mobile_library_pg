@@ -87,7 +87,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showSubpage( sourceURL, u, data.options);
+			showIFrame( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -340,6 +340,7 @@ function updateIFrame(){
 
 	$('#iframeSource').css("height","100%");
 	
+	
 	$.mobile.loading( 'hide' );
 			
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
@@ -347,7 +348,6 @@ function updateIFrame(){
 
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
-			
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
