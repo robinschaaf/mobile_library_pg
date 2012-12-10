@@ -333,12 +333,12 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
+	var u = $.mobile.path.parseUrl(window.location.href);
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
 	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
 
 	$('#iframeSource').css("height","100%");
-	
 	
 	$.mobile.loading( 'hide' );
 			
@@ -353,7 +353,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:alert('" + val + "');";
+			return "javascript:openChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
