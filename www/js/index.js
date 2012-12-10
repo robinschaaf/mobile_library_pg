@@ -345,7 +345,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.plugins.childBrowser.showWebPage('" + val + "');";
+			return "javascript:parent.openIFrameChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
