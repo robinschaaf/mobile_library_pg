@@ -6,7 +6,7 @@ alert('load iframej.s');
 
 
 function openIFrameChildBrowser(url){
-	alert(window.location.href);
+	alert("open iframe cb!!  " + url);
 
 
     //try {
