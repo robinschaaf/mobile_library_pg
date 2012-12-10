@@ -1,6 +1,8 @@
 
 alert('load iframej.s');
 
+window.plugins.childBrowser.showWebPage('http://m.library.nd.edu');
+
 function openIFrameChildBrowser(url){
 	alert('open cb: ' + url);
 
