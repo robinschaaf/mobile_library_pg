@@ -323,8 +323,9 @@ function updateIFrame(){
     scripWidthSrc.type ='text/javascript';
     scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
 
+	$('#iframeSource').contents().find('body').append("HERE");
     $('#iframeSource').contents().find('body').append(scripWidthSrc);
-    alert("iframe source  " + scripWidthSrc.src);
+    alert("js source  " + scripWidthSrc.src);
 
 
 	
@@ -345,7 +346,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.parent.openIFrameChildBrowser('" + val + "');";
+			return "javascript:alert('" + window.location + "');";
 		}else{
 			return val;
 		}
