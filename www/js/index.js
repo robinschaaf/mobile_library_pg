@@ -313,6 +313,61 @@ function showIFrame( sourceURL, origURLObj, options ) {
 
 
 
+function updateIFrame(){
+
+	var u = $.mobile.path.parseUrl(window.location.href);
+
+
+
+    var scripWidthSrc = document.createElement('script');
+    scripWidthSrc.type ='text/javascript';
+    scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
+
+    $('#iframeSource').contents().find('body').append(scripWidthSrc);
+    $('#iframeSource').contents().find('body').append("HERE");
+
+
+
+
+
+
+
+
+
+	
+	//append javascript for opening childbrowser since javascript here isn't available there
+	//$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
+
+	$('#iframeSource').css("height","100%");
+	
+	$.mobile.loading( 'hide' );
+			
+	$('#iframeSource').contents().find('a').attr('href', function(i, val){
+
+				
+		if ($.mobile.path.isRelativeUrl(val) === true){
+			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
+		}
+	
+		var u = $.mobile.path.parseUrl( val );
+	
+		if (isExtLink(u)){
+			return "javascript:openIFrameChildBrowser('" + val + "');";
+		}else{
+			return val;
+		}
+		
+		
+	
+	});	
+	
+	
+	$('#iframeSource').contents().find('a').removeAttr('target');
+	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
+	
+}
+
+
 
 
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
@@ -329,46 +384,6 @@ function isExtLink(parsedURL){
 		return false;
 	}
 }
-
-
-function updateIFrame(){
-
-	var u = $.mobile.path.parseUrl(window.location.href);
-	
-	//append javascript for opening childbrowser since javascript here isn't available there
-	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
-
-	$('#iframeSource').css("height","100%");
-	
-	
-	$.mobile.loading( 'hide' );
-			
-	$('#iframeSource').contents().find('a').attr('href', function(i, val){
-
-				
-		if ($.mobile.path.isRelativeUrl(val) === true){
-			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
-		}
-	
-		var u = $.mobile.path.parseUrl( val );
-	
-		if (isExtLink(u)){
-			return "javascript:window.top.openChildBrowser('" + val + "');";
-		}else{
-			return val;
-		}
-		
-		
-	
-	});	
-	
-	
-	$('#iframeSource').contents().find('a').removeAttr('target');
-	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
-	
-}
-
-
 
 
 
