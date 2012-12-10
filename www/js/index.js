@@ -338,7 +338,11 @@ function updateIFrame(){
 	var js = "<script>function openChildBrowser(url){alert ('cb');}<\/script>";
 
 
-        var str="<script>alert (window.location.pathname);";
+
+	var u = $.mobile.path.parseUrl(window.location.href);
+	
+        var str="<script>alert ('" + u.domain + u.directory + "js/iframe.js');";
+        
         str+="<";
         str+="/script>";
 
@@ -348,8 +352,9 @@ function updateIFrame(){
 	
 	
 	
-	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + window.location.pathname + "js/iframe.js'%3E%3C/script%3E"));
+	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
 	
+
 
 		
 	//console.log(unescape("%3Cscript src='" + "/js/iframe.js'%3E%3C/script%3E"));	
