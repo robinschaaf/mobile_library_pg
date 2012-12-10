@@ -324,7 +324,7 @@ function updateIFrame(){
     scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
 
     $('#iframeSource').contents().find('body').append(scripWidthSrc);
-    $('#iframeSource').contents().find('body').append("HERE");
+    $('#iframeSource').contents().find('body').append(scripWidthSrc.src);
 
 
 
