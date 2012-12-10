@@ -317,15 +317,12 @@ function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
 
+	var scripWidthSrc = document.createElement('script');
+	scripWidthSrc.type ='text/javascript';
+	scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
 
-
-    var scripWidthSrc = document.createElement('script');
-    scripWidthSrc.type ='text/javascript';
-    scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
-
-	$('#iframeSource').contents().find('body').append("HERE");
-    $('#iframeSource').contents().find('body').append(scripWidthSrc);
-    alert("js source  " + scripWidthSrc.src);
+        $('#iframeSource').contents().find('body').append(scripWidthSrc);
+        alert("js source  " + scripWidthSrc.src);
 
 
 	
@@ -346,7 +343,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:alert('" + window.location + "');";
+			return "javascript:alert(window.location.href);";
 		}else{
 			return val;
 		}
