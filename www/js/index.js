@@ -87,7 +87,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showIFrame( sourceURL, u, data.options);
+			showSubpage( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -345,7 +345,7 @@ function updateIFrame(){
 			
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
-
+				
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
 		}
@@ -353,13 +353,17 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.parent.openChildBrowser('" + val + "');";
+			return "javascript:window.parent.openIFrameChildBrowser('" + val + "');";
 		}else{
 			return val;
 		}
+		
+		
 	
 	});	
 	
+	
+	$('#iframeSource').contents().find('a').removeAttr('target');
 	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 }
