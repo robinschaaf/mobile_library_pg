@@ -19,7 +19,7 @@
  
 var childBrowser; 
 var remoteURL='http://mpprd.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
+var remoteURL='http://localhost:3000/';
 var src_page;
  
 var app = {
@@ -74,6 +74,7 @@ $(document).bind('pageinit', function(e, data){
 
 //happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
+
 
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
@@ -134,6 +135,7 @@ $('.cbLink').live('click', function () {
 
 function showSubpage( sourceURL, origURLObj, options ) {
     
+              
         
     $.mobile.loading( 'show' );
 
@@ -223,6 +225,9 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
+	
+	
+	
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -293,6 +298,9 @@ function showIFrame( sourceURL, origURLObj, options ) {
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
+	
+	
+	
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -325,24 +333,28 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
-	console.log($.mobile.activePage.data);
+	
 
 	var js = "<script>function openChildBrowser(url){alert ('cb');}<\/script>";
 
 
-        var str="<script>function openChildBrowser(url){alert ('cb');}";
+        var str="<script>alert (window.location.pathname);";
         str+="<";
         str+="/script>";
 
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
-	//$('#iframeSource').contents().find('body').append(str);
+	$('#iframeSource').contents().find('body').append(str);
 	
 	
 	
+	$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + window.location.pathname + "js/iframe.js'%3E%3C/script%3E"));
 	
-	$('#iframeSource').contents().find('head').append(unescape("%3Cscript src='" + window.location.pathname + "js/iframe.js'%3E%3C/script%3E"));
-	//$('#iframeSource').contents().find('head').append(unescape("%3script src='/js/iframe.js'%3E%3C/script%3E"));
+
+		
+	//console.log(unescape("%3Cscript src='" + "/js/iframe.js'%3E%3C/script%3E"));	
+	
+	
 	
 	
 	//$('#iframeSource').contents().find('body').appendChild(str);
