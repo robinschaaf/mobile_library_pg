@@ -325,6 +325,8 @@ function isExtLink(parsedURL){
 
 function updateIFrame(){
 
+	console.log($.mobile.activePage.data);
+
 	var js = "<script>function openChildBrowser(url){alert ('cb');}<\/script>";
 
 
