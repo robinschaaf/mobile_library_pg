@@ -327,8 +327,6 @@ function updateIFrame(){
 	scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
 
         $('#iframeSource').contents().find('body').append(scripWidthSrc);
-        alert("js source  " + scripWidthSrc.src);
-
 
 	
 	//append javascript for opening childbrowser since javascript here isn't available there
@@ -348,7 +346,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.top.postMessage('from the iframe!', '*');";
+			return "javascript:window.top.postMessage('" + val + "', '*');";
 		}else{
 			return val;
 		}
@@ -385,7 +383,7 @@ function isExtLink(parsedURL){
 
 
 function openChildBrowser(url){
-alert('parent opencb');
+
     try {
 	//both of these should work...
 	window.plugins.childBrowser.showWebPage(url);
