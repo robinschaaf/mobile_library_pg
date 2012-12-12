@@ -51,7 +51,7 @@ var app = {
  	}
 	
 	//this is for iframe speaking to parent
-	window.addEventListener('message', onmessage, false);
+	window.addEventListener('message', onmessage, true);
 	
 	
 	// This is an event handler function, which means the scope is the event.
@@ -138,7 +138,6 @@ $(window).on('onmessage', function(e) {
 		alert("not valid origin: " + e.origin);
 	}
 	
-	return false;
 	
 });
 
@@ -362,7 +361,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.parent.postMessage('" + val + "', '*'); alert('here');";
+			return "javascript:window.parent.postMessage('" + val + "', '*');";
 		}else{
 			return val;
 		}
