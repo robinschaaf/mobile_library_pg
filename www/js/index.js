@@ -108,6 +108,7 @@ $(document).bind('pagebeforechange', function(e, data){
 		}else if (isExtLink(u)){
 
 			openChildBrowser(sourceURL);
+			$.mobile.loading( 'hide' );
 
 
 		//link internal to the library but external to m. site - eg Primo, Quicksearch, ejournal locator
@@ -124,6 +125,31 @@ $(document).bind('pagebeforechange', function(e, data){
 
 
 });
+
+
+var onmessage = function(e) {
+	var u = $.mobile.path.parseUrl( e.origin );
+
+	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
+		alert(e.data);
+		//openChildBrowser(e.data);
+	}else{
+		alert("not valid origin: " + e.origin);
+	}
+	
+}
+
+
+if(typeof window.addEventListener != 'undefined') {
+	window.addEventListener('message', onmessage, false);
+	alert('eventlistener added');
+	
+//for IE
+}else if(typeof window.attachEvent != 'undefined') {
+	window.attachEvent('onmessage', onmessage);
+	alert('attachEvent added');
+}
+
 
 
 
