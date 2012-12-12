@@ -50,10 +50,8 @@ var app = {
  		window.location = "noconnection.html";
  	}
 	
-	
+	//this is for iframe speaking to parent
 	window.addEventListener('message', onmessage, false);
-	alert('eventlistener added');
-
 	
 	
 	// This is an event handler function, which means the scope is the event.
@@ -131,6 +129,7 @@ $(document).bind('pagebeforechange', function(e, data){
 var onmessage = function(e) {
 	var u = $.mobile.path.parseUrl( e.origin );
 
+	alert('onmessage start');
 	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
 		alert(e.data);
 		//openChildBrowser(e.data);
