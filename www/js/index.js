@@ -137,6 +137,8 @@ var onmessage = function(e) {
 		alert("not valid origin: " + e.origin);
 	}
 	
+	return false;
+	
 }
 
 
@@ -145,9 +147,9 @@ if(typeof window.addEventListener != 'undefined') {
 	alert('eventlistener added');
 	
 //for IE
-//}else if(typeof window.attachEvent != 'undefined') {
-//	window.attachEvent('onmessage', onmessage);
-//	alert('attachEvent added');
+}else if(typeof window.attachEvent != 'undefined') {
+	window.attachEvent('onmessage', onmessage);
+	alert('attachEvent added');
 }
 
 
