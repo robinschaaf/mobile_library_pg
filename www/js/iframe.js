@@ -4,7 +4,7 @@ var onmessage = function(e) {
 
 	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
 		alert(e.data);
-		openChildBrowser(e.data);
+		//openChildBrowser(e.data);
 	}else{
 		alert("not valid origin: " + e.origin);
 	}
@@ -14,8 +14,10 @@ var onmessage = function(e) {
 
 if(typeof window.addEventListener != 'undefined') {
 	window.addEventListener('message', onmessage, false);
+	alert('eventlistener added');
 	
 //for IE
 }else if(typeof window.attachEvent != 'undefined') {
 	window.attachEvent('onmessage', onmessage);
+	alert('attachEvent added');
 }
