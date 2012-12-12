@@ -126,22 +126,28 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-$(window).on('onmessage', function(e) {
+var hasRun = false;
+
+window.onmessage = function (e) {
 
 	var u = $.mobile.path.parseUrl( e.origin );
 
 	alert('onmessage start');
 	
+	console.log(e);
 	
-	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-		alert(e.data);
-		//openChildBrowser(e.data);
-	}else{
-		alert("not valid origin: " + e.origin);
+	if (hasRun == false){
+		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
+			alert(e.data);
+			//openChildBrowser(e.data);
+			hasRun = true;
+		}else{
+			alert("not valid origin: " + e.origin);
+		}
 	}
 	
 	
-});
+}
 
 
 
