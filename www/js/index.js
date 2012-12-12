@@ -362,7 +362,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.top.postMessage('" + val + "', '*'); return false;";
+			return "javascript:window.top.postMessage('" + val + "', '*'); alert('here');";
 		}else{
 			return val;
 		}
