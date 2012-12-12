@@ -4,7 +4,7 @@ var onmessage = function(e) {
 
 	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
 		alert(e.data);
-		openChildBrowser(u.href);
+		openChildBrowser(e.data);
 	}else{
 		alert("not valid origin: " + e.origin);
 	}
