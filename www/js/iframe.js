@@ -1,5 +1,6 @@
 
 var onmessage = function(e) {
+alert(e.origin);
 	if((e.origin == 'http://localhost:3000') || (e.origin == 'http://m.library.nd.edu')){
 		alert(e.data);
 		openChildBrowser(e.data);
