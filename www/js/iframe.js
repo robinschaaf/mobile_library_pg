@@ -1,9 +1,12 @@
 
 var onmessage = function(e) {
-alert(e.origin);
-	if((e.origin == 'http://localhost:3000') || (e.origin == 'http://m.library.nd.edu')){
+	var u = $.mobile.path.parseUrl( e.origin );
+
+	if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
 		alert(e.data);
-		openChildBrowser(e.data);
+		openChildBrowser(u.href);
+	}else{
+		alert("not valid origin: " + e.origin);
 	}
 	
 }

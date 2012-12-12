@@ -68,9 +68,7 @@ var app = {
 
 
 $(document).bind('pageinit', function(e, data){
-	//alert("pageinit called");
-	
-	
+
 	$('a').live('tap',function(event) {
 		$.mobile.loading( 'show' );
 	});
@@ -357,7 +355,6 @@ function updateIFrame(){
 	
 	
 	$('#iframeSource').contents().find('a').removeAttr('target');
-	$('#iframeSource').contents().find('a').css("background-color","#BADA55");
 	
 }
 
