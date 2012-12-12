@@ -126,7 +126,8 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-var onmessage = function(e) {
+$(window).on('onmessage', function(e) {
+
 	var u = $.mobile.path.parseUrl( e.origin );
 
 	alert('onmessage start');
@@ -139,7 +140,7 @@ var onmessage = function(e) {
 	
 	return false;
 	
-}
+});
 
 
 
@@ -361,7 +362,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:window.top.postMessage('" + val + "', '*'); alert('here');";
+			return "javascript:parent.postMessage('" + val + "', '*'); alert('here');";
 		}else{
 			return val;
 		}
