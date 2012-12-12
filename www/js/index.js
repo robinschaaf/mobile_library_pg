@@ -62,6 +62,11 @@ var app = {
 
 
 
+
+
+
+
+
 $(document).bind('pageinit', function(e, data){
 	//alert("pageinit called");
 	
@@ -343,7 +348,7 @@ function updateIFrame(){
 		var u = $.mobile.path.parseUrl( val );
 	
 		if (isExtLink(u)){
-			return "javascript:alert('parent parent: ' + window.parent.parent.location.href + ' top: ' + window.top.location.href);";
+			return "javascript:window.top.postMessage('from the iframe!', '*');";
 		}else{
 			return val;
 		}

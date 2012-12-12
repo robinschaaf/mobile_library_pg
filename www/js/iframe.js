@@ -1,6 +1,22 @@
-alert('load iframej.s');
 
-//window.plugins.childBrowser.showWebPage('http://m.library.nd.edu');
+var onmessage = function(e) {
+	alert(e.data + ' - origin: ' + e.origin);
+}
+
+
+if(typeof window.addEventListener != 'undefined') {
+	window.addEventListener('message', onmessage, false);
+}else if(typeof window.attachEvent != 'undefined') {
+	window.attachEvent('onmessage', onmessage);
+}
+
+
+
+
+
+
+
+
 
 
 
