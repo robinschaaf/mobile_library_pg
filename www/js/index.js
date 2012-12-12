@@ -126,21 +126,21 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-var hasRun = false;
+var previousOpen = '';
 
 window.onmessage = function (e) {
 
 	var u = $.mobile.path.parseUrl( e.origin );
 
-	alert('onmessage start');
+	//alert('onmessage start');
 	
-	console.log(e);
+	//console.log(e);
 	
-	if (hasRun == false){
+	if (previousOpen != e.data){
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-			alert(e.data);
-			//openChildBrowser(e.data);
-			hasRun = true;
+			//alert(e.data);
+			openChildBrowser(e.data);
+			previousOpen = e.data;
 		}else{
 			alert("not valid origin: " + e.origin);
 		}
