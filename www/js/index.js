@@ -51,7 +51,7 @@ var app = {
  	}
 	
 	//this is for iframe speaking to parent
-	window.addEventListener('message', onmessage, false);
+	window.addEventListener('message', onExtURL, false);
 	
 	
 	// This is an event handler function, which means the scope is the event.
@@ -126,19 +126,15 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
+//for some reason phonegap calls message twice.  this is to make sure it wasn't a duplicate!
 var previousOpen = '';
 
-window.onmessage = function (e) {
+window.onExtURL = function (e) {
 
 	var u = $.mobile.path.parseUrl( e.origin );
-
-	//alert('onmessage start');
-	
-	//console.log(e);
 	
 	if (previousOpen != e.data){
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-			//alert(e.data);
 			openChildBrowser(e.data);
 			previousOpen = e.data;
 		}else{
@@ -148,8 +144,6 @@ window.onmessage = function (e) {
 	
 	
 }
-
-
 
 
 $('.cbLink').live('click', function () {
@@ -162,8 +156,7 @@ $('.cbLink').live('click', function () {
 
 
 function showSubpage( sourceURL, origURLObj, options ) {
-    
-              
+                  
         
     $.mobile.loading( 'show' );
 
@@ -208,9 +201,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 				});
 					
-				
-
-				
+	
 
 				//change any external domain links to open in child browser
 				$page.find("a").prop("href", function(){
@@ -230,7 +221,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				});
 
 				
-
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
@@ -264,11 +254,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 }
-
-
-
-
-
 
 
 
@@ -334,8 +319,6 @@ function showIFrame( sourceURL, origURLObj, options ) {
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
     });
 
-
-
 }
 
 
@@ -345,19 +328,8 @@ function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
 
-	var scripWidthSrc = document.createElement('script');
-	scripWidthSrc.type ='text/javascript';
-	scripWidthSrc.src = u.domain + u.directory + "js/iframe.js";
-
-        $('#iframeSource').contents().find('body').append(scripWidthSrc);
-
-	
-	//append javascript for opening childbrowser since javascript here isn't available there
-	//$('#iframeSource').contents().find('body').append(unescape("%3Cscript src='" + u.domain + u.directory + "js/iframe.js'%3E%3C/script%3E"));
-
 	$('#iframeSource').css("height","100%");
-	
-	$.mobile.loading( 'hide' );
+
 			
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
@@ -373,14 +345,14 @@ function updateIFrame(){
 		}else{
 			return val;
 		}
-		
-		
 	
 	});	
 	
 	
 	$('#iframeSource').contents().find('a').removeAttr('target');
 	
+	$.mobile.loading( 'hide' );
+
 }
 
 
