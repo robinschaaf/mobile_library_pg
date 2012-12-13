@@ -66,6 +66,15 @@ var app = {
 
 
 
+$('.cbLink').live('click', function () {
+
+	openChildBrowser(this.href);
+	return false;
+
+});
+
+
+
 $(document).bind('pageinit', function(e, data){
 
 	$('a').live('tap',function(event) {
@@ -145,13 +154,10 @@ window.onExtURL = function (e) {
 	
 }
 
+//if(event.orientation){
+//	$(.photopopup).
+//}
 
-$('.cbLink').live('click', function () {
-
-	openChildBrowser(this.href);
-	return false;
-
-});
 
 
 
@@ -290,7 +296,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' src = '" + sourceURL + "'></iframe>" );
 
 				$page.page();
 
@@ -329,8 +335,7 @@ function updateIFrame(){
 	var u = $.mobile.path.parseUrl(window.location.href);
 
 	$('#iframeSource').css("height","100%");
-
-			
+	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
 				
