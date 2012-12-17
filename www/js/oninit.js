@@ -10,7 +10,7 @@ $(document).bind('mobileinit', function () {
 	 $.mobile.allowCrossDomainPages = true;
 	 $.support.cors = true;
 	 $.mobile.pushStateEnabled = false;
-	 $.mobile.phonegapNavigationEnabled = true;
+	 //$.mobile.phonegapNavigationEnabled = true;
 	 $.mobile.buttonMarkup.hoverDelay = true;         
 
 });
