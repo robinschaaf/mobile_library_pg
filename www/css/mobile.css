@@ -48,6 +48,22 @@ div.icon .grayText {
 
 
 
+
+#iframeSource{
+    background-color:#2b5781; 
+    background-image: -webkit-gradient(linear, left top, left bottom, from( #2b5781 /*{a-body-background-start}*/), to( #304962 /*{a-body-background-end}*/)); /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* Chrome 10+, Saf5.1+ */
+    background-image:    -moz-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* FF3.6 */
+    background-image:     -ms-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* IE10 */
+    background-image:      -o-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* Opera 11.10+ */
+    background-image:         linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/);
+    width:100%; 
+    border-style:none; 
+    margin:0px; 
+    padding:0px;
+}
+
+
 #toolbar img{
     vertical-align: middle;    
     margin-top:7px;  

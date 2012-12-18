@@ -29,7 +29,7 @@ var app = {
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
-        $.mobile.phonegapNavigationEnabled = true;
+        //$.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
 
         this.bind();
@@ -91,7 +91,7 @@ $(document).bind('pagebeforechange', function(e, data){
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
 	
-		$.mobile.loading( 'show' );
+		//$.mobile.loading( 'show' );
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
@@ -279,7 +279,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 	
@@ -296,7 +296,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 

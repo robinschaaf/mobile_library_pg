@@ -18,6 +18,9 @@
     <access origin="https://*.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="https://*.googleapis.com" subdomains="true" browserOnly="false" />
     <access origin="https://*.gstatic.com" subdomains="true" browserOnly="false" />
+    <access origin="https://maps.google.com" subdomains="true" browserOnly="false" />
+    <access origin="https://*.google-analytics.com" subdomains="true" browserOnly="false" />
+    <access origin="https://secure.gaug.es" subdomains="true" browserOnly="false" />
     <access origin="http://*.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="https://*.libraryh3lp.com" subdomains="true" browserOnly="false" />
     <access origin="http://chat.libraryh3lp.com" subdomains="true" browserOnly="false" />
