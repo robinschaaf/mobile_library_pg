@@ -78,7 +78,7 @@ $('.cbLink').live('click', function () {
 $(document).bind('pageinit', function(e, data){
 
 	$('a').live('tap',function(event) {
-		$.mobile.loading( 'show' );
+		//$.mobile.loading( 'show' );
 	});
 });
 
@@ -116,8 +116,6 @@ $(document).bind('pagebeforechange', function(e, data){
 		}else if (isExtLink(u)){
 
 			openChildBrowser(sourceURL);
-			$.mobile.loading( 'hide' );
-
 
 		//link internal to the library but external to m. site - eg Primo, Quicksearch, ejournal locator
 		}else{
@@ -333,8 +331,6 @@ function showIFrame( sourceURL, origURLObj, options ) {
 function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
-
-	$('#iframeSource').css("height","100%");
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
@@ -357,6 +353,10 @@ function updateIFrame(){
 	$('#iframeSource').contents().find('a').removeAttr('target');
 	
 	$.mobile.loading( 'hide' );
+
+
+	$('#iframeSource').css("height","100%");
+	$('#iframeSource').css("width","100%");
 
 }
 
@@ -387,6 +387,8 @@ function openChildBrowser(url){
 	//both of these should work...
 	window.plugins.childBrowser.showWebPage(url);
 	//childBrowser.showWebPage(url);
+	
+	$.mobile.loading( 'hide' );
     }catch (err){
 	alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
 	window.open(url);
