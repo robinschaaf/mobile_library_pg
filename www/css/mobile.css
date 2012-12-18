@@ -58,7 +58,6 @@ div.icon .grayText {
     background-image:      -o-linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/); /* Opera 11.10+ */
     background-image:         linear-gradient( #2b5781 /*{a-body-background-start}*/, #304962 /*{a-body-background-end}*/);
     width:250px; 
-    height:0px; 
     border-style:none; 
     margin:0px; 
     padding:0px;
