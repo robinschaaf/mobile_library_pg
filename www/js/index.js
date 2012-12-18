@@ -78,7 +78,7 @@ $('.cbLink').live('click', function () {
 $(document).bind('pageinit', function(e, data){
 
 	$('a').live('tap',function(event) {
-		//$.mobile.loading( 'show' );
+		$.mobile.loading( 'show' );
 	});
 });
 
@@ -294,13 +294,14 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='max-width:550px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='width:" + $(window).width() + "; height:" + $(window).height() + "; ' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
+
 
 
 			}); 
@@ -312,6 +313,12 @@ function showIFrame( sourceURL, origURLObj, options ) {
 
 	//add new page to the DOM
 	$.mobile.pageContainer.append($page)
+
+				
+				$('#iframeSource').ready(function(){
+						alert('iframe ready');
+				});
+
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
@@ -361,14 +368,6 @@ function updateIFrame(){
 	$('#iframeSource').contents().find('div .row header').css('display', 'none');
 	
 	$.mobile.loading( 'hide' );
-
-
-
-
-	$('#iframeSource').live('ready', function () {
-		alert('iframe ready');
-	});
-
 
 
 }
