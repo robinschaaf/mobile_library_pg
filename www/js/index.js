@@ -277,7 +277,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='height:0px;width:250px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
 
 				$page.page();
 	
@@ -294,7 +294,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='height:0px;width:250px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -336,6 +336,7 @@ function updateIFrame(){
 	$('#iframeSource').css("height","100%");
 	$('#iframeSource').css("width","100%");
 
+alert('after resize');
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
@@ -353,12 +354,17 @@ function updateIFrame(){
 		}
 	
 	});	
-	
+
+
+alert('after a replace');	
 	
 	$('#iframeSource').contents().find('a').removeAttr('target');
+	$('#iframeSource').contents().find('div#hd').css('display', 'none');
+	$('#iframeSource').contents().find('div .row header').css('display', 'none');
 	
 	$.mobile.loading( 'hide' );
 
+alert('after hide');
 
 }
 
