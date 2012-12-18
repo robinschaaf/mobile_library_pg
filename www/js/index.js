@@ -74,6 +74,16 @@ $('.cbLink').live('click', function () {
 });
 
 
+$( document ).on( 'mobileinit', function(){
+  $.mobile.loader.prototype.options.text = "loading";
+  $.mobile.loader.prototype.options.textVisible = false;
+  $.mobile.loader.prototype.options.theme = "a";
+  $.mobile.loader.prototype.options.html = "";
+});
+     
+
+
+
 
 $(document).bind('pageinit', function(e, data){
 
@@ -360,7 +370,7 @@ function updateIFrame(){
 	
 	$('.iframeSource').contents().find('a').removeAttr('target');
 	$('.iframeSource').contents().find('div#hd').css('display', 'none');
-	$('.iframeSource').contents().find('div .row header').css('display', 'none');
+	$('.iframeSource').contents().find('div.row header').css('display', 'none');
 	
 	$.mobile.loading( 'hide' );
 
