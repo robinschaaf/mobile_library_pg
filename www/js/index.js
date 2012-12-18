@@ -371,7 +371,7 @@ alert('after hide');
 
 $("#iframeSource").ready(function (){
 	alert('iframe ready');
-}
+});
 
 
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
