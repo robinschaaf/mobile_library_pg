@@ -336,7 +336,6 @@ function updateIFrame(){
 	$('#iframeSource').css("height","100%");
 	$('#iframeSource').css("width","100%");
 
-alert('after resize');
 	
 	$('#iframeSource').contents().find('a').attr('href', function(i, val){
 
@@ -356,7 +355,6 @@ alert('after resize');
 	});	
 
 
-alert('after a replace');	
 	
 	$('#iframeSource').contents().find('a').removeAttr('target');
 	$('#iframeSource').contents().find('div#hd').css('display', 'none');
@@ -364,15 +362,18 @@ alert('after a replace');
 	
 	$.mobile.loading( 'hide' );
 
-alert('after hide');
+
+
+
+	$('#iframeSource').live('ready', function () {
+		alert('iframe ready');
+	});
+
+
 
 }
 
 
-
-$('#iframeSource').live('ready', function () {
-	alert('iframe ready');
-});
 
 
 //determine if the "a" target passed in is an external link and should be opened in childbrowser
