@@ -294,7 +294,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='width:" + $(window).width() + "; height:" + $(window).height() + "; ' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:" + $(window).width() + "; height:" + $(window).height() + "; ' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -315,11 +315,6 @@ function showIFrame( sourceURL, origURLObj, options ) {
 	$.mobile.pageContainer.append($page)
 
 				
-				$('#iframeSource').ready(function(){
-						alert('iframe ready');
-				});
-
-
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 	
@@ -340,15 +335,15 @@ function updateIFrame(){
 	var u = $.mobile.path.parseUrl(window.location.href);
 
 
-	$('#iframeSource').css("height","100%");
-	$('#iframeSource').css("width","100%");
+	$('.iframeSource').css("height","100%");
+	$('.iframeSource').css("width","100%");
 
 	
-	$('#iframeSource').contents().find('a').attr('href', function(i, val){
+	$('.iframeSource').contents().find('a').attr('href', function(i, val){
 
 				
 		if ($.mobile.path.isRelativeUrl(val) === true){
-			val = $.mobile.path.makeUrlAbsolute(val, $('#iframeSource').attr('src'));
+			val = $.mobile.path.makeUrlAbsolute(val, $('.iframeSource').attr('src'));
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
@@ -363,9 +358,9 @@ function updateIFrame(){
 
 
 	
-	$('#iframeSource').contents().find('a').removeAttr('target');
-	$('#iframeSource').contents().find('div#hd').css('display', 'none');
-	$('#iframeSource').contents().find('div .row header').css('display', 'none');
+	$('.iframeSource').contents().find('a').removeAttr('target');
+	$('.iframeSource').contents().find('div#hd').css('display', 'none');
+	$('.iframeSource').contents().find('div .row header').css('display', 'none');
 	
 	$.mobile.loading( 'hide' );
 
