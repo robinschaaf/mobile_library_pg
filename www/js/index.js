@@ -294,7 +294,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:" + $(window).width() + "; height:" + $(window).height() + "; ' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -364,6 +364,7 @@ function updateIFrame(){
 	
 	$.mobile.loading( 'hide' );
 
+	$('.iframeSource').css('display', 'block');
 
 }
 
