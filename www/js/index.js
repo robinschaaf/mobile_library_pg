@@ -33,9 +33,10 @@ var app = {
         $.mobile.buttonMarkup.hoverDelay = true;
 
 
-  $.mobile.loader.prototype.options.text = "loading";
+  $.mobile.loader.prototype.options.text = "Loading...";
   $.mobile.loader.prototype.options.textVisible = true;
-  $.mobile.loader.prototype.options.theme = "a";
+  $.mobile.loader.prototype.options.textOnly = true;
+  $.mobile.loader.prototype.options.theme = "b";
   $.mobile.loader.prototype.options.html = "";
 
 
@@ -80,15 +81,6 @@ $('.cbLink').live('click', function () {
 	return false;
 
 });
-
-
-$( document ).on( 'mobileinit', function(){
-  $.mobile.loader.prototype.options.text = "loading";
-  $.mobile.loader.prototype.options.textVisible = true;
-  $.mobile.loader.prototype.options.theme = "a";
-  $.mobile.loader.prototype.options.html = "";
-});
-     
 
 
 
