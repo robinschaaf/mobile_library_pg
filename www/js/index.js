@@ -81,6 +81,17 @@ $('.cbLink').live('click', function () {
 
 
 $(document).bind('pageinit', function(e, data){
+
+    $( ".photopopup" ).on({
+        popupbeforeposition: function() {
+            var maxHeight = $( window ).height() - 60 + "px";
+            $( ".photopopup img" ).css( "max-height", maxHeight );
+            alert('resized');
+        }
+    });
+
+
+
 	$('a').live('tap',function(event) {
 		//$.mobile.loading( 'show' );
 	});
