@@ -33,7 +33,7 @@ var app = {
         $.mobile.buttonMarkup.hoverDelay = true;
 
 
-  	$.mobile.loader.prototype.options.text = "Loading...";
+  	$.mobile.loader.prototype.options.text = "<br />Loading...";
   	$.mobile.loader.prototype.options.textVisible = true;
   	$.mobile.loader.prototype.options.textOnly = true;
   	$.mobile.loader.prototype.options.theme = "b";
