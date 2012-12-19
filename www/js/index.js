@@ -20,7 +20,6 @@
 var childBrowser; 
 var remoteURL='http://mpprd.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
-var src_page;
  
 var app = {
 
@@ -29,15 +28,14 @@ var app = {
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
-        //$.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
 
 
-  	$.mobile.loader.prototype.options.text = "<br />Loading...";
+  	$.mobile.loader.prototype.options.text = "";
   	$.mobile.loader.prototype.options.textVisible = true;
-  	$.mobile.loader.prototype.options.textOnly = true;
   	$.mobile.loader.prototype.options.theme = "b";
-  	$.mobile.loader.prototype.options.html = "";
+  	$.mobile.loader.prototype.options.html = "<img src='img/ajax-loader.gif'><br /><h1>Loading...</h1>";
+  	
 
         this.bind();
     },
@@ -74,9 +72,9 @@ var app = {
 
 
 $('.cbLink').live('click', function () {
-
-	openChildBrowser(this.href);
-	return false;
+$.mobile.loading( 'show' );
+	//openChildBrowser(this.href);
+	//return false;
 
 });
 
@@ -84,7 +82,6 @@ $('.cbLink').live('click', function () {
 
 
 $(document).bind('pageinit', function(e, data){
-
 	$('a').live('tap',function(event) {
 		//$.mobile.loading( 'show' );
 	});
