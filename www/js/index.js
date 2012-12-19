@@ -86,7 +86,7 @@ $(document).bind('pageinit', function(e, data){
         popupbeforeposition: function() {
             var maxHeight = $( window ).height() - 30 + "px";
             $("#popupMap img").css( "max-height", maxHeight );
-            $('#popupMap').popup("open")
+            alert($('#popupMap').attr('class'))
             $.mobile.loading( 'hide' );
         }     
         
