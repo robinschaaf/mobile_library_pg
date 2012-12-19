@@ -32,6 +32,14 @@ var app = {
         //$.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
 
+
+  $.mobile.loader.prototype.options.text = "loading";
+  $.mobile.loader.prototype.options.textVisible = false;
+  $.mobile.loader.prototype.options.theme = "a";
+  $.mobile.loader.prototype.options.html = "";
+
+
+
         this.bind();
     },
     bind: function() {
@@ -88,7 +96,7 @@ $( document ).on( 'mobileinit', function(){
 $(document).bind('pageinit', function(e, data){
 
 	$('a').live('tap',function(event) {
-		$.mobile.loading( 'show' );
+		//$.mobile.loading( 'show' );
 	});
 });
 
