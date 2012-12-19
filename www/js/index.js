@@ -31,10 +31,10 @@ var app = {
         $.mobile.buttonMarkup.hoverDelay = true;
 
 
-  	$.mobile.loader.prototype.options.text = "";
+  	$.mobile.loader.prototype.options.text = "Loading...";
   	$.mobile.loader.prototype.options.textVisible = true;
   	$.mobile.loader.prototype.options.theme = "b";
-  	$.mobile.loader.prototype.options.html = "<img src='img/ajax-loader.gif'><br /><h1>Loading...</h1>";
+  	$.mobile.loader.prototype.options.html = "";
   	
 
         this.bind();
@@ -72,7 +72,6 @@ var app = {
 
 
 $('.cbLink').live('click', function () {
-	//$.mobile.loading( 'show' );
 	openChildBrowser(this.href);
 	return false;
 
@@ -103,7 +102,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showIFrame( sourceURL, u, data.options);
+			showSubpage( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -282,7 +281,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='height:0px;width:250px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 	
@@ -300,7 +299,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px;display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -323,10 +322,10 @@ function showIFrame( sourceURL, origURLObj, options ) {
 	$('.subPageData').show("slow");
 	
 	
-	$('.iframeSource').ready(function()      {
+	$('.iframeSource').ready(function(){
 		//$.mobile.loading( 'show' );
                // console.log('this is loaded');
-            });
+        });
 	
 	
 	
@@ -375,7 +374,6 @@ function updateIFrame(){
 
 	$('.iframeSource').css('display', 'block');
 	
-console.log('onloadend');
 
 }
 
