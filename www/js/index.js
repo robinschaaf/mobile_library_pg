@@ -33,13 +33,11 @@ var app = {
         $.mobile.buttonMarkup.hoverDelay = true;
 
 
-  $.mobile.loader.prototype.options.text = "Loading...";
-  $.mobile.loader.prototype.options.textVisible = true;
-  $.mobile.loader.prototype.options.textOnly = true;
-  $.mobile.loader.prototype.options.theme = "b";
-  $.mobile.loader.prototype.options.html = "";
-
-
+  	$.mobile.loader.prototype.options.text = "Loading...";
+  	$.mobile.loader.prototype.options.textVisible = true;
+  	$.mobile.loader.prototype.options.textOnly = true;
+  	$.mobile.loader.prototype.options.theme = "b";
+  	$.mobile.loader.prototype.options.html = "";
 
         this.bind();
     },
@@ -370,9 +368,9 @@ function updateIFrame(){
 	
 	$('.iframeSource').contents().find('a').removeAttr('target');
 	$('.iframeSource').contents().find('div#hd').css('display', 'none');
-	$('.iframeSource').contents().find('div.row header').css('display', 'none');
+	$('.iframeSource').contents().find('div.header').css('display', 'none');
 	
-	$.mobile.loading( 'hide' );
+	//$.mobile.loading( 'hide' );
 
 	$('.iframeSource').css('display', 'block');
 

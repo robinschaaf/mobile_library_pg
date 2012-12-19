@@ -952,7 +952,7 @@ only screen and (min-resolution: 240dpi) {
 .ui-loader-default { background-color: #ffffff; opacity: .18; width: 54px; height: 54px; margin-left: -22px; margin-top: -22px; }
 .ui-loader-default h1 { font-size: 0; width: 0; height: 0; overflow: hidden; }
 .ui-loader .ui-icon { background-color: #ffffff; display: block; margin: 5px; width: 44px; height: 44px; padding: 0px; -webkit-border-radius: 21px; -moz-border-radius: 21px; border-radius: 21px; }
-
+.ui-loader h1{ font-size: 16px; margin: 0; text-align: center; }
 
 
 /* Button corner classes
