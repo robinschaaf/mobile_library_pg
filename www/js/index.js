@@ -86,15 +86,10 @@ $(document).bind('pageinit', function(e, data){
         popupbeforeposition: function() {
             var maxHeight = $( window ).height() - 60 + "px";
             $( ".photopopup img" ).css( "max-height", maxHeight );
-            alert('resized');
+            $.mobile.loading( 'hide' );
         }
     });
-
-
-
-	$('a').live('tap',function(event) {
-		//$.mobile.loading( 'show' );
-	});
+    
 });
 
 
