@@ -72,9 +72,9 @@ var app = {
 
 
 $('.cbLink').live('click', function () {
-$.mobile.loading( 'show' );
-	//openChildBrowser(this.href);
-	//return false;
+	//$.mobile.loading( 'show' );
+	openChildBrowser(this.href);
+	return false;
 
 });
 
@@ -96,14 +96,14 @@ $(document).bind('pagebeforechange', function(e, data){
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
 	
-		//$.mobile.loading( 'show' );
+		$.mobile.loading( 'show' );
 	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showSubpage( sourceURL, u, data.options);
+			showIFrame( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -295,20 +295,19 @@ function showIFrame( sourceURL, origURLObj, options ) {
 			
 			$.get( sourceURL, function(rdata){
 		
+		
 				//if it's for a site other than the mobile library site
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px;display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
-
-
-
+				$.mobile.loading( 'show' );
 			}); 
 			
 			
@@ -319,9 +318,15 @@ function showIFrame( sourceURL, origURLObj, options ) {
 	//add new page to the DOM
 	$.mobile.pageContainer.append($page)
 
-				
+			
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
+	
+	
+	$('.iframeSource').ready(function()      {
+		//$.mobile.loading( 'show' );
+               // console.log('this is loaded');
+            });
 	
 	
 	
@@ -338,12 +343,11 @@ function showIFrame( sourceURL, origURLObj, options ) {
 function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
-
+	
 
 	$('.iframeSource').css("height","100%");
 	$('.iframeSource').css("width","100%");
 
-	
 	$('.iframeSource').contents().find('a').attr('href', function(i, val){
 
 				
@@ -364,12 +368,14 @@ function updateIFrame(){
 
 	
 	$('.iframeSource').contents().find('a').removeAttr('target');
-	$('.iframeSource').contents().find('div#hd').css('display', 'none');
+	$('.iframeSource').contents().find('div#mobile').find('div#hd').css('display', 'none');
 	$('.iframeSource').contents().find('div.header').css('display', 'none');
 	
-	//$.mobile.loading( 'hide' );
+	$.mobile.loading( 'hide' );
 
 	$('.iframeSource').css('display', 'block');
+	
+console.log('onloadend');
 
 }
 
