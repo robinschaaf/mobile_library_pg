@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://10.41.57.224:3000/';
 //var remoteURL='http://localhost:3000/';
  
 var app = {
