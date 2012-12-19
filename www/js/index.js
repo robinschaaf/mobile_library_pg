@@ -82,10 +82,11 @@ $('.cbLink').live('click', function () {
 
 $(document).bind('pageinit', function(e, data){
 
-    $( ".photopopup" ).on({
+    $( "#popupMap" ).on({
         popupbeforeposition: function() {
-            var maxHeight = $( window ).height() - 60 + "px";
-            $( ".photopopup img" ).css( "max-height", maxHeight );
+        	alert($( window ).height());
+            var maxHeight = $( window ).height() - 30 + "px";
+            $( "#popupMap img" ).css( "max-height", maxHeight );
             $.mobile.loading( 'hide' );
         }
     });
