@@ -85,12 +85,10 @@ $(document).bind('pageinit', function(e, data){
     $( "#popupMap" ).on({
         popupbeforeposition: function() {
             var maxHeight = $( window ).height() - 30 + "px";
-            $( "#popupMap img" ).css( "max-height", maxHeight );
+            $("#popupMap img").css( "max-height", maxHeight );
+            $('#popupMap').popup("open")
             $.mobile.loading( 'hide' );
-        },
-        popupafteropen: function() {
-            alert('here');
-        }       
+        }     
         
     });
     
