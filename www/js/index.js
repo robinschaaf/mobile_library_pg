@@ -94,7 +94,7 @@ $(document).bind('pageinit', function(e, data){
     
     
     
-         $('#popupLink').click(function() {
+	$('#popupLink').live('click', function () {
              alert('here')
              $("#popupMap").popup("open")
              return false;
