@@ -84,11 +84,14 @@ $(document).bind('pageinit', function(e, data){
 
     $( "#popupMap" ).on({
         popupbeforeposition: function() {
-        	alert($( window ).height());
             var maxHeight = $( window ).height() - 30 + "px";
             $( "#popupMap img" ).css( "max-height", maxHeight );
             $.mobile.loading( 'hide' );
-        }
+        },
+        popupafteropen: function() {
+            alert('here');
+        }       
+        
     });
     
 });
