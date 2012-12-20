@@ -82,27 +82,27 @@ $('.cbLink').live('click', function () {
 
 $(document).bind('pageinit', function(e, data){
 
+	alert("active page: " + $.mobile.activePage.attr("id"));
+
     $( "#popupMap" ).on({
         popupbeforeposition: function() {
-          
-            //openPopupMap();
-            //e.preventDefault();
-            
-        },
-        popupafteropen: function(){
 
-            alert("popupafteropen: " + $('#popupMap-popup').attr("style"))
-        
+		 var maxHeight = $( window ).height() - 30 + "px";
+		$("#popupMap img").css( "max-height", maxHeight );         
+            
         }
         
     });
     
     
     
-	$('#popupLink').live('click', function () {
-            openPopupMap();
-            return false;
-         });
+    $('#popupLink').live('click', function () {
+    
+    	alert('popup clicked');
+    	openPopupMap();
+    	return false;
+    	
+    });
     
     
     
@@ -111,24 +111,16 @@ $(document).bind('pageinit', function(e, data){
 
 $(window).bind('orientationchange resize', function(event){
 
-
+	
 	openPopupMap();
-	//$( '#popupMap' ).trigger( 'updatelayout' );
-
-
-	alert('orientation change fired');
+	
 });
 
 
 
 function openPopupMap(){
-	//$("#popupMap").popup("close");
-	
-        var maxHeight = $( window ).height() - 30 + "px";
-        $("#popupMap img").css( "max-height", maxHeight );
-            
+           
 	$("#popupMap").popup("open", "15px", "15px");
-	
 	
         $.mobile.loading( 'hide' );
 
