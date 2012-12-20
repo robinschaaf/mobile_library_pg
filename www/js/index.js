@@ -114,8 +114,14 @@ $(document).bind('pageinit', function(e, data){
 $(window).bind('orientationchange resize', function(event){
 
 	if (popupMapOpen === true){
-		//alert('popupmap open and resize event');
-		openPopupMap();
+	
+		setTimeout(function() {
+		
+			openPopupMap();
+		
+		}, 500);	
+	
+
 	}
 	
 });
