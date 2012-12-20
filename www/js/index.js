@@ -142,7 +142,7 @@ function openPopupMap(){
 	$(".popupMap img").css( "max-height", maxHeight ); 
     		
            
-	$(".popupMap").popup("open", { x: "5px", y: "15px" });
+	$(".popupMap").popup("open", "5px", "15px");
 	
         $.mobile.loading( 'hide' );
 
