@@ -134,7 +134,7 @@ function openPopupMap(){
 	$("#popupMap img").css( "max-height", maxHeight );   
 		
            
-	$("#popupMap").popup("open", "15px", "15px");
+	$("#popupMap").popup("open");
 	
         $.mobile.loading( 'hide' );
 
