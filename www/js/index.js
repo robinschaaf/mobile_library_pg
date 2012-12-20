@@ -143,7 +143,6 @@ function openPopupMap(){
     		
            
 	$(".popupMap").popup("open", "15px", "5px");
-	$(".popupMap .ui-btn-right").css('right', '-9px');
 	
         $.mobile.loading( 'hide' );
 
