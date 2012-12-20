@@ -84,15 +84,13 @@ $(document).bind('pageinit', function(e, data){
 
     $( "#popupMap" ).on({
         popupbeforeposition: function() {
-            var maxHeight = $( window ).height() - 30 + "px";
-            $("#popupMap img").css( "max-height", maxHeight );
-            alert("beforeposition: " + $('#popupMap-popup').attr("style"))
-            $.mobile.loading( 'hide' );
+          
+            openPopupMap();
+            e.preventDefault();
+            
         },
         popupafteropen: function(){
-        
-        	$("#popupMap img").css( "top", 0);
-        	$("#popupMap img").css( "left", 0);
+
             alert("popupafteropen: " + $('#popupMap-popup').attr("style"))
         
         }
@@ -102,14 +100,40 @@ $(document).bind('pageinit', function(e, data){
     
     
 	$('#popupLink').live('click', function () {
-             $("#popupMap").popup("open")
-             return false;
-
+            openPopupMap();
+            return false;
          });
     
     
     
 });
+
+
+$(window).bind('orientationchange resize', function(event){
+
+alert('orientation change fired');
+
+	$( '#popupMap' ).show().trigger( 'updatelayout' );
+
+
+});
+
+
+
+function openPopupMap(){
+	$("#popupMap").popup("close");
+	
+        var maxHeight = $( window ).height() - 30 + "px";
+        $("#popupMap img").css( "max-height", maxHeight );
+            
+	$("#popupMap").popup("open", "15px", "15px");
+	
+	
+        $.mobile.loading( 'hide' );
+
+}
+
+
 
 
 //happens every "page", including remote servers
@@ -181,9 +205,6 @@ window.onExtURL = function (e) {
 	
 }
 
-//if(event.orientation){
-//	$(.photopopup).
-//}
 
 
 
