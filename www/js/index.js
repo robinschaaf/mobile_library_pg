@@ -85,7 +85,7 @@ $(document).bind('pageinit', function(e, data){
 
     //console.log(e);
 
-    $( "#popupMap" ).on({
+    $( ".popupMap" ).on({
         popupafteropen: function() {
 		popupMapOpen = true;
         },
@@ -131,10 +131,10 @@ $(window).bind('orientationchange resize', function(event){
 function openPopupMap(){
 
 	var maxHeight = $( window ).height() - 30 + "px";
-	$("#popupMap img").css( "max-height", maxHeight );   
+	$(".popupMap img").css( "max-height", maxHeight );   
 		
            
-	$("#popupMap").popup("open");
+	$(".popupMap").popup("open");
 	
         $.mobile.loading( 'hide' );
 
