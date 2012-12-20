@@ -86,8 +86,16 @@ $(document).bind('pageinit', function(e, data){
     //console.log(e);
 
     $( ".popupMap" ).on({
+    	popupbeforeposition: function(){
+    
+    		var maxHeight = $( window ).height() - 30 + "px";
+    		$(".popupMap img").css( "max-height", maxHeight );   
+	
+	},    
         popupafteropen: function() {
+        
 		popupMapOpen = true;
+		
         },
         popupafterclose: function() {
 
@@ -130,9 +138,6 @@ $(window).bind('orientationchange resize', function(event){
 
 function openPopupMap(){
 
-	var maxHeight = $( window ).height() - 30 + "px";
-	$(".popupMap img").css( "max-height", maxHeight );   
-		
            
 	$(".popupMap").popup("open");
 	
