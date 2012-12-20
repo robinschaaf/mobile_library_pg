@@ -107,8 +107,8 @@ $(document).bind('pageinit', function(e, data){
     
     
     
-    $('.popupLink').live('click', function () {
-    	alert('popuplink clicked');
+    $('.popupLink').on('click', function () {
+    	
     	openPopupMap();
     	return false;
     	
@@ -125,7 +125,7 @@ $(window).bind('orientationchange resize', function(event){
 	
 		//setTimeout(function() {
 		
-			openPopupMap().trigger( 'updatelayout' );
+		openPopupMap().trigger( 'updatelayout' );
 		
 		//}, 500);	
 	
@@ -138,8 +138,11 @@ $(window).bind('orientationchange resize', function(event){
 
 function openPopupMap(){
 
+	var maxHeight = $( window ).height() - 30 + "px";
+	$(".popupMap img").css( "max-height", maxHeight ); 
+    		
            
-	$(".popupMap").popup("open");
+	$(".popupMap").popup("open", { positionTo: "window" });
 	
         $.mobile.loading( 'hide' );
 
