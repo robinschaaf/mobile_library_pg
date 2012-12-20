@@ -79,21 +79,19 @@ $('.cbLink').live('click', function () {
 
 
 
+var popupMapOpen = false;
 
 $(document).bind('pageinit', function(e, data){
 
     //console.log(e);
 
     $( "#popupMap" ).on({
-        popupbeforeposition: function() {
-
-		 var maxHeight = $( window ).height() - 30 + "px";
-		$("#popupMap img").css( "max-height", maxHeight );         
-            
+        popupafteropen: function() {
+		popupMapOpen = true;
         },
         popupafterclose: function() {
 
-		 alert('closed');       
+		 popupMapOpen = false;      
             
         }
         
@@ -103,7 +101,6 @@ $(document).bind('pageinit', function(e, data){
     
     $('.popupLink').live('click', function () {
     
-    	alert('popup clicked');
     	openPopupMap();
     	return false;
     	
@@ -116,14 +113,20 @@ $(document).bind('pageinit', function(e, data){
 
 $(window).bind('orientationchange resize', function(event){
 
-	
-	openPopupMap();
+	if (popupMapOpen === true){
+		alert('popupmap open and resize event');
+		openPopupMap();
+	}
 	
 });
 
 
 
 function openPopupMap(){
+
+	var maxHeight = $( window ).height() - 30 + "px";
+	$("#popupMap img").css( "max-height", maxHeight );   
+		
            
 	$("#popupMap").popup("open", "15px", "15px");
 	
