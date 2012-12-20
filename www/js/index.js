@@ -122,7 +122,7 @@ $(window).bind('orientationchange resize', function(event){
 
 
 function openPopupMap(){
-	$("#popupMap").popup("close");
+	//$("#popupMap").popup("close");
 	
         var maxHeight = $( window ).height() - 30 + "px";
         $("#popupMap img").css( "max-height", maxHeight );
