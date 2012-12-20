@@ -85,8 +85,8 @@ $(document).bind('pageinit', function(e, data){
     $( "#popupMap" ).on({
         popupbeforeposition: function() {
           
-            openPopupMap();
-            e.preventDefault();
+            //openPopupMap();
+            //e.preventDefault();
             
         },
         popupafteropen: function(){
@@ -111,11 +111,12 @@ $(document).bind('pageinit', function(e, data){
 
 $(window).bind('orientationchange resize', function(event){
 
-alert('orientation change fired');
 
-	$( '#popupMap' ).show().trigger( 'updatelayout' );
+	openPopupMap();
+	//$( '#popupMap' ).trigger( 'updatelayout' );
 
 
+	alert('orientation change fired');
 });
 
 
