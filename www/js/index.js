@@ -86,16 +86,22 @@ $(document).bind('pageinit', function(e, data){
         popupbeforeposition: function() {
             var maxHeight = $( window ).height() - 30 + "px";
             $("#popupMap img").css( "max-height", maxHeight );
-            alert($('#popupMap img').attr("style"))
+            alert("beforeposition: " + $('#popupMap-popup').attr("style"))
             $.mobile.loading( 'hide' );
-        }     
+        },
+        popupafteropen: function(){
+        
+        	$("#popupMap img").css( "top", 0);
+        	$("#popupMap img").css( "left", 0);
+            alert("popupafteropen: " + $('#popupMap-popup').attr("style"))
+        
+        }
         
     });
     
     
     
 	$('#popupLink').live('click', function () {
-             alert('here')
              $("#popupMap").popup("open")
              return false;
 
