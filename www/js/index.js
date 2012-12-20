@@ -115,11 +115,11 @@ $(window).bind('orientationchange resize', function(event){
 
 	if (popupMapOpen === true){
 	
-		setTimeout(function() {
+		//setTimeout(function() {
 		
-			openPopupMap();
+			openPopupMap().trigger( 'updatelayout' );
 		
-		}, 500);	
+		//}, 500);	
 	
 
 	}
