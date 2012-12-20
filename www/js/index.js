@@ -138,11 +138,11 @@ $(window).bind('orientationchange resize', function(event){
 
 function openPopupMap(){
 
-	var maxHeight = $( window ).height() - 30 + "px";
-	$(".popupMap img").css( "max-height", maxHeight ); 
+	var maxWidth = $( window ).width() - 30 + "px";
+	$(".popupMap img").css( "max-width", maxWidth ); 
     		
            
-	$(".popupMap").popup("open", "5px", "15px");
+	$(".popupMap").popup("open", "15px", "5px");
 	
         $.mobile.loading( 'hide' );
 
