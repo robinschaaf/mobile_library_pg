@@ -88,8 +88,8 @@ $(document).bind('pageinit', function(e, data){
     $( ".popupMap" ).on({
     	popupbeforeposition: function(){
     
-    		//var maxHeight = $( window ).height() - 30 + "px";
-    		//$(".popupMap img").css( "max-height", maxHeight );   
+		var maxWidth = $( window ).width() - 30 + "px";
+		$(".popupMap img").css( "max-width", maxWidth );   
 	
 	},    
         popupafteropen: function() {
