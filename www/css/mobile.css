@@ -207,7 +207,7 @@ img.branch{
 -----------------------------------------------------------------------------------------------------------*/
 .ui-bar-a {
     background: #2b5781 /*{a-bar-background-color}*/;
-    color: #f8f7e9 /*{a-bar-color}*/;
+    color: #2C5882 /*{a-bar-color}*/;
     text-shadow: none;
     font-style:normal;
     font-weight:normal;
@@ -496,6 +496,7 @@ img.branch{
     background-image:      -o-linear-gradient(  #386590  /*{a-body-background-start}*/,  #386590  /*{a-body-background-end}*/); /* Opera 11.10+ */
     background-image:         linear-gradient(  #386590  /*{a-body-background-start}*/,  #386590  /*{a-body-background-end}*/);
 }
+
 .ui-btn-down-b:visited,
 .ui-btn-down-b:hover,
 .ui-btn-down-b a.ui-link-inherit {

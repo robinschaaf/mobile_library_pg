@@ -122,13 +122,8 @@ $(document).bind('pageinit', function(e, data){
 $(window).bind('orientationchange resize', function(event){
 
 	if (popupMapOpen === true){
-	
-		//setTimeout(function() {
-		
+
 		openPopupMap().trigger( 'updatelayout' );
-		
-		//}, 500);	
-	
 
 	}
 	
