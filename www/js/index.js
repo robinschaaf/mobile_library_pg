@@ -21,6 +21,11 @@ var childBrowser;
 var remoteURL='http://mpprd.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
  
+
+////////////////////////////////////////////////////////////// 
+//On App init - happens once 
+//////////////////////////////////////////////////////////////
+
 var app = {
 
     initialize: function() {
@@ -71,98 +76,12 @@ var app = {
 
 
 
-$('.cbLink').live('click', function () {
-	openChildBrowser(this.href);
-	return false;
 
-});
+//////////////////////////////////////////////////////////////
+// Page Handler - happens every "page", including remote servers
+// in PhoneGap
+//////////////////////////////////////////////////////////////
 
-
-
-var popupMapOpen = false;
-
-$(document).bind('pageinit', function(e, data){
-
-    //console.log(e);
-
-    $( ".popupMap" ).on({
-    	popupbeforeposition: function(){
-    
-		var maxWidth = $( window ).width() - 30 + "px";
-		$(".popupMap img").css( "max-width", maxWidth );   
-	
-	},    
-        popupafteropen: function() {
-        
-		popupMapOpen = true;
-		
-        },
-        popupafterclose: function() {
-
-		 popupMapOpen = false;      
-            
-        }
-        
-    });
-    
-    
-    
-    $('.popupLink').on('click', function () {
-    	
-    	openPopupMap();
-    	return false;
-    	
-    });
-    
-    
-    
-});
-
-
-$(window).bind('orientationchange resize', function(event){
-
-	if (popupMapOpen === true){
-
-		openPopupMap().trigger( 'updatelayout' );
-
-	}
-	
-});
-
-
-
-function openPopupMap(){
-
-	var maxWidth = $( window ).width() - 30 + "px";
-	$(".popupMap img").css( "max-width", maxWidth ); 
-    		
-           
-	$(".popupMap").popup("open", "15px", "5px");
-	
-        $.mobile.loading( 'hide' );
-
-}
-
-
-
-$('.EXLSearchForm').live('submit', function () {
-  //alert('Handler for .submit() called.');
-  
-  if ($('#search_field').val() != ''){
-  	//var u = $.mobile.path.parseUrl( 
-  	alert("http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=ndmobile&fn=search&resetConfig=true&ct=search&vl%28freeText0%29=" + $('#search_field').val() );
-  	$.mobile.changePage( "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=ndmobile&fn=search&resetConfig=true&ct=search&vl%28freeText0%29=" + $('#search_field').val() )
-  }
-  
-  
-  return false;
-});
-
-
-
-
-
-//happens every "page", including remote servers
 $(document).bind('pagebeforechange', function(e, data){
 
 
@@ -212,7 +131,32 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-//for some reason phonegap calls message twice.  this is to make sure it wasn't a duplicate!
+
+
+
+//////////////////////////////////////////////////////////////
+// Childbrowser link class
+//////////////////////////////////////////////////////////////
+
+$('.cbLink').live('click', function () {
+	openChildBrowser(this.href);
+	return false;
+
+});
+
+
+
+
+//////////////////////////////////////////////////////////////
+// For external links within iframes - uses listener to open
+// childbrowser, since code within iframe cannot access
+// parent openChildBrowser function in PhoneGap
+// (despite working ok in browser)
+/////////////////////////////////////////////////////////////
+
+//  for some reason phonegap calls message twice (possibly the use of IDs that are stored multiple times?) 
+//  This "previousOpen" variable is to make sure it wasn't a duplicate!
+
 var previousOpen = '';
 
 window.onExtURL = function (e) {
@@ -235,9 +179,33 @@ window.onExtURL = function (e) {
 
 
 
+//////////////////////////////////////////////////////////////
+// Exl search form submit override (Primo search box)
+// submitting as a post causes redirects and loses the ifrmame
+// (and the header bar - back/home button)
+//////////////////////////////////////////////////////////////
+
+$('.EXLSearchForm').live('submit', function () {
+  
+  	if ($('#search_field').val() != ''){
+
+  		$.mobile.changePage( "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=ndmobile&fn=search&resetConfig=true&ct=search&vl%28freeText0%29=" + $('#search_field').val() )
+  	}
+  
+	return false;
+});
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////
+// Called from Page Handler - used for displaying m.lib pages
+//////////////////////////////////////////////////////////////
+
 function showSubpage( sourceURL, origURLObj, options ) {
-                  
-        
+              
     $.mobile.loading( 'show' );
 
     $.ajax({
@@ -248,12 +216,10 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		var $page = $(data);
 		
 		if (options.type == "post"){
-		alert('post');
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
-alert(rdata);
-			  	$page.find('.subPageData').html( $(rdata).find('.innerContent') );
 
+			  	$page.find('.subPageData').html( $(rdata).find('.innerContent') );
 
 				//change relative paths to images to point to m. site
 				$page.find("img").prop("src", function(){
@@ -266,9 +232,7 @@ alert(rdata);
 
 				});
 					
-	
-
-				//change any external domain links to open in child browser
+				//change any external domain links to open in child browser - assign cbLink class
 				$page.find("a").prop("href", function(){
 
 					//at this point attr refers to the original href retrieved from the html
@@ -284,7 +248,6 @@ alert(rdata);
 					}
 
 				});
-
 
 
 				$page.page();
@@ -358,8 +321,6 @@ alert(rdata);
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 	
-	
-	
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -371,8 +332,12 @@ alert(rdata);
 
 
 
+//////////////////////////////////////////////////////////////
+// Called from Page Handler - used for displaying pages
+// internal to the library that can handle mobile displays
+// e.g. Primo, EJournal locator
+//////////////////////////////////////////////////////////////
 function showIFrame( sourceURL, origURLObj, options ) {
-    
         
     $.mobile.loading( 'show' );
 
@@ -387,11 +352,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
+				options.dataUrl = origURLObj.href;
 	
 				$.mobile.changePage( $page, options );
+				$.mobile.loading( 'show' );
 			  
 			});		
 		
@@ -426,15 +393,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 			
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
-	
-	
-	$('.iframeSource').ready(function(){
-		//$.mobile.loading( 'show' );
-               // console.log('this is loaded');
-        });
-	
-	
-	
+		
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -445,6 +404,10 @@ function showIFrame( sourceURL, origURLObj, options ) {
 
 
 
+//////////////////////////////////////////////////////////////
+// Called from onLoad of the iFrame
+// Various Markups and aesthetic changes
+//////////////////////////////////////////////////////////////
 function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
@@ -473,8 +436,16 @@ function updateIFrame(){
 
 	
 	$('.iframeSource').contents().find('a').removeAttr('target');
+	
+	//Get rid of Header on Xerxes
 	$('.iframeSource').contents().find('div#mobile').find('div#hd').css('display', 'none');
+	
+	//Get rid of Header on Ejournal Locator
 	$('.iframeSource').contents().find('div.header').css('display', 'none');
+	
+	//Get rid of Header on Primo
+	$('.iframeSource').contents().find('#exlidHeaderTile').css('display', 'none');
+	
 	
 	$.mobile.loading( 'hide' );
 
@@ -486,7 +457,10 @@ function updateIFrame(){
 
 
 
-//determine if the "a" target passed in is an external link and should be opened in childbrowser
+//////////////////////////////////////////////////////////////
+// Function to determin if passed in link is external
+// and should be opened in childbrowser
+//////////////////////////////////////////////////////////////
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
 //contains the word proxy in it (meaning it gets proxied to a different website)
@@ -503,7 +477,9 @@ function isExtLink(parsedURL){
 
 
 
-
+//////////////////////////////////////////////////////////////
+// Calls ChildBrowser plugin for passed in URL
+//////////////////////////////////////////////////////////////
 function openChildBrowser(url){
 
     try {
@@ -520,6 +496,10 @@ function openChildBrowser(url){
 
 
 
+
+//////////////////////////////////////////////////////////////
+// Check if user has an internet connection
+//////////////////////////////////////////////////////////////
 function checkConnection() {
 
     var networkState = navigator.network.connection.type;
@@ -533,3 +513,88 @@ function checkConnection() {
     }
 
 }
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////
+// The following is because on orientation change the 
+// popup map will disappear in ios
+// should be fixed with jqm 1.2.1 or 1.3
+//////////////////////////////////////////////////////////////
+
+
+var popupMapOpen = false;
+
+$(document).bind('pageinit', function(e, data){
+
+    //console.log(e);
+
+    $( ".popupMap" ).on({
+    	popupbeforeposition: function(){
+    
+		var maxWidth = $( window ).width() - 30 + "px";
+		$(".popupMap img").css( "max-width", maxWidth );   
+	
+	},    
+        popupafteropen: function() {
+        
+		popupMapOpen = true;
+		
+        },
+        popupafterclose: function() {
+
+		 popupMapOpen = false;      
+            
+        }
+        
+    });
+    
+    
+    
+    $('.popupLink').on('click', function () {
+    	
+    	openPopupMap();
+    	return false;
+    	
+    });
+    
+    
+    
+});
+
+
+$(window).bind('orientationchange resize', function(event){
+
+	if (popupMapOpen === true){
+
+		openPopupMap().trigger( 'updatelayout' );
+
+	}
+	
+});
+
+function openPopupMap(){
+
+	var maxWidth = $( window ).width() - 30 + "px";
+	$(".popupMap img").css( "max-width", maxWidth ); 
+    		
+           
+	$(".popupMap").popup("open", "15px", "5px");
+	
+        $.mobile.loading( 'hide' );
+
+}
+
+
+
+//////////////////////////////////////////////////////////////
+// End Map Popup Hack
+//////////////////////////////////////////////////////////////
+
+
+
+
