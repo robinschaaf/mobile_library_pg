@@ -412,10 +412,6 @@ function updateIFrame(){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
 	
-
-	$('.iframeSource').css("height","100%");
-	$('.iframeSource').css("width","100%");
-
 	$('.iframeSource').contents().find('a').attr('href', function(i, val){
 
 				
@@ -449,6 +445,9 @@ function updateIFrame(){
 	
 	
 	$.mobile.loading( 'hide' );
+
+	$('.iframeSource').css("height","100%");
+	$('.iframeSource').css("width","100%");
 
 	$('.iframeSource').css('display', 'block');
 	
@@ -484,7 +483,7 @@ function isExtLink(parsedURL){
 function openChildBrowser(url){
 
     try {
-	//both of these should work...
+	//both of these should work... (but actually don't...)
 	window.plugins.childBrowser.showWebPage(url);
 	//childBrowser.showWebPage(url);
 	
@@ -531,8 +530,6 @@ function checkConnection() {
 var popupMapOpen = false;
 
 $(document).bind('pageinit', function(e, data){
-
-    //console.log(e);
 
     $( ".popupMap" ).on({
     	popupbeforeposition: function(){
