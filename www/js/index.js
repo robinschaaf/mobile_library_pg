@@ -145,6 +145,21 @@ function openPopupMap(){
 
 
 
+$('.EXLSearchForm').live('submit', function () {
+  //alert('Handler for .submit() called.');
+  
+  if ($('#search_field').val() != ''){
+  	//var u = $.mobile.path.parseUrl( 
+  	alert("http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=ndmobile&fn=search&resetConfig=true&ct=search&vl%28freeText0%29=" + $('#search_field').val() );
+  	$.mobile.changePage( "http://onesearch.library.nd.edu/primo_library/libweb/action/search.do?vid=ndmobile&fn=search&resetConfig=true&ct=search&vl%28freeText0%29=" + $('#search_field').val() )
+  }
+  
+  
+  return false;
+});
+
+
+
 
 
 //happens every "page", including remote servers
