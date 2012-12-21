@@ -238,10 +238,44 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		var $page = $(data);
 		
 		if (options.type == "post"){
+		alert('post');
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
-
+alert(rdata);
 			  	$page.find('.subPageData').html( $(rdata).find('.innerContent') );
+
+
+				//change relative paths to images to point to m. site
+				$page.find("img").prop("src", function(){
+					srcURL = $(this).attr('src');
+					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
+						return remoteURL + srcURL;
+					}else{
+						return srcURL;
+					}
+
+				});
+					
+	
+
+				//change any external domain links to open in child browser
+				$page.find("a").prop("href", function(){
+
+					//at this point attr refers to the original href retrieved from the html
+					if ($.mobile.path.isRelativeUrl($(this).attr('href'))){
+						return $(this).attr('href').replace(/\//g, "#");
+					}else{
+
+						if ($(this).prop("target")){
+							$(this).addClass("cbLink");
+						}
+
+						return this.href;
+					}
+
+				});
+
+
 
 				$page.page();
 	
