@@ -445,6 +445,7 @@ function updateIFrame(){
 	
 	//Get rid of Header on Primo
 	$('.iframeSource').contents().find('#exlidHeaderTile').css('display', 'none');
+	$('.iframeSource').contents().find('#exlidHeaderContainer').css('height', '100%');
 	
 	
 	$.mobile.loading( 'hide' );
