@@ -16,6 +16,7 @@
    
     <access origin="http://*.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="https://*.nd.edu" subdomains="true" browserOnly="false" />
+    <access origin="http://*.googleapis.com" subdomains="true" browserOnly="false" />
     <access origin="https://*.googleapis.com" subdomains="true" browserOnly="false" />
     <access origin="https://*.gstatic.com" subdomains="true" browserOnly="false" />
     <access origin="https://maps.google.com" subdomains="true" browserOnly="false" />
