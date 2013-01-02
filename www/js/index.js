@@ -485,7 +485,7 @@ function openChildBrowser(url){
 
     try {
 	//both of these should work... (but actually don't...)
-	window.plugins.childBrowser.showWebPage(url);
+	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
 	//childBrowser.showWebPage(url);
 	
 	$.mobile.loading( 'hide' );
