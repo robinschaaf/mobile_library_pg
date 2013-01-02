@@ -38,6 +38,7 @@ var app = {
 
   	$.mobile.loader.prototype.options.text = "Loading...";
   	$.mobile.loader.prototype.options.textVisible = true;
+  	$.mobile.loader.prototype.options.textonly = true;
   	$.mobile.loader.prototype.options.theme = "b";
   	$.mobile.loader.prototype.options.html = "";
   	
