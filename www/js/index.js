@@ -38,9 +38,9 @@ var app = {
 
   	$.mobile.loader.prototype.options.text = "Loading...";
   	$.mobile.loader.prototype.options.textVisible = true;
-  	$.mobile.loader.prototype.options.textOnly = true;
+  	$.mobile.loader.prototype.options.textonly = true;
   	$.mobile.loader.prototype.options.theme = "b";
-  	$.mobile.loader.prototype.options.html = "";
+  	$.mobile.loader.prototype.options.html = "<br /><h1>Loading...</h1><br />";
   	
 
         this.bind();
