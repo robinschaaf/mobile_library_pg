@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
+var remoteURL='http://m.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
  
 
@@ -38,7 +38,7 @@ var app = {
 
   	$.mobile.loader.prototype.options.text = "Loading...";
   	$.mobile.loader.prototype.options.textVisible = true;
-  	$.mobile.loader.prototype.options.textonly = true;
+  	$.mobile.loader.prototype.options.textOnly = true;
   	$.mobile.loader.prototype.options.theme = "b";
   	$.mobile.loader.prototype.options.html = "";
   	
