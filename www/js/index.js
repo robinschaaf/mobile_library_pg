@@ -273,7 +273,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				//change relative paths to images to point to m. site
 				$page.find("img").prop("src", function(){
 					srcURL = $(this).attr('src');
-					alert("img: " + srcURL);
+					
 					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
 					alert("img: " + remoteURL + srcURL);
 						return remoteURL + srcURL;
@@ -542,6 +542,7 @@ $(document).bind('pageinit', function(e, data){
     
 		var maxWidth = $( window ).width() - 30 + "px";
 		$(".popupMap img").css( "max-width", maxWidth );   
+		alert($(".popupMap img").attr('src'));
 	
 	},    
         popupafteropen: function() {
@@ -560,7 +561,7 @@ $(document).bind('pageinit', function(e, data){
     
     
     $('.popupLink').on('click', function () {
-    	
+    	alert('popupclick');
     	openPopupMap();
     	return false;
     	
