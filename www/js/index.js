@@ -225,11 +225,13 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				//change relative paths to images to point to m. site
 				$page.find("img").prop("src", function(){
 					srcURL = $(this).attr('src');
+					
 					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
 						return remoteURL + srcURL;
 					}else{
 						return srcURL;
 					}
+					
 
 				});
 					
@@ -271,6 +273,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				//change relative paths to images to point to m. site
 				$page.find("img").prop("src", function(){
 					srcURL = $(this).attr('src');
+					alert("img: " + srcURL);
 					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
 						return remoteURL + srcURL;
 					}else{
