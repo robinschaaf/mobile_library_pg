@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var remoteURL='http://m.library.nd.edu/';
+var remoteURL='http://mpprd.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
  
 
@@ -275,8 +275,10 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					srcURL = $(this).attr('src');
 					alert("img: " + srcURL);
 					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
+					alert("img: " + remoteURL + srcURL);
 						return remoteURL + srcURL;
 					}else{
+					alert("img: " + srcURL);
 						return srcURL;
 					}
 
