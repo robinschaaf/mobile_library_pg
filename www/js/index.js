@@ -418,9 +418,9 @@ function updateIFrame(){
 	
 	$('.iframeSource').contents().find('a').attr('href', function(i, val){
 
-				
 		if ($.mobile.path.isRelativeUrl(val) === true){
 			val = $.mobile.path.makeUrlAbsolute(val, $('.iframeSource').attr('src'));
+			alert(val);
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
