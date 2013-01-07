@@ -275,10 +275,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 					srcURL = $(this).attr('src');
 					
 					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
-					alert("img: " + remoteURL + srcURL);
 						return remoteURL + srcURL;
 					}else{
-					alert("img: " + srcURL);
 						return srcURL;
 					}
 
@@ -542,7 +540,6 @@ $(document).bind('pageinit', function(e, data){
     
 		var maxWidth = $( window ).width() - 30 + "px";
 		$(".popupMap img").css( "max-width", maxWidth );   
-		alert($(".popupMap img").attr('src'));
 	
 	},    
         popupafteropen: function() {
@@ -561,7 +558,7 @@ $(document).bind('pageinit', function(e, data){
     
     
     $('.popupLink').on('click', function () {
-    	alert('popupclick');
+
     	openPopupMap();
     	return false;
     	
