@@ -30,6 +30,10 @@ var app = {
 
     initialize: function() {
 
+ 	if (checkConnection() === false){
+ 		window.location = "noconnection.html";
+ 	}
+	
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
@@ -57,10 +61,6 @@ var app = {
 		alert(err);
     	}
 
- 	if (checkConnection() === false){
- 		window.location = "noconnection.html";
- 	}
-	
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
 	
