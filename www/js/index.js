@@ -30,10 +30,6 @@ var app = {
 
     initialize: function() {
 
- 	if (checkConnection() === false){
- 		window.location = "noconnection.html";
- 	}
-	
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
@@ -53,6 +49,13 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, true);
     },
     deviceready: function() {
+
+
+ 	if (checkConnection() === false){
+ 		window.location = "noconnection.html";
+ 	}
+	
+
         
     	try {       
 		childBrowser = ChildBrowser.install();
