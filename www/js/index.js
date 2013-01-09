@@ -434,23 +434,23 @@ function updateIFrame(iF){
 
 
 	
-	$('.iframeSource').contents().find('a').removeAttr('target');
+	$(iF).contents().find('a').removeAttr('target');
 	
 	//Get rid of Header on Xerxes
-	$('.iframeSource').contents().find('div#mobile').find('div#hd').css('display', 'none');
+	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
 	
 	//Get rid of Header on Ejournal Locator
-	$('.iframeSource').contents().find('div.header').css('display', 'none');
+	$(iF).contents().find('div.header').css('display', 'none');
 	
 	//Get rid of Header on Primo
-	$('.iframeSource').contents().find('#exlidHeaderTile').css('display', 'none');
-	$('.iframeSource').contents().find('#exlidHeaderContainer').css('height', '100%');
+	$(iF).contents().find('#exlidHeaderTile').css('display', 'none');
+	$(iF).contents().find('#exlidHeaderContainer').css('height', '100%');
 	
 	
 	$.mobile.loading( 'hide' );
 
-	$('.iframeSource').css("height","100%");
-	$('.iframeSource').css("width","100%");
+	$(iF).css("height","100%");
+	$(iF).css("width","100%");
 
 	
 
@@ -485,6 +485,9 @@ function isExtLink(parsedURL){
 function openChildBrowser(url){
 
     try {
+	
+	$.mobile.loading( 'show' );
+	
 	//both of these should work... (but actually don't...)
 	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
 	//childBrowser.showWebPage(url);
