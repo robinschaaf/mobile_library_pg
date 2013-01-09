@@ -424,7 +424,7 @@ function updateIFrame(){
 	
 		var u = $.mobile.path.parseUrl( val );
 	
-		if (isExtLink(u)){
+		if ((isExtLink(u)) || (u.href.indexOf("javascript") >= 0) ){
 			return "javascript:window.top.postMessage('" + val + "', '*');";
 		}else{
 			return val;
@@ -470,7 +470,7 @@ function updateIFrame(){
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:"))){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && (parsedURL.href != "http://xerxes.library.nd.edu.proxy.library.nd.edu/quicksearch/") ){
 		return true;
 	}else{
 		return false;
