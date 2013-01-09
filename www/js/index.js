@@ -18,16 +18,14 @@
  */
  
 var childBrowser; 
-var remoteURL='http://mpprd.library.nd.edu/';
-var remoteURL='http://localhost:3000/';
-var src_page;
-
+var remoteURL='http://m.library.nd.edu/';
+//var remoteURL='http://localhost:3000/';
+ 
 
 ////////////////////////////////////////////////////////////// 
 //On App init - happens once 
 //////////////////////////////////////////////////////////////
 
- 
 var app = {
 
     initialize: function() {
@@ -35,8 +33,15 @@ var app = {
         $.mobile.allowCrossDomainPages = true;
         $.support.cors = true;
         $.mobile.pushStateEnabled = false;
-        $.mobile.phonegapNavigationEnabled = true;
         $.mobile.buttonMarkup.hoverDelay = true;
+
+
+  	$.mobile.loader.prototype.options.text = "Loading...";
+  	$.mobile.loader.prototype.options.textVisible = true;
+  	$.mobile.loader.prototype.options.textonly = true;
+  	$.mobile.loader.prototype.options.theme = "b";
+  	$.mobile.loader.prototype.options.html = "<br /><h1>Loading...</h1><br />";
+  	
 
         this.bind();
     },
@@ -57,7 +62,7 @@ var app = {
  	}
 	
 	//this is for iframe speaking to parent
-	window.addEventListener('message', onmessage, false);
+	window.addEventListener('message', onExtURL, false);
 	
 	
 	// This is an event handler function, which means the scope is the event.
@@ -71,10 +76,13 @@ var app = {
 };
 
 
+
+
 //////////////////////////////////////////////////////////////
 // Page Handler - happens every "page", including remote servers
 // in PhoneGap
 //////////////////////////////////////////////////////////////
+
 $(document).bind('pagebeforechange', function(e, data){
 
 
@@ -89,7 +97,7 @@ $(document).bind('pagebeforechange', function(e, data){
 				
 		if ( u.hash ){
 			sourceURL = remoteURL + u.hash.replace(/#/g,"/");
-			showIFrame( sourceURL, u, data.options);
+			showSubpage( sourceURL, u, data.options);
 		
 		//file (this is how phonegap runs links as a file on local system)
 		}else if (u.protocol == "file:"){
@@ -107,8 +115,6 @@ $(document).bind('pagebeforechange', function(e, data){
 		}else if (isExtLink(u)){
 
 			openChildBrowser(sourceURL);
-			$.mobile.loading( 'hide' );
-
 
 		//link internal to the library but external to m. site - eg Primo, Quicksearch, ejournal locator
 		}else{
@@ -127,12 +133,13 @@ $(document).bind('pagebeforechange', function(e, data){
 
 
 
+
+
 //////////////////////////////////////////////////////////////
 // Childbrowser link class
 //////////////////////////////////////////////////////////////
 
 $('.cbLink').live('click', function () {
-
 	openChildBrowser(this.href);
 	return false;
 
@@ -153,7 +160,7 @@ $('.cbLink').live('click', function () {
 
 var previousOpen = '';
 
-window.onmessage = function (e) {
+window.onExtURL = function (e) {
 
 	var u = $.mobile.path.parseUrl( e.origin );
 	
@@ -168,6 +175,8 @@ window.onmessage = function (e) {
 	
 	
 }
+
+
 
 
 
@@ -190,12 +199,14 @@ $('.EXLSearchForm').live('submit', function () {
 
 
 
+
+
 //////////////////////////////////////////////////////////////
 // Called from Page Handler - used for displaying m.lib pages
 //////////////////////////////////////////////////////////////
 
 function showSubpage( sourceURL, origURLObj, options ) {
-    
+              
     $.mobile.loading( 'show' );
 
     $.ajax({
@@ -246,7 +257,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 	
 				$.mobile.changePage( $page, options );
 	
-				$.mobile.loading( 'hide' );	
+				$.mobile.loading( 'hide' );			
+
 			  
 			});		
 		
@@ -313,8 +325,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
 	
-	
-	
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
@@ -326,18 +336,12 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 
 
-
-
-
-
 //////////////////////////////////////////////////////////////
 // Called from Page Handler - used for displaying pages
 // internal to the library that can handle mobile displays
 // e.g. Primo, EJournal locator
 //////////////////////////////////////////////////////////////
-
 function showIFrame( sourceURL, origURLObj, options ) {
-    
         
     $.mobile.loading( 'show' );
 
@@ -352,11 +356,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
+				options.dataUrl = origURLObj.href;
 	
 				$.mobile.changePage( $page, options );
+				$.mobile.loading( 'show' );
 			  
 			});		
 		
@@ -365,23 +371,19 @@ function showIFrame( sourceURL, origURLObj, options ) {
 			
 			$.get( sourceURL, function(rdata){
 		
+		
 				//if it's for a site other than the mobile library site
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				//works
-				//$page.find('.subPageData').html( "<iframe id='iframeSource' onload='updateIFrame();' frameborder='0' style='background-color:#304962; width:100%; height:0px; border-style:none; margin:0px; padding:0px;' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
-				
-				//doesn't work
-				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
-
-
+				$.mobile.loading( 'show' );
 			}); 
 			
 			
@@ -392,20 +394,16 @@ function showIFrame( sourceURL, origURLObj, options ) {
 	//add new page to the DOM
 	$.mobile.pageContainer.append($page)
 
+			
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
-	
-	
-	
+		
 
         },
         error   : function (jqXHR, textStatus, errorThrown) { alert(errorThrown); }
     });
 
-
-
 }
-
 
 
 
@@ -414,9 +412,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // Called from onLoad of the iFrame
 // Various Markups and aesthetic changes
 //////////////////////////////////////////////////////////////
-
 function updateIFrame(){
-
 
 	var u = $.mobile.path.parseUrl(window.location.href);
 	
@@ -456,15 +452,15 @@ function updateIFrame(){
 	$('.iframeSource').css("height","100%");
 	$('.iframeSource').css("width","100%");
 
-	//$('.iframeSource').css('display', 'block');
 	
-	
+
 }
 
 
 
+
 //////////////////////////////////////////////////////////////
-// Function to determine if passed in link is external
+// Function to determin if passed in link is external
 // and should be opened in childbrowser
 //////////////////////////////////////////////////////////////
 //will return true under following conditions:
@@ -480,6 +476,7 @@ function isExtLink(parsedURL){
 		return false;
 	}
 }
+
 
 
 //////////////////////////////////////////////////////////////
