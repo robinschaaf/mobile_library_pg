@@ -356,7 +356,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 		
 			$.post( sourceURL, $("form").serialize(), function(rdata){
 
-				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; display:none;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 				options.dataUrl = origURLObj.href;
@@ -376,7 +376,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -412,19 +412,19 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // Called from onLoad of the iFrame
 // Various Markups and aesthetic changes
 //////////////////////////////////////////////////////////////
-function updateIFrame(){
+function updateIFrame(iF){
 
 	var u = $.mobile.path.parseUrl(window.location.href);
 	
-	$('.iframeSource').contents().find('a').attr('href', function(i, val){
+	$(iF).contents().find('a').attr('href', function(i, val){
 
 		if ($.mobile.path.isRelativeUrl(val) === true){
-			val = $.mobile.path.makeUrlAbsolute(val, $('.iframeSource').attr('src'));
+			val = $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
 		}
 	
 		var u = $.mobile.path.parseUrl( val );
 	
-		if ((isExtLink(u)) || (u.href.indexOf("javascript") >= 0) ){
+		if (isExtLink(u)){
 			return "javascript:window.top.postMessage('" + val + "', '*');";
 		}else{
 			return val;
