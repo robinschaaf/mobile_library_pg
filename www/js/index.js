@@ -470,7 +470,7 @@ function updateIFrame(){
 //is http or https (since there can be other protocols, like telephone://, file://)
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && (parsedURL.href.indexOf("http://xerxes.library.nd.edu.proxy.library.nd.edu/quicksearch/") < 0) ){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.href.indexOf("catalog.library") > 0) || (parsedURL.href.indexOf("findtext.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && (parsedURL.href !== "http://xerxes.library.nd.edu.proxy.library.nd.edu/quicksearch/") ){
 		return true;
 	}else{
 		return false;
