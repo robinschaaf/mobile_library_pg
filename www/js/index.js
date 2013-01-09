@@ -54,9 +54,7 @@ var app = {
  	if (checkConnection() === false){
  		window.location = "noconnection.html";
  	}
-	
-
-        
+	        
     	try {       
 		childBrowser = ChildBrowser.install();
 
