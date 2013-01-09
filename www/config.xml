@@ -13,7 +13,7 @@
         Hesburgh Libraries Web Application Development Team
     </author>
 
-   
+   <access origin="http://*" subdomains="true" browserOnly="false" />
     <access origin="http://*.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="https://*.nd.edu" subdomains="true" browserOnly="false" />
     <access origin="http://*.googleapis.com" subdomains="true" browserOnly="false" />
