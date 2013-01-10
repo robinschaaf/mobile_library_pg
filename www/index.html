@@ -39,20 +39,6 @@
 				window.location = "noconnection.html";
 			}
 
-
-$.ajax({
-    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
-    type:'HEAD',
-    timeout: 8000,
-    error: function(x, t, m){
-        alert('error: ' + t);
-    },
-    success: function(){
-        alert('success');
-    }
-});
-
-
 		</script>
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />

@@ -64,6 +64,27 @@ var app = {
 
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
+
+
+
+
+
+
+
+$.ajax({
+    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
+    type:'HEAD',
+    timeout: 8000,
+    error: function(x, t, m){
+        alert('error: ' + t);
+    },
+    success: function(){
+        alert('success');
+    }
+});
+
+
+
 	
 	
 	// This is an event handler function, which means the scope is the event.
