@@ -498,12 +498,14 @@ function openChildBrowser(url){
 	
 	$.mobile.loading( 'show' );
 	
+	alert('childbrowser called: ' + url);
+	
 	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
 
 
-window.plugins.childBrowser.onLocationChange = function (url) {
-    alert('childBrowser has loaded ' + url);
-};
+	window.plugins.childBrowser.onLocationChange = function (url) {
+	    alert('childBrowser has loaded ' + url);
+	};
 	
 	$.mobile.loading( 'hide' );
 
