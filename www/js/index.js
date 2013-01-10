@@ -502,11 +502,10 @@ function openChildBrowser(url){
 	
 	$.mobile.loading( 'show' );
 	
-	//both of these should work... (but actually don't...)
 	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
-	//childBrowser.showWebPage(url);
 	
 	$.mobile.loading( 'hide' );
+
     }catch (err){
 	alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
 	window.open(url);
@@ -526,7 +525,7 @@ function openNativeBrowser(url){
 	$.mobile.loading( 'show' );
 	
 	alert('native called for:  ' + url);
-	navigator.app.loadUrl( url );
+	window.plugins.childBrowser.openExternal( url );
 	
 	$.mobile.loading( 'hide' );
     }catch (err){
