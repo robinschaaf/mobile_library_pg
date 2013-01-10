@@ -525,7 +525,8 @@ function openNativeBrowser(url){
 	
 	$.mobile.loading( 'show' );
 	
-	window.plugins.childBrowser.openExternal( url);
+	alert('native called for:  ' + url);
+	navigator.app.loadUrl( url );
 	
 	$.mobile.loading( 'hide' );
     }catch (err){
