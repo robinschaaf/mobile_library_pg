@@ -38,6 +38,14 @@
 			if (checkConnection() === false){
 				window.location = "noconnection.html";
 			}
+
+
+			var http = new XMLHttpRequest();
+			http.open('HEAD', 'http://proxy.library.nd.edu/login?url=library.nd.edu', false);
+			http.send();
+
+			alert(http.status);
+
 		</script>
 
         <link rel="stylesheet" type="text/css" href="css/index.css" />

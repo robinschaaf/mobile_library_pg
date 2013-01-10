@@ -135,6 +135,7 @@ $(document).bind('pagebeforechange', function(e, data){
 
 
 
+
 //////////////////////////////////////////////////////////////
 // Childbrowser link class
 //////////////////////////////////////////////////////////////
@@ -531,9 +532,9 @@ function openNativeBrowser(url){
 	window.plugins.childBrowser.showWebPage( url );
 
 
-window.plugins.childBrowser.onLocationChange = function (url) {
-    alert('childBrowser has loaded ' + url);
-};
+	window.plugins.childBrowser.onLocationChange = function (url) {
+	    alert('childBrowser has loaded ' + url);
+	};
 
 	
 	$.mobile.loading( 'hide' );
