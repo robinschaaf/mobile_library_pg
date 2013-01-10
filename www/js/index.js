@@ -133,9 +133,6 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-window.plugins.childBrowser.onLocationChange = function (url) {
-    alert('childBrowser has loaded ' + url);
-};
 
 
 //////////////////////////////////////////////////////////////
@@ -381,7 +378,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -419,9 +416,6 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
 function updateIFrame(iF){
-
-	//WHAT IS THIS FOR????
-	//var u = $.mobile.path.parseUrl(window.location.href);
 	
 	//Get rid of Header on Xerxes
 	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
@@ -505,6 +499,11 @@ function openChildBrowser(url){
 	$.mobile.loading( 'show' );
 	
 	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
+
+
+window.plugins.childBrowser.onLocationChange = function (url) {
+    alert('childBrowser has loaded ' + url);
+};
 	
 	$.mobile.loading( 'hide' );
 
@@ -528,6 +527,12 @@ function openNativeBrowser(url){
 	
 	alert('native called for:  ' + url);
 	window.plugins.childBrowser.showWebPage( url );
+
+
+window.plugins.childBrowser.onLocationChange = function (url) {
+    alert('childBrowser has loaded ' + url);
+};
+
 	
 	$.mobile.loading( 'hide' );
     }catch (err){
