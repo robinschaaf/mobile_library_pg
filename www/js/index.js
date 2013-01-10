@@ -65,27 +65,19 @@ var app = {
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
 
-
-
-
-
-
-
-$.ajax({
-    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
-    type:'HEAD',
-    timeout: 8000,
-    error: function(x, t, m){
-        alert('error: ' + t);
-    },
-    success: function(){
-        alert('success');
-    }
-});
-
-
-
 	
+	var canProxy;
+	$.ajax({
+	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
+	    type:'HEAD',
+	    timeout: 8000,
+	    error: function(x, t, m){
+		canProxy = false;
+	    },
+	    success: function(){
+		canProxy = true;
+	    }
+	});
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -189,7 +181,7 @@ window.onExtURL = function (e) {
 	if (previousOpen != e.data){
 		//origin of where request came from should either be the library site or localhost
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-			openNativeBrowser(e.data);
+			openChildBrowser(e.data);
 			previousOpen = e.data;
 		}else{
 			alert("not valid origin: " + e.origin);
@@ -520,10 +512,14 @@ function openChildBrowser(url){
 	
 	$.mobile.loading( 'show' );
 	
-	alert('childbrowser called: ' + url);
+	if ((canProxy === false) && ((url.indexOf("proxy") > 0) || (url.indexOf("eresources.library") > 0))){
+		
+		alert("To access the following resources you must be logged into the VPN or on campus.  Otherwise you may access through the Library's mobile site");
+		
+	}else{
 	
-	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
-
+		window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
+	}
 
 	window.plugins.childBrowser.onLocationChange = function (url) {
 	    alert('childBrowser has loaded ' + url);
@@ -536,36 +532,6 @@ function openChildBrowser(url){
 	window.open(url);
     }
 }
-
-
-
-
-//////////////////////////////////////////////////////////////
-// Calls Open External (native) browser for passed in URL
-//////////////////////////////////////////////////////////////
-function openNativeBrowser(url){
-
-    try {
-	
-	$.mobile.loading( 'show' );
-	
-	alert('native called for:  ' + url);
-	window.plugins.childBrowser.showWebPage( url );
-
-
-	window.plugins.childBrowser.onLocationChange = function (url) {
-	    alert('childBrowser has loaded ' + url);
-	};
-
-	
-	$.mobile.loading( 'hide' );
-    }catch (err){
-	alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
-	window.open(url);
-    }
-}
-
-
 
 
 //////////////////////////////////////////////////////////////
