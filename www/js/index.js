@@ -166,8 +166,9 @@ window.onExtURL = function (e) {
 	var u = $.mobile.path.parseUrl( e.origin );
 	
 	if (previousOpen != e.data){
+		//origin of where request came from should either be the library site or localhost
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-			openChildBrowser(e.data);
+			openNativeBrowser(e.data);
 			previousOpen = e.data;
 		}else{
 			alert("not valid origin: " + e.origin);
@@ -275,7 +276,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 				$page.find("img").prop("src", function(){
 					srcURL = $(this).attr('src');
 					
-					if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
+					if ($.mobile.path.isRelativeUrl(srcURL)){
+					//if (($.mobile.path.isRelativeUrl(srcURL)) && (srcURL.indexOf("assets") > 0)){
 						return remoteURL + srcURL;
 					}else{
 						return srcURL;
@@ -412,30 +414,12 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //////////////////////////////////////////////////////////////
 // Called from onLoad of the iFrame
 // Various Markups and aesthetic changes
+// used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
 function updateIFrame(iF){
 
-	var u = $.mobile.path.parseUrl(window.location.href);
-	
-	$(iF).contents().find('a').attr('href', function(i, val){
-
-		if ($.mobile.path.isRelativeUrl(val) === true){
-			val = $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
-		}
-	
-		var u = $.mobile.path.parseUrl( val );
-	
-		if (isExtLink(u)){
-			return "javascript:window.top.postMessage('" + val + "', '*');";
-		}else{
-			return val;
-		}
-	
-	});	
-
-
-	
-	$(iF).contents().find('a').removeAttr('target');
+	//WHAT IS THIS FOR????
+	//var u = $.mobile.path.parseUrl(window.location.href);
 	
 	//Get rid of Header on Xerxes
 	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
@@ -446,7 +430,35 @@ function updateIFrame(iF){
 	//Get rid of Header on Primo
 	$(iF).contents().find('#exlidHeaderTile').css('display', 'none');
 	$(iF).contents().find('#exlidHeaderContainer').css('height', '100%');
+
+	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
+
 	
+	$(iF).contents().find('a').attr('href', function(i, val){
+
+
+		//is not relative
+		if ($.mobile.path.isRelativeUrl(val) === false){
+			var u = $.mobile.path.parseUrl( val );
+			
+			
+			//if it's not on the same domain as current iframe's source, open externally
+			if (u.host != iFu.host){
+				return "javascript:window.top.postMessage('" + val + "', '*');";
+			}else{
+				return val;
+			}
+		
+		//is relative url
+		}else{
+		
+			return $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
+		
+		}
+		
+	
+	});	
+
 	
 	$.mobile.loading( 'hide' );
 
@@ -466,12 +478,13 @@ function updateIFrame(iF){
 //////////////////////////////////////////////////////////////
 //will return true under following conditions:
 //external to nd.edu host (does not contain nd.edu in domain)
-//contains the word proxy in it (meaning it gets proxied to a different website)
-
+//contains the word proxy or eresources in it (meaning it gets proxied to a different website)
+//catalog and findtext need to be opened external because of how they're proxied
 //is http or https (since there can be other protocols, like telephone://, file://)
+
 function isExtLink(parsedURL){
 
-	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.href.indexOf("catalog.library") > 0) || (parsedURL.href.indexOf("findtext.library") > 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) && (parsedURL.href !== "http://xerxes.library.nd.edu.proxy.library.nd.edu/quicksearch/") ){
+	if (((parsedURL.href.indexOf("proxy") > 0) || (parsedURL.href.indexOf("eresources.library") > 0) || (parsedURL.href.indexOf("catalog.library") > 0) || (parsedURL.href.indexOf("findtext.library") >= 0) || (parsedURL.host.indexOf("nd.edu") < 1)) && ((parsedURL.protocol == "http:") || (parsedURL.protocol == "https:")) ){
 		return true;
 	}else{
 		return false;
@@ -492,6 +505,27 @@ function openChildBrowser(url){
 	//both of these should work... (but actually don't...)
 	window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
 	//childBrowser.showWebPage(url);
+	
+	$.mobile.loading( 'hide' );
+    }catch (err){
+	alert("Childbrowser plugin is not working, a new window will open instead.  Error: " + err);
+	window.open(url);
+    }
+}
+
+
+
+
+//////////////////////////////////////////////////////////////
+// Calls Open External (native) browser for passed in URL
+//////////////////////////////////////////////////////////////
+function openNativeBrowser(url){
+
+    try {
+	
+	$.mobile.loading( 'show' );
+	
+	window.plugins.childBrowser.openExternal( url);
 	
 	$.mobile.loading( 'hide' );
     }catch (err){
