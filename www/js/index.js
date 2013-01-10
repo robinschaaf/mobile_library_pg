@@ -133,7 +133,9 @@ $(document).bind('pagebeforechange', function(e, data){
 });
 
 
-
+window.plugins.childBrowser.onLocationChange = function (url) {
+    alert('childBrowser has loaded ' + url);
+};
 
 
 //////////////////////////////////////////////////////////////
