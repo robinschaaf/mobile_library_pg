@@ -65,8 +65,6 @@ var app = {
 
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
-
-	
 	
 	$.ajax({
 	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
@@ -515,16 +513,16 @@ function openChildBrowser(url){
 	
 	if ((canProxy === false) && ((url.indexOf("proxy") > 0) || (url.indexOf("eresources.library") > 0))){
 		
-		alert("To access the following resources you must be logged into the VPN or on campus.  Otherwise you may access through the Library's mobile site");
+		alert("Sorry, but to access this resource you must either be logged in to the VPN or on campus.  You may also use the mobile library.nd.edu site.");
 		
 	}else{
 	
 		window.plugins.childBrowser.showWebPage( url, {showLocationBar:true}, "Hesburgh Libraries");
 	}
 
-	window.plugins.childBrowser.onLocationChange = function (url) {
-	    alert('childBrowser has loaded ' + url);
-	};
+	//window.plugins.childBrowser.onLocationChange = function (url) {
+	//    alert('childBrowser has loaded ' + url);
+	//};
 	
 	$.mobile.loading( 'hide' );
 
