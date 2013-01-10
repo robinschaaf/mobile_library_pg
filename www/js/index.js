@@ -18,6 +18,7 @@
  */
  
 var childBrowser; 
+var canProxy = false;
 var remoteURL='http://m.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
  
@@ -66,7 +67,7 @@ var app = {
 	window.addEventListener('message', onExtURL, false);
 
 	
-	var canProxy;
+	
 	$.ajax({
 	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
 	    type:'HEAD',
