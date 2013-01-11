@@ -433,10 +433,10 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='max-width:640px; width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
-alert(origURLObj.href);
+
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
@@ -484,22 +484,20 @@ function updateIFrame(iFt){
 
 		//is not relative url
 		if ($.mobile.path.isRelativeUrl(val) === false){
-			var u = $.mobile.path.parseUrl( val );
-						
-			//if it's not on the same domain as current iframe's source, open externally
-			if ((u.host != iFu.host) || (isExtLink(u))){
-				return "javascript:alert('external url: " + val + "');";
-				//return "javascript:window.top.postMessage('" + val + "', '*');";
-			}else{
-				return val;
-			}
-		
-		//is relative url
-		}else{
-		
-			return $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
-		
+			val = $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
 		}
+		
+		
+		var u = $.mobile.path.parseUrl( val );
+
+		//if it's not on the same domain as current iframe's source, open externally
+		if ((u.host != iFu.host) || (isExtLink(u))){
+			//return "javascript:alert('external url: " + val + "');";
+			return "javascript:window.top.postMessage('" + val + "', '*');";
+		}else{
+			return val;
+		}
+		
 		
 	
 	});	
