@@ -476,11 +476,6 @@ function updateIFrame(iFt){
 
 	iF = $.mobile.activePage.find('.iframeSource');
 
-	//iF = $("div.ui-page-active .subPageData .iframeSource");
-	
-	
-	alert("this: " + $(iF).attr('src') + "   \ndivpageactive: " + $(iFt).attr('src'));
-
 	$(iF).css("height","1%");
 	
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
@@ -495,8 +490,8 @@ function updateIFrame(iFt){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if ((u.host != iFu.host) || (isExtLink(u))){
-				return "javascript:alert('" + val + "');";
-				//return "javascript:window.top.postMessage('" + val + "', '*');";
+				//return "javascript:alert('" + val + "');";
+				return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
@@ -513,7 +508,7 @@ function updateIFrame(iFt){
 
 	
 	//Get rid of Header on Xerxes
-	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
+	$(iF).contents().find('div.mobile').find('div#hd').css('display', 'none');
 
 	//Get rid of Header on Ejournal Locator
 	$(iF).contents().find('div.header').css('display', 'none');
