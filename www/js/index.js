@@ -223,12 +223,14 @@ function showVPNAlert() {
             'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all electronic resources.',  // message
             onDismiss,         // callback
             'Hesburgh Libraries',   // title
-            'Continue, Exit'              // buttonName
+            'Exit, Continue Anyway'              // buttonName
         );
 }
 
-function onDismiss(button) {
-    alert('You selected button ' + button);
+function onDismiss(buttonChosen) {
+    if (buttonChosen == "1"){
+    	navigator.app.exitApp()
+    }
 }
 
 
@@ -567,10 +569,6 @@ function checkConnection() {
     }
 
 }
-
-
-
-
 
 
 
