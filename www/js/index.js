@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var canProxy = false;
+var canProxy;
 var remoteURL='http://m.library.nd.edu/';
 //var remoteURL='http://localhost:3000/';
  
@@ -65,19 +65,7 @@ var app = {
 
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
-	
-	$.ajax({
-	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
-	    type:'HEAD',
-	    timeout: 8000,
-	    error: function(x, t, m){
-		canProxy = false;
-		showVPNAlert();
-	    },
-	    success: function(){
-		canProxy = true;
-	    }
-	});
+
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -212,6 +200,33 @@ $('.EXLSearchForm').live('submit', function () {
 });
 
 
+//////////////////////////////////////////////////////////////
+// Test by hitting proxy if user has access to e-resources
+// 
+//////////////////////////////////////////////////////////////
+
+function testProxyAccess(){
+	$.ajax({
+	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
+	    type:'HEAD',
+	    timeout: 4000,
+	    error: function(x, t, m){
+	    	//if switching from being able to proxy to not being able to proxy
+	    	if (canProxy !== false){
+	    		showVPNAlert();
+	    	}
+	    	
+		canProxy = false;
+		
+	    },
+	    success: function(){
+		canProxy = true;
+	    }
+	});
+	
+}
+
+
 
 //////////////////////////////////////////////////////////////
 // Alert when users are off campus they might not be able
@@ -223,12 +238,22 @@ function showVPNAlert() {
             'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all features of the catalog and electronic resources.',  // message
             onDismiss,         // callback
             'Hesburgh Libraries Alert',   // title
-            'Continue'              // buttonName
+            'Learn about ND VPN, Continue'              // buttonName
         );
 }
 
 function onDismiss(buttonChosen) {
-    //1, 2, 3
+
+    if (buttonChosen == "1"){
+    	if ((device.platform == "iPhone") || (device.platform == "iOS")){
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/ios/");
+    	}else if (device.platform == "Android"){
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/android/");
+    	}else{
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/");
+    	}
+    }
+    
 }
 
 
