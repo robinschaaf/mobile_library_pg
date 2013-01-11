@@ -72,6 +72,7 @@ var app = {
 	    timeout: 8000,
 	    error: function(x, t, m){
 		canProxy = false;
+		showVPNAlert();
 	    },
 	    success: function(){
 		canProxy = true;
@@ -212,6 +213,23 @@ $('.EXLSearchForm').live('submit', function () {
 
 
 
+//////////////////////////////////////////////////////////////
+// Alert when users are off campus they might not be able
+// access all resources
+//////////////////////////////////////////////////////////////
+
+function showVPNAlert() {
+	navigator.notification.alert(
+            'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all electronic resources.',  // message
+            onDismiss,         // callback
+            'Hesburgh Libraries',   // title
+            'Continue, Exit'              // buttonName
+        );
+}
+
+function onDismiss(button) {
+    alert('You selected button ' + button);
+}
 
 
 
