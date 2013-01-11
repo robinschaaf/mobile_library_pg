@@ -239,7 +239,7 @@ function showVPNAlert() {
             'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all features of the catalog and electronic resources.',  // message
             onDismiss,         // callback
             'Hesburgh Libraries Alert',   // title
-            'Learn about ND VPN, Continue'              // buttonName
+            'About ND VPN, Continue'              // buttonName
         );
 }
 
@@ -247,7 +247,7 @@ function onDismiss(buttonChosen) {
 
     if (buttonChosen == "1"){
     	//if ((device.platform == "iPhone") || (device.platform == "iOS")){
-    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/ios/");
+    		window.location = "http://oithelp.nd.edu/networking/vpn/ios/";
     	//}else if (device.platform == "Android"){
     	//	openChildBrowser("http://oithelp.nd.edu/networking/vpn/android/");
     	//}else{
