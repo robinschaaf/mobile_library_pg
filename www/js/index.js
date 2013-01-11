@@ -474,10 +474,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 function updateIFrame(iF){
 
 	$(iF).css("height","1%");
-
-	alert('updateiframe');
 	
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
+
+
+
+	alert(iFu.href);
+
 
 	//look at all links on page to update if needed	
 	$(iF).contents().find('a').attr('href', function(i, val){
@@ -488,9 +491,9 @@ function updateIFrame(iF){
 			var u = $.mobile.path.parseUrl( val );
 						
 			//if it's not on the same domain as current iframe's source, open externally
-			if (u.host != iFu.host){
-				return "javascript:alert('" + val + "');";
-				//return "javascript:window.top.postMessage('" + val + "', '*');";
+			if ((u.host != iFu.host) || (isExtLink(u)){
+				//return "javascript:alert('" + val + "');";
+				return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
