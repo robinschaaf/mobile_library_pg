@@ -435,7 +435,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').html( "<iframe id='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').append( "<iframe id='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 alert(origURLObj.href);
@@ -495,8 +495,8 @@ function updateIFrame(iF){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if ((u.host != iFu.host) || (isExtLink(u))){
-				//return "javascript:alert('" + val + "');";
-				return "javascript:window.top.postMessage('" + val + "', '*');";
+				return "javascript:alert('" + val + "');";
+				//return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
