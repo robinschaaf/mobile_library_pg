@@ -492,7 +492,7 @@ function updateIFrame(iF){
 			var u = $.mobile.path.parseUrl( val );
 						
 			//if it's not on the same domain as current iframe's source, open externally
-			if ((u.host != iFu.host) || (isExtLink(u)){
+			if ((u.host != iFu.host) || (isExtLink(u))){
 				//return "javascript:alert('" + val + "');";
 				return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
