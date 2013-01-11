@@ -468,12 +468,10 @@ function updateIFrame(iF){
 		//is not relative url
 		if ($.mobile.path.isRelativeUrl(val) === false){
 			var u = $.mobile.path.parseUrl( val );
-			
-			alert(u.host + " iframe: " + iFu.host);
-			
+						
 			//if it's not on the same domain as current iframe's source, open externally
 			if (u.host != iFu.host){
-				return "javascript:window.top.postMessage('" + val + "', '*');";
+				return "alert('not same domain' + val); javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
