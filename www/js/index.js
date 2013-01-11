@@ -496,7 +496,7 @@ function updateIFrame(iF){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if (u.host != iFu.host){
-				return "alert('not same domain' + val); javascript:window.top.postMessage('" + val + "', '*');";
+				return "javascript:alert('not same domain' + val); window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
