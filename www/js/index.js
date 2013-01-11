@@ -435,7 +435,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').append( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
@@ -472,16 +472,13 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // Various Markups and aesthetic changes
 // used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
-function updateIFrame(iF){
+function updateIFrame(){
+
+	iF = $.mobile.activePage.find('.iframeSource');
 
 	$(iF).css("height","1%");
 	
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
-
-
-
-	alert(iFu.href);
-
 
 	//look at all links on page to update if needed	
 	$(iF).contents().find('a').attr('href', function(i, val){
