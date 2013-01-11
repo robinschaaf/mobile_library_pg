@@ -65,8 +65,6 @@ var app = {
 
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
-
-	testProxyAccess();
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
@@ -490,8 +488,8 @@ function updateIFrame(iFt){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if ((u.host != iFu.host) || (isExtLink(u))){
-				//return "javascript:alert('" + val + "');";
-				return "javascript:window.top.postMessage('" + val + "', '*');";
+				return "javascript:alert('external url: " + val + "');";
+				//return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
