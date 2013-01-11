@@ -244,9 +244,11 @@ function showVPNAlert() {
 
 function onDismiss(buttonChosen) {
 
+
     if (buttonChosen == "1"){
     	if ((device.platform == "iPhone") || (device.platform == "iOS")){
-    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/ios/");
+    		//doesnt work in iphone 
+    		//openChildBrowser("http://oithelp.nd.edu/networking/vpn/ios/");
     	}else if (device.platform == "Android"){
     		openChildBrowser("http://oithelp.nd.edu/networking/vpn/android/");
     	}else{
