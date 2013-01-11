@@ -395,7 +395,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 }
 
 
-
+var currentPage;
 //////////////////////////////////////////////////////////////
 // Called from Page Handler - used for displaying pages
 // internal to the library that can handle mobile displays
@@ -441,7 +441,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
-				
+				currentPage = origURLObj.href;
 				$.mobile.changePage( $page, options );
 				$.mobile.loading( 'show' );
 			}); 
@@ -480,7 +480,7 @@ function updateIFrame(){
 	iF = $("div.ui-page-active .subPageData .iframeSource");
 	
 	
-	alert("activepage: " + $(iFt).attr('src') + "divpageactive: " + $(iF).attr('src'));
+	alert("currentpage: " + currentPage + "   \ndivpageactive: " + $(iF).attr('src'));
 
 	$(iF).css("height","1%");
 	
