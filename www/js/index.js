@@ -472,6 +472,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
 function updateIFrame(iF){
+	alert('updateiframe');
 	
 	//Get rid of Header on Xerxes
 	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
@@ -496,7 +497,7 @@ function updateIFrame(iF){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if (u.host != iFu.host){
-				return "javascript:alert('not same domain' + val); window.top.postMessage('" + val + "', '*');";
+				return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
