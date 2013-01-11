@@ -395,7 +395,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 }
 
 
-var currentPage;
 //////////////////////////////////////////////////////////////
 // Called from Page Handler - used for displaying pages
 // internal to the library that can handle mobile displays
@@ -436,12 +435,12 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				//load into an iframe
 				//and expand the width of the content container (parents)
 
-				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame();' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
+				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
 
 				options.dataUrl = origURLObj.href;
-				currentPage = origURLObj.href;
+				
 				$.mobile.changePage( $page, options );
 				$.mobile.loading( 'show' );
 			}); 
@@ -473,14 +472,14 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // Various Markups and aesthetic changes
 // used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
-function updateIFrame(){
+function updateIFrame(iF){
 
 	iFt = $.mobile.activePage.find('.iframeSource');
 
-	iF = $("div.ui-page-active .subPageData .iframeSource");
+	//iF = $("div.ui-page-active .subPageData .iframeSource");
 	
 	
-	alert("currentpage: " + currentPage + "   \ndivpageactive: " + $(iF).attr('src'));
+	alert("this: " + $(iF).attr('src') + "   \ndivpageactive: " + $.mobile.activePage.find(".iframeSource").attr('src'));
 
 	$(iF).css("height","1%");
 	
