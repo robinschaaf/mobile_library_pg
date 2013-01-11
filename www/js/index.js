@@ -170,6 +170,7 @@ window.onExtURL = function (e) {
 	if (previousOpen != e.data){
 		//origin of where request came from should either be the library site or localhost
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
+			alert(e.data);
 			openChildBrowser(e.data);
 			previousOpen = e.data;
 		}else{
@@ -475,6 +476,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 function updateIFrame(){
 
 	iF = $.mobile.activePage.find('.iframeSource');
+	alert($(iF).attr('src'));
 
 	$(iF).css("height","1%");
 	
