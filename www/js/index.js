@@ -93,6 +93,8 @@ $(document).bind('pagebeforechange', function(e, data){
 	
 		$.mobile.loading( 'show' );
 	
+		testProxyAccess();
+	
 		var u = $.mobile.path.parseUrl( data.toPage )
 		var sourceURL = u.href;
 				
@@ -168,7 +170,6 @@ window.onExtURL = function (e) {
 	if (previousOpen != e.data){
 		//origin of where request came from should either be the library site or localhost
 		if((e.origin == 'http://localhost:3000') || (u.hostname.indexOf("library.nd.edu") > 0)){
-			alert(e.data);
 			openChildBrowser(e.data);
 			previousOpen = e.data;
 		}else{
@@ -492,7 +493,6 @@ function updateIFrame(iFt){
 
 		//if it's not on the same domain as current iframe's source, open externally
 		if ((u.host != iFu.host) || (isExtLink(u))){
-			//return "javascript:alert('external url: " + val + "');";
 			return "javascript:window.top.postMessage('" + val + "', '*');";
 		}else{
 			return val;
