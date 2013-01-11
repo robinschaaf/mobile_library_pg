@@ -472,20 +472,12 @@ function showIFrame( sourceURL, origURLObj, options ) {
 // used only for Primo, eJournal and Xerxes
 //////////////////////////////////////////////////////////////
 function updateIFrame(iF){
+
+	$(iF).css("height","1%");
+
 	alert('updateiframe');
 	
-	//Get rid of Header on Xerxes
-	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
-	
-	//Get rid of Header on Ejournal Locator
-	$(iF).contents().find('div.header').css('display', 'none');
-	
-	//Get rid of Header on Primo
-	$(iF).contents().find('#exlidHeaderTile').css('display', 'none');
-	$(iF).contents().find('#exlidHeaderContainer').css('height', '100%');
-
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
-
 
 	//look at all links on page to update if needed	
 	$(iF).contents().find('a').attr('href', function(i, val){
@@ -497,7 +489,8 @@ function updateIFrame(iF){
 						
 			//if it's not on the same domain as current iframe's source, open externally
 			if (u.host != iFu.host){
-				return "javascript:window.top.postMessage('" + val + "', '*');";
+				return "javascript:alert('" + val + "');";
+				//return "javascript:window.top.postMessage('" + val + "', '*');";
 			}else{
 				return val;
 			}
@@ -513,12 +506,22 @@ function updateIFrame(iF){
 	});	
 
 	
+	//Get rid of Header on Xerxes
+	$(iF).contents().find('div#mobile').find('div#hd').css('display', 'none');
+
+	//Get rid of Header on Ejournal Locator
+	$(iF).contents().find('div.header').css('display', 'none');
+
+	//Get rid of Header on Primo
+	$(iF).contents().find('#exlidHeaderTile').css('display', 'none');
+	$(iF).contents().find('#exlidHeaderContainer').css('height', '100%');
+
+
 	$.mobile.loading( 'hide' );
 
 	$(iF).css("height","100%");
 	$(iF).css("width","100%");
 
-	
 
 }
 
