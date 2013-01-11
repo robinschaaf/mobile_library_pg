@@ -66,6 +66,7 @@ var app = {
 	//this is for iframe speaking to parent
 	window.addEventListener('message', onExtURL, false);
 
+	testProxyAccess();
 	
 	// This is an event handler function, which means the scope is the event.
 	// So, we must explicitly called `app.report()` instead of `this.report()`.
