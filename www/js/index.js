@@ -220,17 +220,15 @@ $('.EXLSearchForm').live('submit', function () {
 
 function showVPNAlert() {
 	navigator.notification.alert(
-            'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all electronic resources.',  // message
+            'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all features of the catalog and electronic resources.',  // message
             onDismiss,         // callback
-            'Hesburgh Libraries',   // title
-            'Exit, Continue Anyway'              // buttonName
+            'Hesburgh Libraries Alert',   // title
+            'Continue'              // buttonName
         );
 }
 
 function onDismiss(buttonChosen) {
-    if (buttonChosen == "1"){
-    	navigator.app.exitApp()
-    }
+    //1, 2, 3
 }
 
 
@@ -374,7 +372,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 //////////////////////////////////////////////////////////////
 // Called from Page Handler - used for displaying pages
 // internal to the library that can handle mobile displays
-// e.g. Primo, EJournal locator
+// e.g. Primo, EJournal locator, Xerxes
 //////////////////////////////////////////////////////////////
 function showIFrame( sourceURL, origURLObj, options ) {
         
@@ -462,14 +460,16 @@ function updateIFrame(iF){
 
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
 
-	
+
+	//look at all links on page to update if needed	
 	$(iF).contents().find('a').attr('href', function(i, val){
 
 
-		//is not relative
+		//is not relative url
 		if ($.mobile.path.isRelativeUrl(val) === false){
 			var u = $.mobile.path.parseUrl( val );
 			
+			alert(u.host + " iframe: " + iFu.host);
 			
 			//if it's not on the same domain as current iframe's source, open externally
 			if (u.host != iFu.host){
