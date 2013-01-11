@@ -438,7 +438,7 @@ function showIFrame( sourceURL, origURLObj, options ) {
 				$page.find('.subPageData').html( "<iframe class='iframeSource' onload='updateIFrame(this);' style='width:250px; height:0px; background-color: #304962;' frameborder='0' src = '" + sourceURL + "'></iframe>" ).parents().css('padding', '0px', 'margin', '0px');
 
 				$page.page();
-
+alert(origURLObj.href);
 				options.dataUrl = origURLObj.href;
 				
 				$.mobile.changePage( $page, options );
