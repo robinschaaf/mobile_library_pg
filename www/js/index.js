@@ -475,8 +475,12 @@ function showIFrame( sourceURL, origURLObj, options ) {
 //////////////////////////////////////////////////////////////
 function updateIFrame(){
 
-	iF = $.mobile.activePage.find('.iframeSource');
-	alert($(iF).attr('src'));
+	iFt = $.mobile.activePage.find('.iframeSource');
+
+	iF = $("div.ui-page-active .subPageData .iframeSource");
+	
+	
+	alert("activepage: " + $(iFt).attr('src') + "divpageactive: " + $(iF).attr('src'));
 
 	$(iF).css("height","1%");
 	
