@@ -20,7 +20,6 @@
 var childBrowser; 
 var canProxy;
 var remoteURL='http://m.library.nd.edu/';
-//var remoteURL='http://localhost:3000/';
  
 
 ////////////////////////////////////////////////////////////// 
@@ -239,20 +238,20 @@ function showVPNAlert() {
             'We have detected that you are connected from off-campus and not on a VPN.  If you choose to continue you may not be able to access all features of the catalog and electronic resources.',  // message
             onDismiss,         // callback
             'Hesburgh Libraries Alert',   // title
-            'About ND VPN, Continue'              // buttonName
+            'Continue'              // buttonName
         );
 }
 
 function onDismiss(buttonChosen) {
 
     if (buttonChosen == "1"){
-    	//if ((device.platform == "iPhone") || (device.platform == "iOS")){
-    		window.location = "http://oithelp.nd.edu/networking/vpn/ios/";
-    	//}else if (device.platform == "Android"){
-    	//	openChildBrowser("http://oithelp.nd.edu/networking/vpn/android/");
-    	//}else{
-    	//	openChildBrowser("http://oithelp.nd.edu/networking/vpn/");
-    	//}
+    	if ((device.platform == "iPhone") || (device.platform == "iOS")){
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/ios/");
+    	}else if (device.platform == "Android"){
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/android/");
+    	}else{
+    		openChildBrowser("http://oithelp.nd.edu/networking/vpn/");
+    	}
     }
     
 }
