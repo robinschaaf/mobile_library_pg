@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var canProxy = false;
+var canProxy;
 var remoteURL='http://m.library.nd.edu/';
  
 
@@ -49,7 +49,6 @@ var app = {
         document.addEventListener('deviceready', this.deviceready, true);
     },
     deviceready: function() {
-	testProxyAccess();
 
  	if (checkConnection() === false){
  		window.location = "noconnection.html";
