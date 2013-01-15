@@ -224,6 +224,30 @@ function testProxyAccess(){
 		canProxy = true;
 	    }
 	});
+
+
+	$.ajax({
+	    url:'http://www.library.nd.edu',
+	    type:'HEAD',
+	    timeout: 4000,
+	    error: function(x, t, m){
+	    	//if switching from being able to proxy to not being able to proxy
+	    	if (canProxy !== false){
+	    		showVPNAlert();
+	    	}
+	    	
+		canProxy = false;
+		navigator.notification.alert(x);
+	    },
+	    success: function(result){
+	    	navigator.notification.alert(result);
+		canProxy = true;
+	    }
+	});
+
+
+
+	
 	
 }
 
