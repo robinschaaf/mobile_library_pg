@@ -220,7 +220,7 @@ function testProxyAccess(){
 		navigator.notification.alert(x, onDismiss);
 	    },
 	    success: function(XMLHttpRequest, textStatus){
-	    	alert(XMLHttpRequest.getAllResponseHeaders());
+	    	navigator.notification.alert(XMLHttpRequest.status + ' ' + textStatus, onDismiss,'Hesburgh','continue');
 		canProxy = true;
 	    }
 	});
@@ -240,14 +240,14 @@ function testProxyAccess(){
 		navigator.notification.alert(x, onDismiss);
 	    },
 	    success: function(XMLHttpRequest, textStatus){
-	    	alert(XMLHttpRequest.getAllResponseHeaders());
+	    	navigator.notification.alert(XMLHttpRequest.status + ' ' + textStatus, onDismiss,'Hesburgh','continue');
 		canProxy = true;
 	    }
 	});
 
 
 
-	
+	navigator.notification.alert('canproxy: ' + canProxy);
 	
 }
 
