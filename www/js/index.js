@@ -210,7 +210,7 @@ function testProxyAccess(){
 	    url:'http://proxy.library.nd.edu/login?url=library.nd.edu',
 	    type:'HEAD',
 	    timeout: 4000,
-	    fail: function(x, t, m){
+	    error: function(x, t, m){
 	    	//if switching from being able to proxy to not being able to proxy
 	    	if (canProxy !== false){
 	    		showVPNAlert();
@@ -219,8 +219,8 @@ function testProxyAccess(){
 		canProxy = false;
 		navigator.notification.alert(x, onDismiss);
 	    },
-	    always: function(XMLHttpRequest, textStatus){
-	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders + ' ' + textStatus, onDismiss,'Hesburgh','continue');
+	    complete: function(XMLHttpRequest, textStatus){
+	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders() + ' ' + textStatus, onDismiss,'Hesburgh','continue');
 		canProxy = true;
 	    }
 	});
@@ -230,7 +230,7 @@ function testProxyAccess(){
 	    url:'http://www.library.nd.edu',
 	    type:'HEAD',
 	    timeout: 4000,
-	    fail: function(x, t, m){
+	    error: function(x, t, m){
 	    	//if switching from being able to proxy to not being able to proxy
 	    	if (canProxy !== false){
 	    		showVPNAlert();
@@ -239,8 +239,8 @@ function testProxyAccess(){
 		canProxy = false;
 		navigator.notification.alert(x, onDismiss);
 	    },
-	    always: function(XMLHttpRequest, textStatus){
-	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders + ' ' + textStatus, onDismiss,'Hesburgh','continue');
+	    complete: function(XMLHttpRequest, textStatus){
+	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders() + ' ' + textStatus, onDismiss,'Hesburgh','continue');
 		canProxy = true;
 	    }
 	});
