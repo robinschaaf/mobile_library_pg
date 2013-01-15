@@ -219,8 +219,8 @@ function testProxyAccess(){
 		canProxy = false;
 		navigator.notification.alert(x);
 	    },
-	    success: function(){
-	    	navigator.notification.alert('success');
+	    success: function(result){
+	    	navigator.notification.alert(result);
 		canProxy = true;
 	    }
 	});
