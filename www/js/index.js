@@ -217,10 +217,10 @@ function testProxyAccess(){
 	    	}
 	    	
 		canProxy = false;
-		navigator.notification.alert(x);
+		navigator.notification.alert(x, onDismiss);
 	    },
 	    success: function(result){
-	    	navigator.notification.alert(result);
+	    	navigator.notification.alert(result, onDismiss);
 		canProxy = true;
 	    }
 	});
@@ -237,10 +237,10 @@ function testProxyAccess(){
 	    	}
 	    	
 		canProxy = false;
-		navigator.notification.alert(x);
+		navigator.notification.alert(x, onDismiss);
 	    },
 	    success: function(result){
-	    	navigator.notification.alert(result);
+	    	navigator.notification.alert(result, onDismiss);
 		canProxy = true;
 	    }
 	});
