@@ -219,8 +219,8 @@ function testProxyAccess(){
 		canProxy = false;
 		navigator.notification.alert(x, onDismiss);
 	    },
-	    success: function(result){
-	    	navigator.notification.alert(result, onDismiss);
+	    success: function(XMLHttpRequest, textStatus){
+	    	alert(XMLHttpRequest.getAllResponseHeaders());
 		canProxy = true;
 	    }
 	});
@@ -239,8 +239,8 @@ function testProxyAccess(){
 		canProxy = false;
 		navigator.notification.alert(x, onDismiss);
 	    },
-	    success: function(result){
-	    	navigator.notification.alert(result, onDismiss);
+	    success: function(XMLHttpRequest, textStatus){
+	    	alert(XMLHttpRequest.getAllResponseHeaders());
 		canProxy = true;
 	    }
 	});
