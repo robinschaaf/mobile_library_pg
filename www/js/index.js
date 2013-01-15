@@ -217,9 +217,10 @@ function testProxyAccess(){
 	    	}
 	    	
 		canProxy = false;
-		
+		navigator.notification.alert(x);
 	    },
 	    success: function(){
+	    	navigator.notification.alert('success');
 		canProxy = true;
 	    }
 	});
