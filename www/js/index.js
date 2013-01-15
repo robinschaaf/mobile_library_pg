@@ -220,30 +220,16 @@ function testProxyAccess(){
 		navigator.notification.alert(x, onDismiss);
 	    },
 	    complete: function(XMLHttpRequest, textStatus){
-	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders() + ' ' + textStatus, onDismiss,'Hesburgh','continue');
-		canProxy = true;
-	    }
-	});
-
-
-	$.ajax({
-	    url:'http://www.library.nd.edu',
-	    type:'HEAD',
-	    timeout: 4000,
-	    error: function(x, t, m){
-	    	//if switching from being able to proxy to not being able to proxy
-	    	if (canProxy !== false){
-	    		showVPNAlert();
+	    	if(XMLHttpRequest.getResponseHeader('connection') !== 'close'){
+	    		canProxy = true;
 	    	}
 	    	
-		canProxy = false;
-		navigator.notification.alert(x, onDismiss);
-	    },
-	    complete: function(XMLHttpRequest, textStatus){
 	    	navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders() + ' ' + textStatus, onDismiss,'Hesburgh','continue');
-		canProxy = true;
+		
 	    }
 	});
+
+
 
 
 	if (canProxy === true){	navigator.notification.alert('canproxy');} else { navigator.notification.alert('cannot proxy'); }
