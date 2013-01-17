@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var canProxy;
+var canProxy = false;
 var remoteURL='http://m.library.nd.edu/';
  
 
