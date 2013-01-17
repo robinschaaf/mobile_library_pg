@@ -219,7 +219,7 @@ function testProxyAccess(){
 	    timeout: 4000,
 	    error: function(x, t, m){
 	    	//if switching from being able to proxy to not being able to proxy
-	    	if (canProxy !== false){
+	    	if (canProxy === true){
 	    		showVPNAlert();
 	    	}
 	    	
@@ -231,7 +231,7 @@ function testProxyAccess(){
 	    	}else{
 
 			//if switching from being able to proxy to not being able to proxy
-			if (canProxy !== false){
+			if (canProxy === true){
 				showVPNAlert();
 			}
 
