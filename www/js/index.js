@@ -42,7 +42,14 @@ var app = {
   	$.mobile.loader.prototype.options.theme = "b";
   	$.mobile.loader.prototype.options.html = "<br /><h1>Loading...</h1><br />";
   	
-
+  	
+  	            // Setting #container div as a jqm pageContainer
+	            $.mobile.pageContainer = $('#container');
+	 
+	            // Setting default page transition to slide
+            $.mobile.defaultPageTransition = 'slide';
+            
+            
         this.bind();
     },
     bind: function() {
@@ -231,16 +238,9 @@ function testProxyAccess(){
 	    	
 	    	}
 	    	
-	    	//navigator.notification.alert(XMLHttpRequest.getAllResponseHeaders() + ' ' + textStatus, onDismiss,'Hesburgh','continue');
-		
 	    }
 	});
 
-
-
-
-	//if (canProxy === true){	navigator.notification.alert('canproxy');} else { navigator.notification.alert('cannot proxy'); }
-	
 }
 
 
