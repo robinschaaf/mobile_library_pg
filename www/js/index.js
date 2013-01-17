@@ -43,11 +43,12 @@ var app = {
   	$.mobile.loader.prototype.options.html = "<br /><h1>Loading...</h1><br />";
   	
   	
-  	            // Setting #container div as a jqm pageContainer
-	            //$.mobile.pageContainer = $('#container');
+  	
+  	// Setting #container div as a jqm pageContainer
+	$.mobile.pageContainer = $('#container');
 	 
-	            // Setting default page transition to fade
-            $.mobile.defaultPageTransition = 'fade';
+	// Setting default page transition to slide
+        $.mobile.defaultPageTransition = 'fade';
             
             
         this.bind();
