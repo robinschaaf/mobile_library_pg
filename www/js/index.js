@@ -44,10 +44,10 @@ var app = {
   	
   	
   	            // Setting #container div as a jqm pageContainer
-	            $.mobile.pageContainer = $('#container');
+	            //$.mobile.pageContainer = $('#container');
 	 
-	            // Setting default page transition to slide
-            $.mobile.defaultPageTransition = 'slide';
+	            // Setting default page transition to fade
+            $.mobile.defaultPageTransition = 'fade';
             
             
         this.bind();
