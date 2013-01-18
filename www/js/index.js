@@ -382,8 +382,6 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 				});
 
-	//add new page to the DOM
-	$.mobile.pageContainer.append($page)
 				
 				$page.page();
 
@@ -402,6 +400,8 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 		
 
+	//add new page to the DOM
+	$.mobile.pageContainer.append($page)
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
