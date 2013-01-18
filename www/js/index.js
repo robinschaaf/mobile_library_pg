@@ -18,7 +18,7 @@
  */
  
 var childBrowser; 
-var canProxy = false;
+var canProxy;
 var remoteURL='http://m.library.nd.edu/';
  
 
@@ -219,19 +219,20 @@ function testProxyAccess(){
 	    timeout: 4000,
 	    error: function(x, t, m){
 	    	//if switching from being able to proxy to not being able to proxy
-	    	if (canProxy === true){
+	    	if (canProxy !== false){
 	    		showVPNAlert();
 	    	}
 	    	
 		canProxy = false;
 	    },
 	    success: function(data, textStatus, XMLHttpRequest){
+	    alert(XMLHttpRequest.getResponseHeader('connection'));
 	    	if(XMLHttpRequest.getResponseHeader('connection') !== 'close'){
 	    		canProxy = true;
 	    	}else{
 
 			//if switching from being able to proxy to not being able to proxy
-			if (canProxy === true){
+			if (canProxy !== false){
 				showVPNAlert();
 			}
 
