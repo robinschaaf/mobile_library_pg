@@ -226,7 +226,9 @@ function testProxyAccess(){
 		canProxy = false;
 	    },
 	    success: function(data, textStatus, XMLHttpRequest){
-	    //alert(XMLHttpRequest.getAllResponseHeaders());
+	    
+	        //Apache response means it's at the webserver asking for password
+	        //otherwise the server response is ezproxy
 	    	if(XMLHttpRequest.getResponseHeader('server') !== 'Apache'){
 	    		canProxy = true;
 	    	}else{
@@ -385,7 +387,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 				options.dataUrl = origURLObj.href;
 				
-				$.mobile.changePage( $page, options );
+				//$.mobile.changePage( $page, options );
 
 				$.mobile.loading( 'hide' );
 
