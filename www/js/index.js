@@ -226,8 +226,8 @@ function testProxyAccess(){
 		canProxy = false;
 	    },
 	    success: function(data, textStatus, XMLHttpRequest){
-	    alert(XMLHttpRequest.getAllResponseHeaders());
-	    	if(XMLHttpRequest.getResponseHeader('connection') !== 'close'){
+	    //alert(XMLHttpRequest.getAllResponseHeaders());
+	    	if(XMLHttpRequest.getResponseHeader('server') !== 'Apache'){
 	    		canProxy = true;
 	    	}else{
 
