@@ -387,7 +387,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 
 				options.dataUrl = origURLObj.href;
 				
-				//$.mobile.changePage( $page, options );
+				$.mobile.changePage( $page, options );
 
 				$.mobile.loading( 'hide' );
 
@@ -401,7 +401,7 @@ function showSubpage( sourceURL, origURLObj, options ) {
 		
 
 	//add new page to the DOM
-	$.mobile.pageContainer.append($page)
+	//$.mobile.pageContainer.append($page)
 
 	$('.subPageData').trigger("create");
 	$('.subPageData').show("slow");
