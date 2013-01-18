@@ -194,6 +194,9 @@ img.branch{
     padding: 0;
 }
 
+.ui-page {
+    -webkit-backface-visibility: hidden;
+}
 
 /* ThemeRoller generated (with modifications) */
 /* Swatches */
