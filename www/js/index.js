@@ -48,7 +48,7 @@ var app = {
 	//$.mobile.pageContainer = $('#container');
 	 
 	// Setting default page transition to slide
-        $.mobile.defaultPageTransition = 'fade';
+        $.mobile.defaultPageTransition = 'none';
             
             
         this.bind();
