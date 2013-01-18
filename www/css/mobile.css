@@ -57,7 +57,7 @@ div.icon .grayText {
 }
 
 
-#toolbar img{
+.toolbar img{
     vertical-align: middle;    
     margin-top:7px;  
     margin-left:83px;
@@ -65,12 +65,12 @@ div.icon .grayText {
     opacity: 1;
 }
 
-#toolbar a{
+.toolbar a{
     opacity: 1;
 }
 
 
-#toolbar{
+.toolbar{
     text-align: left; 
     height:28px;
     box-shadow: 10px 0px 5px #000000;    
