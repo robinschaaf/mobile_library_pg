@@ -28,7 +28,7 @@
     <access origin="http://d1aaqh87bn7fin.cloudfront.net" subdomains="true" browserOnly="false" />
 
     <preference name="phonegap-version" value="2.2.0" />
-    <preference name="target-device" value="universal" />
+    <preference name="target-device" value="handset" />
     <preference name="fullscreen" value="false" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="true" />
