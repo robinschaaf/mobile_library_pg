@@ -513,7 +513,7 @@ function updateIFrame(iFt){
 			$(this).attr('onclick','');
 			$(this).attr('href', "javascript:window.top.postMessage('" + thisHref + "', '*');")
 		}
-		
+
 		//is not relative url
 		if ($.mobile.path.isRelativeUrl(thisHref) === true){
 			$(this).attr('href',$.mobile.path.makeUrlAbsolute(thisHref, $(iF).attr('src')));
@@ -524,7 +524,7 @@ function updateIFrame(iFt){
 
 		//if it's not on the same domain as current iframe's source, open externally
 		if ((u.host != iFu.host) || (isExtLink(u))){
-			return "javascript:window.top.postMessage('" + thisHref + "', '*');";
+			$(this).attr('href', "javascript:window.top.postMessage('" + thisHref + "', '*');");
 		}
 		
 		
