@@ -504,6 +504,7 @@ function updateIFrame(iFt){
 		if (val == '_parent'){
 			return '_self';	
 		}else if (val == 'popup'){
+			alert('popup');
 			return '_blank';
 		}else{
 			return val;
