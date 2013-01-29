@@ -505,7 +505,7 @@ function updateIFrame(iFt){
 			return '_self';	
 		}else if (val == 'popup'){
 			return '_blank';
-		}else{}
+		}else{
 			return val;
 		}
 
