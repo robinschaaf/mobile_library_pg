@@ -90,8 +90,9 @@ var app = {
 // in PhoneGap
 //////////////////////////////////////////////////////////////
 
-$(document).bind('pagebeforechange', function(e, data){
+$(document).bind('pagebeforechange', function(e, data, XMLHttpRequest){
 
+	    	alert(XMLHttpRequest.getAllResponseHeaders());
 
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
