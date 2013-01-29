@@ -92,7 +92,7 @@ var app = {
 
 $(document).bind('pagebeforechange', function(e, data, XMLHttpRequest){
 
-	    	alert(XMLHttpRequest.getAllResponseHeaders());
+	    	alert('beforepagechange');
 
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
