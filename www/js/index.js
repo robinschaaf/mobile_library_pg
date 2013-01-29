@@ -92,8 +92,6 @@ var app = {
 
 $(document).bind('pagebeforechange', function(e, data, XMLHttpRequest){
 
-	    	alert('beforepagechange');
-
 	// We only want to handle changePage() calls where the caller is
 	// asking us to load a page by url for subpage
 	if ( typeof data.toPage === "string" ){
@@ -501,6 +499,16 @@ function updateIFrame(iFt){
 	$(iF).css("height","1%");
 	
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
+
+	$(iF).contents().find('a').attr('target', function(i, val){
+		if (val == '_parent'){
+			return '_self';	
+		}else{
+			return val;
+		}
+
+	});
+
 
 	//look at all links on page to update if needed	
 	$(iF).contents().find('a').attr('href', function(i, val){
