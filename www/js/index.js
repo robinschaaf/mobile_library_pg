@@ -504,7 +504,7 @@ function updateIFrame(iFt){
 	//look at all links on page to update if needed	
 	$(iF).contents().find('a').each(function(i){
 		thisTarget = $(this).attr('target')
-		thisHref = $(this).attr('target')
+		thisHref = $(this).attr('href')
 
 		if (thisTarget == '_parent'){
 			$(this).attr('target', '_self');	
