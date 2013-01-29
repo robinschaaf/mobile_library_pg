@@ -503,7 +503,9 @@ function updateIFrame(iFt){
 	$(iF).contents().find('a').attr('target', function(i, val){
 		if (val == '_parent'){
 			return '_self';	
-		}else{
+		}else if (val == 'popup'){
+			return '_blank';
+		}else{}
 			return val;
 		}
 
