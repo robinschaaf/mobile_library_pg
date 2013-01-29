@@ -500,36 +500,31 @@ function updateIFrame(iFt){
 	
 	var iFu = $.mobile.path.parseUrl($(iF).attr('src'));
 
-	$(iF).contents().find('a').attr('target', function(i, val){
-		if (val == '_parent'){
-			return '_self';	
-		}else if (val == 'popup'){
-			alert('popup');
-			return '_blank';
-		}else{
-			return val;
-		}
-
-	});
-
 
 	//look at all links on page to update if needed	
-	$(iF).contents().find('a').attr('href', function(i, val){
+	$(iF).contents().find('a').each(function(i){
+		thisTarget = $(this).attr('target')
+		thisHref = $(this).attr('target')
 
-
+		if (thisTarget == '_parent'){
+			$(this).attr('target', '_self');	
+		}else if (thisTarget == 'popup'){
+			$(this).attr('target','_blank');
+			$(this).attr('onclick','');
+			$(this).attr('href', "javascript:window.top.postMessage('" + thisHref + "', '*');")
+		}
+		
 		//is not relative url
-		if ($.mobile.path.isRelativeUrl(val) === true){
-			val = $.mobile.path.makeUrlAbsolute(val, $(iF).attr('src'));
+		if ($.mobile.path.isRelativeUrl(thisHref) === true){
+			$(this).attr('href',$.mobile.path.makeUrlAbsolute(thisHref, $(iF).attr('src')));
 		}
 		
 		
-		var u = $.mobile.path.parseUrl( val );
+		var u = $.mobile.path.parseUrl( thisHref );
 
 		//if it's not on the same domain as current iframe's source, open externally
 		if ((u.host != iFu.host) || (isExtLink(u))){
-			return "javascript:window.top.postMessage('" + val + "', '*');";
-		}else{
-			return val;
+			return "javascript:window.top.postMessage('" + thisHref + "', '*');";
 		}
 		
 		
