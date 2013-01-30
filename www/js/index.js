@@ -516,8 +516,7 @@ function updateIFrame(iFt){
 
 		//is not relative url
 		if ($.mobile.path.isRelativeUrl(thisHref) === true){
-			$(this).attr('href',$.mobile.path.makeUrlAbsolute(thisHref, $(iF).attr('src')));
-			alert($(this).attr('href'))
+			thisHref = $.mobile.path.makeUrlAbsolute(thisHref, $(iF).attr('src'));
 		}
 		
 		
@@ -526,6 +525,8 @@ function updateIFrame(iFt){
 		//if it's not on the same domain as current iframe's source, open externally
 		if ((u.host != iFu.host) || (isExtLink(u))){
 			$(this).attr('href', "javascript:window.top.postMessage('" + thisHref + "', '*');");
+		}else{
+			$(this).attr('href', thisHref);
 		}
 		
 		
