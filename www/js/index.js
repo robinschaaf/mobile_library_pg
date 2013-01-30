@@ -517,6 +517,7 @@ function updateIFrame(iFt){
 		//is not relative url
 		if ($.mobile.path.isRelativeUrl(thisHref) === true){
 			$(this).attr('href',$.mobile.path.makeUrlAbsolute(thisHref, $(iF).attr('src')));
+			alert($(this).attr('href'))
 		}
 		
 		
